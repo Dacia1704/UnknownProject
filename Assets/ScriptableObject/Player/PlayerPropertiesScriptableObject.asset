@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7171fb53b421b43ab69ed0d7dc5977, type: 3}
+  m_Name: PlayerPropertiesScriptableObject
+  m_EditorClassIdentifier: 
+  <BaseSpeed>k__BackingField: 7
+  <BaseAttack>k__BackingField: 5
+  <BaseDashSpeed>k__BackingField: 15
+  <BaseDashTime>k__BackingField: 0.25
+  <ResetNomalAttackTime>k__BackingField: 0.5
+  <IdleBoolTrigger>k__BackingField: idle
+  <MoveBoolTrigger>k__BackingField: move
+  <NomalAttackValueTrigger>k__BackingField: nomalAttack
+  <IdleAnimationName>k__BackingField: Idle
+  <MoveAnimationName>k__BackingField: MoveFront
