@@ -21,6 +21,13 @@ public class AnimationController : MonoBehaviour
     {
         animator.SetFloat(triggerName, value);
     }
+
+    public virtual bool GetBoolValueAnimation(string triggerName) {
+        return animator.GetBool(triggerName);
+    }
+    public virtual float GetFloatValueAnimation(string triggerName) {
+        return animator.GetFloat(triggerName);
+    }
     
     public virtual bool IsAnimationEnded(string animationName,int layerIndex)
     {

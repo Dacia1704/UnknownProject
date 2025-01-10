@@ -4,9 +4,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputSystem {
 	private PlayerInputActions playerInputActions;
-	public Vector2 movementInput;
-	public bool nomalAttackInput;
-	public bool dashInput;
+	public Vector2 MovementInput { get; private set; }
+	public bool NomalAttackInput { get; private set; }
+	public bool DashInput { get; private set; }
+	public bool BackwardInput { get; private set; }
     public void Start() {
 		playerInputActions = new PlayerInputActions();
 		EnablePlayerInput();
@@ -17,7 +18,25 @@ public class PlayerInputSystem {
 		playerInputActions.Player.NomalAttack.canceled += onPlayerInputNomalAttackCanceled;
 		playerInputActions.Player.Dash.started += onPlayerInputDashStarted;
 		playerInputActions.Player.Dash.canceled += onPlayerInputDashCanceled;
+		playerInputActions.Player.Backward.started += onPlayerInputBackwardStarted;
+		playerInputActions.Player.Backward.performed += onPlayerInputBackwardPerformed;
+		playerInputActions.Player.Backward.canceled += onPlayerInputBackwardCanceled;
 
+    }
+
+    private void onPlayerInputBackwardCanceled(InputAction.CallbackContext context)
+    {
+		BackwardInput = false;
+    }
+
+    private void onPlayerInputBackwardPerformed(InputAction.CallbackContext context)
+    {
+		BackwardInput = true;
+    }
+
+    private void onPlayerInputBackwardStarted(InputAction.CallbackContext context)
+    {
+		BackwardInput = true;
     }
 
     public void Update() {
@@ -25,36 +44,36 @@ public class PlayerInputSystem {
 
     private void onPlayerInputNomalAttackCanceled(InputAction.CallbackContext context)
     {
-		nomalAttackInput = false;
+		NomalAttackInput = false;
     }
     private void onPlayerInputNomalAttackStarted(InputAction.CallbackContext context)
     {
 	    if (context.control.name == "leftButton" && UIManager.Instance.IsPointerOverUIElement()) return;
-		nomalAttackInput = true;
+		NomalAttackInput = true;
     }
     private void onPlayerInputMovementCanceled(InputAction.CallbackContext context)
     {
-        movementInput = playerInputActions.Player.Movement.ReadValue<Vector2>();
+        MovementInput = playerInputActions.Player.Movement.ReadValue<Vector2>();
     }
 	private void onPlayerInputMovementPerformed(InputAction.CallbackContext context)
     {
 	    if (context.control.name == "leftButton" && UIManager.Instance.IsPointerOverUIElement()) return;
-		movementInput = playerInputActions.Player.Movement.ReadValue<Vector2>();
+		MovementInput = playerInputActions.Player.Movement.ReadValue<Vector2>();
     }
 
     private void onPlayerInputMovementStarted(InputAction.CallbackContext context)
 	{
 		if (context.control.name == "leftButton" && UIManager.Instance.IsPointerOverUIElement()) return;
-		movementInput = playerInputActions.Player.Movement.ReadValue<Vector2>();
+		MovementInput = playerInputActions.Player.Movement.ReadValue<Vector2>();
 	}
 	private void onPlayerInputDashStarted(InputAction.CallbackContext context)
 	{
 		if (context.control.name == "leftButton" && UIManager.Instance.IsPointerOverUIElement()) return;
-		dashInput = true;
+		DashInput = true;
 	}
 	private void onPlayerInputDashCanceled(InputAction.CallbackContext context)
 	{
-		dashInput = false;
+		DashInput = false;
 	}
 
 	public void EnablePlayerInput() {

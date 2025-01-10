@@ -37,7 +37,7 @@ public abstract class PlayerState : IState
     }
 
 	//logic
-    protected virtual void Move(Vector2 direction, float speed) {
+    protected virtual void Move(Vector2 direction, float speed,bool backward= false) {
 		if (PlayerReusableData.MovementInput == Vector2.zero) return;
 		float newAngle = - Camera.main.transform.eulerAngles.y;
 		float angleRadians = Mathf.Deg2Rad * newAngle;
@@ -45,7 +45,11 @@ public abstract class PlayerState : IState
         float newY = direction.x * Mathf.Sin(angleRadians) + direction.y * Mathf.Cos(angleRadians);
 		Vector3 dir = new Vector3(newX, 0, newY);
 		PlayerStateMachine.player.transform.rotation = Quaternion.RotateTowards(PlayerStateMachine.player.transform.rotation, Quaternion.LookRotation(dir), 1000 * Time.deltaTime);
-		PlayerStateMachine.player.playerRigidbody.velocity = new Vector3(dir.x *speed,PlayerStateMachine.player.playerRigidbody.velocity.y,dir.z * speed);
+		if (backward) {
+			PlayerStateMachine.player.playerRigidbody.velocity = new Vector3(-1 *dir.x *speed,PlayerStateMachine.player.playerRigidbody.velocity.y,-1*dir.z * speed);
+		} else {
+			PlayerStateMachine.player.playerRigidbody.velocity = new Vector3(dir.x *speed,PlayerStateMachine.player.playerRigidbody.velocity.y,dir.z * speed);
+		}
     }
 	protected void ResetVelocity()
 	{
@@ -58,7 +62,7 @@ public abstract class PlayerState : IState
 
 	protected virtual void Attack()
 	{
-		if (PlayerStateMachine.player.PlayerInputSystem.nomalAttackInput && PlayerReusableData.IsNomalAttacking == false)
+		if (PlayerStateMachine.player.PlayerInputSystem.NomalAttackInput && PlayerReusableData.IsNomalAttacking == false)
 		{
 			PlayerReusableData.IsNomalAttacking = true;
 			PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,currentAttack);
@@ -131,7 +135,7 @@ public abstract class PlayerState : IState
 
 	protected virtual void OnDash()
 	{
-		if (PlayerReusableData.IsGround && PlayerStateMachine.player.PlayerInputSystem.dashInput)
+		if (PlayerReusableData.IsGround && PlayerStateMachine.player.PlayerInputSystem.DashInput)
 		{
 			PlayerStateMachine.ChangeState(PlayerStateMachine.PlayerDashState);
 		}
