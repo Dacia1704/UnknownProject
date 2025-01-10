@@ -1,18 +1,17 @@
+
+using UnityEngine;
+
 public class PlayerMoveState : PlayerState
 {
     public PlayerMoveState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-        PlayerStateMachine.player.PlayerAnimationController.SetBoolValueAnimation(playerPropertiesSO.MoveBoolTrigger,true);
-    }
 
     public override void Update()
     {
         base.Update();
+        UpdateMoveAnimation();
         OnDash();
         OnIdle();
     }
@@ -20,7 +19,12 @@ public class PlayerMoveState : PlayerState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        Move(PlayerStateMachine.player.PlayerInputSystem.movementInput,PlayerStateMachine.player.PlayerPropertiesSO.BaseSpeed);
+        if (PlayerStateMachine.player.PlayerInputSystem.BackwardInput) {
+            Move(PlayerStateMachine.player.PlayerInputSystem.MovementInput,PlayerStateMachine.player.PlayerPropertiesSO.BaseSpeed,true);
+        }
+        else {
+            Move(PlayerStateMachine.player.PlayerInputSystem.MovementInput,PlayerStateMachine.player.PlayerPropertiesSO.BaseSpeed);
+        }
 
     }
 
@@ -28,6 +32,15 @@ public class PlayerMoveState : PlayerState
     {
         base.Exit();
         ResetVelocity();
-        PlayerStateMachine.player.PlayerAnimationController.SetBoolValueAnimation(playerPropertiesSO.MoveBoolTrigger,false);
+        PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,-1);
+    }
+
+    private void UpdateMoveAnimation() {
+        float x = PlayerStateMachine.player.PlayerAnimationController.GetFloatValueAnimation(playerPropertiesSO.MoveTrigger);
+        if(PlayerStateMachine.player.PlayerInputSystem.BackwardInput && x!=1) {
+            PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,1);
+        } else if( !PlayerStateMachine.player.PlayerInputSystem.BackwardInput && x!=0) {
+            PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,0);
+        }
     }
 }

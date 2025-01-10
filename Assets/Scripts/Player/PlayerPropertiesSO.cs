@@ -12,7 +12,7 @@ public class PlayerPropertiesSO : ScriptableObject {
     
     [field: Header("Animation Parameters")]
     [field: SerializeField] public string IdleBoolTrigger { get; private set; }
-    [field: SerializeField] public string MoveBoolTrigger { get; private set; }
+    [field: SerializeField] public string MoveTrigger { get; private set; }
     [field: SerializeField] public string NomalAttackValueTrigger { get; private set; }
     
     [field: SerializeField] public string IdleAnimationName { get; private set; }

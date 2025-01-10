@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
 
     public void UpdateReusableData()
     {
-        PlayerReusableData.MovementInput = PlayerInputSystem.movementInput;
+        PlayerReusableData.MovementInput = PlayerInputSystem.MovementInput;
         PlayerReusableData.IsGround = PlayerCollisionSystem.isGround;
     }
     

@@ -14,7 +14,11 @@ public class PlayerDashState: PlayerState
         isDashing = true;
         dashTime = 0;
         dashDirection = PlayerReusableData.MovementInput;
-        PlayerStateMachine.player.PlayerAnimationController.SetBoolValueAnimation(playerPropertiesSO.MoveBoolTrigger,true);
+        if(PlayerStateMachine.player.PlayerInputSystem.BackwardInput) {
+            PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,1);
+        } else {
+            PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,0);
+        }
     }
 
     public override void Update()
@@ -63,7 +67,7 @@ public class PlayerDashState: PlayerState
 
     public override void Exit()
     {
+        PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,-1);
         base.Exit();
-        PlayerStateMachine.player.PlayerAnimationController.SetBoolValueAnimation(playerPropertiesSO.MoveBoolTrigger,false);
     }
 }
