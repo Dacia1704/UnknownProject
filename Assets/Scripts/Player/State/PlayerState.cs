@@ -85,11 +85,25 @@ public abstract class PlayerState : IState
 				PlayerReusableData.IsNomalAttacking = false;
 				PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
 			} else if (PlayerStateMachine.player.PlayerAnimationController.IsAnimationEnded(
-				           "BowNomalAttackEnd", 1))
+				           "BowNomalAttack", 1))
 			{
 				PlayerReusableData.IsNomalAttacking = false;
 				PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
-			}
+			} else if (PlayerStateMachine.player.PlayerAnimationController.IsAnimationEnded(
+				           "FighterNomalAttack", 1))
+			{
+				PlayerReusableData.IsNomalAttacking = false;
+				PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
+				nomalAttackCounter = Time.time;
+				if (currentAttack == 0)
+				{
+					currentAttack = 1;
+				}
+				else
+				{
+					currentAttack = 0;
+				}
+			} 
 		} else if (PlayerReusableData.IsNomalAttacking == false)
 		{
 			if (Time.time - nomalAttackCounter >= playerPropertiesSO.ResetNomalAttackTime)
