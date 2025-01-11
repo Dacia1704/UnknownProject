@@ -2,22 +2,22 @@
 
 public class PlayerDashState: PlayerState
 {
-    private bool isDashing;
-    private Vector2 dashDirection;
-    private float dashTime;
+    private bool _isDashing;
+    private Vector2 _dashDirection;
+    private float _dashTime;
     public PlayerDashState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
     }
     public override void Enter()
     {
         base.Enter();
-        isDashing = true;
-        dashTime = 0;
-        dashDirection = PlayerReusableData.MovementInput;
-        if(PlayerStateMachine.player.PlayerInputSystem.BackwardInput) {
-            PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,1);
+        _isDashing = true;
+        _dashTime = 0;
+        _dashDirection = PlayerReusableData.MovementInput;
+        if(playerStateMachine.Player.PlayerInputSystem.BackwardInput) {
+            playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,1);
         } else {
-            PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,0);
+            playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,0);
         }
     }
 
@@ -25,7 +25,7 @@ public class PlayerDashState: PlayerState
     {
         base.Update();
 
-        if (!isDashing)
+        if (!_isDashing)
         {
             OnIdle();
             OnMove();
@@ -36,11 +36,11 @@ public class PlayerDashState: PlayerState
     {
         
         base.PhysicsUpdate();
-        Dash(PlayerStateMachine.player.PlayerPropertiesSO.BaseDashSpeed);
-        dashTime += Time.fixedDeltaTime;
-        if (dashTime > PlayerStateMachine.player.PlayerPropertiesSO.BaseDashTime)
+        Dash(playerStateMachine.Player.PlayerPropertiesSO.BaseDashSpeed);
+        _dashTime += Time.fixedDeltaTime;
+        if (_dashTime > playerStateMachine.Player.PlayerPropertiesSO.BaseDashTime)
         {
-            isDashing = false;
+            _isDashing = false;
             ResetVelocity();
         }
 
@@ -49,25 +49,25 @@ public class PlayerDashState: PlayerState
     protected virtual void Dash(float speed)
     {
         Vector3 dir = new Vector3();
-        if (dashDirection != Vector2.zero)
+        if (_dashDirection != Vector2.zero)
         {
             float newAngle = - Camera.main.transform.eulerAngles.y;
             float angleRadians = Mathf.Deg2Rad * newAngle;
-            float newX = dashDirection.x * Mathf.Cos(angleRadians) - dashDirection.y * Mathf.Sin(angleRadians);
-            float newY = dashDirection.x * Mathf.Sin(angleRadians) + dashDirection.y * Mathf.Cos(angleRadians);
+            float newX = _dashDirection.x * Mathf.Cos(angleRadians) - _dashDirection.y * Mathf.Sin(angleRadians);
+            float newY = _dashDirection.x * Mathf.Sin(angleRadians) + _dashDirection.y * Mathf.Cos(angleRadians);
             dir = new Vector3(newX, 0, newY);
         }
         else
         {
-            dir = PlayerStateMachine.player.transform.forward;
+            dir = playerStateMachine.Player.transform.forward;
         }
-        PlayerStateMachine.player.transform.rotation = Quaternion.RotateTowards(PlayerStateMachine.player.transform.rotation, Quaternion.LookRotation(dir), 1000 * Time.deltaTime);
-        PlayerStateMachine.player.playerRigidbody.velocity = new Vector3(dir.x *speed,0,dir.z * speed);
+        playerStateMachine.Player.transform.rotation = Quaternion.RotateTowards(playerStateMachine.Player.transform.rotation, Quaternion.LookRotation(dir), 1000 * Time.deltaTime);
+        playerStateMachine.Player.PlayerRigidbody.velocity = new Vector3(dir.x *speed,0,dir.z * speed);
     }
 
     public override void Exit()
     {
-        PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,-1);
+        playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,-1);
         base.Exit();
     }
 }

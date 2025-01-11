@@ -5,14 +5,14 @@ using UnityEngine.InputSystem.Interactions;
 
 public abstract class PlayerState : IState
 {
-	protected PlayerStateMachine PlayerStateMachine;
+	protected PlayerStateMachine playerStateMachine;
 	protected PlayerPropertiesSO playerPropertiesSO;
 	
 	protected float currentAttack = 0;
 	protected float nomalAttackCounter = 0;
 	public  PlayerState (PlayerStateMachine playerStateMachine) {
-		this.PlayerStateMachine = playerStateMachine;
-		this.playerPropertiesSO = playerStateMachine.player.PlayerPropertiesSO;
+		this.playerStateMachine = playerStateMachine;
+		this.playerPropertiesSO = playerStateMachine.Player.PlayerPropertiesSO;
 		
 	}
     public virtual void Enter()
@@ -44,36 +44,36 @@ public abstract class PlayerState : IState
         float newX = direction.x * Mathf.Cos(angleRadians) - direction.y * Mathf.Sin(angleRadians);
         float newY = direction.x * Mathf.Sin(angleRadians) + direction.y * Mathf.Cos(angleRadians);
 		Vector3 dir = new Vector3(newX, 0, newY);
-		PlayerStateMachine.player.transform.rotation = Quaternion.RotateTowards(PlayerStateMachine.player.transform.rotation, Quaternion.LookRotation(dir), 1000 * Time.deltaTime);
+		playerStateMachine.Player.transform.rotation = Quaternion.RotateTowards(playerStateMachine.Player.transform.rotation, Quaternion.LookRotation(dir), 1000 * Time.deltaTime);
 		if (backward) {
-			PlayerStateMachine.player.playerRigidbody.velocity = new Vector3(-1 *dir.x *speed,PlayerStateMachine.player.playerRigidbody.velocity.y,-1*dir.z * speed);
+			playerStateMachine.Player.PlayerRigidbody.velocity = new Vector3(-1 *dir.x *speed,playerStateMachine.Player.PlayerRigidbody.velocity.y,-1*dir.z * speed);
 		} else {
-			PlayerStateMachine.player.playerRigidbody.velocity = new Vector3(dir.x *speed,PlayerStateMachine.player.playerRigidbody.velocity.y,dir.z * speed);
+			playerStateMachine.Player.PlayerRigidbody.velocity = new Vector3(dir.x *speed,playerStateMachine.Player.PlayerRigidbody.velocity.y,dir.z * speed);
 		}
     }
 	protected void ResetVelocity()
 	{
-		PlayerStateMachine.player.playerRigidbody.velocity = new Vector3(0, 0, 0);
+		playerStateMachine.Player.PlayerRigidbody.velocity = new Vector3(0, 0, 0);
 	}
 	
 	protected void Jump(float force) {
-		PlayerStateMachine.player.playerRigidbody.AddForce(PlayerStateMachine.player.transform.up * force, ForceMode.Impulse);
+		playerStateMachine.Player.PlayerRigidbody.AddForce(playerStateMachine.Player.transform.up * force, ForceMode.Impulse);
 	}
 
 	protected virtual void Attack()
 	{
-		if (PlayerStateMachine.player.PlayerInputSystem.NomalAttackInput && PlayerReusableData.IsNomalAttacking == false)
+		if (playerStateMachine.Player.PlayerInputSystem.NomalAttackInput && PlayerReusableData.IsNomalAttacking == false)
 		{
 			PlayerReusableData.IsNomalAttacking = true;
-			PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,currentAttack);
+			playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,currentAttack);
 		}
 		else if (PlayerReusableData.IsNomalAttacking)
 		{
-			if (PlayerStateMachine.player.PlayerAnimationController.IsAnimationEnded(
+			if (playerStateMachine.Player.PlayerAnimationController.IsAnimationEnded(
 				    "SwordNomalAttack", 1) )
 			{
 				PlayerReusableData.IsNomalAttacking = false;
-				PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
+				playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
 				nomalAttackCounter = Time.time;
 				if (currentAttack == 0)
 				{
@@ -83,21 +83,21 @@ public abstract class PlayerState : IState
 				{
 					currentAttack = 0;
 				}
-			} else if (PlayerStateMachine.player.PlayerAnimationController.IsAnimationEnded(
+			} else if (playerStateMachine.Player.PlayerAnimationController.IsAnimationEnded(
 				           "StaffNomalAttack", 1))
 			{
 				PlayerReusableData.IsNomalAttacking = false;
-				PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
-			} else if (PlayerStateMachine.player.PlayerAnimationController.IsAnimationEnded(
+				playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
+			} else if (playerStateMachine.Player.PlayerAnimationController.IsAnimationEnded(
 				           "BowNomalAttack", 1))
 			{
 				PlayerReusableData.IsNomalAttacking = false;
-				PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
-			} else if (PlayerStateMachine.player.PlayerAnimationController.IsAnimationEnded(
+				playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
+			} else if (playerStateMachine.Player.PlayerAnimationController.IsAnimationEnded(
 				           "FighterNomalAttack", 1))
 			{
 				PlayerReusableData.IsNomalAttacking = false;
-				PlayerStateMachine.player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
+				playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
 				nomalAttackCounter = Time.time;
 				if (currentAttack == 0)
 				{
@@ -124,20 +124,20 @@ public abstract class PlayerState : IState
 	protected virtual void OnIdle() {
 		if(PlayerReusableData.MovementInput == new Vector2(0, 0) && PlayerReusableData.IsGround) {
 			
-			PlayerStateMachine.ChangeState(PlayerStateMachine.PlayerIdleState);
+			playerStateMachine.ChangeState(playerStateMachine.PlayerIdleState);
 		}
 	}
 	protected virtual void OnMove() {
 		if(PlayerReusableData.MovementInput != new Vector2(0, 0) && PlayerReusableData.IsGround) {
-			PlayerStateMachine.ChangeState(PlayerStateMachine.PlayerMoveState);
+			playerStateMachine.ChangeState(playerStateMachine.PlayerMoveState);
 		}
 	}
 
 	protected virtual void OnDash()
 	{
-		if (PlayerReusableData.IsGround && PlayerStateMachine.player.PlayerInputSystem.DashInput)
+		if (PlayerReusableData.IsGround && playerStateMachine.Player.PlayerInputSystem.DashInput)
 		{
-			PlayerStateMachine.ChangeState(PlayerStateMachine.PlayerDashState);
+			playerStateMachine.ChangeState(playerStateMachine.PlayerDashState);
 		}
 	}
 
