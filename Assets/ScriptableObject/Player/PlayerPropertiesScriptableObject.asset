@@ -18,7 +18,7 @@ MonoBehaviour:
   <BaseDashTime>k__BackingField: 0.25
   <ResetNomalAttackTime>k__BackingField: 0.5
   <IdleBoolTrigger>k__BackingField: idle
-  <MoveBoolTrigger>k__BackingField: move
+  <MoveTrigger>k__BackingField: move
   <NomalAttackValueTrigger>k__BackingField: nomalAttack
   <IdleAnimationName>k__BackingField: Idle
-  <MoveAnimationName>k__BackingField: MoveFront
+  <MoveAnimationName>k__BackingField: Move

@@ -11,8 +11,8 @@ public class PlayerIdleState : PlayerState
     {
         base.Enter();
         ResetVelocity();
-        PlayerStateMachine.player.playerRigidbody.freezeRotation = true;
-        PlayerStateMachine.player.PlayerAnimationController.SetBoolValueAnimation(playerPropertiesSO.IdleBoolTrigger,true);
+        playerStateMachine.Player.PlayerRigidbody.freezeRotation = true;
+        playerStateMachine.Player.PlayerAnimationController.SetBoolValueAnimation(playerPropertiesSO.IdleBoolTrigger,true);
     }
 
     public override void Update()
@@ -25,7 +25,7 @@ public class PlayerIdleState : PlayerState
     public override void Exit()
     {
         base.Exit();
-        PlayerStateMachine.player.playerRigidbody.constraints &= ~RigidbodyConstraints.FreezeRotationY;
-        PlayerStateMachine.player.PlayerAnimationController.SetBoolValueAnimation(playerPropertiesSO.IdleBoolTrigger,false);
+        playerStateMachine.Player.PlayerRigidbody.constraints &= ~RigidbodyConstraints.FreezeRotationY;
+        playerStateMachine.Player.PlayerAnimationController.SetBoolValueAnimation(playerPropertiesSO.IdleBoolTrigger,false);
     }
 }

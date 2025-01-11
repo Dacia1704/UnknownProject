@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IAttackable,IDamable
 {
-    [HideInInspector]public Rigidbody playerRigidbody;
+    [HideInInspector]public Rigidbody PlayerRigidbody;
     
     public PlayerPropertiesSO PlayerPropertiesSO;
     private PlayerStateMachine _playerStateMachine;
@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     [HideInInspector] public WeaponManager WeaponManager;
     [field: SerializeField]public Transform WeaponLeftTransform { get; private set; }
     [field: SerializeField]public Transform WeaponRightTransform { get; private set; }
-
+    public float Attack { get ;set; }
+    public int MaxHealth { get ;set; }
 
     [Header("Test")] 
     public WeaponPropsSO IronWordSO;
@@ -29,10 +30,11 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        playerRigidbody = GetComponent<Rigidbody>();
+        PlayerRigidbody = GetComponent<Rigidbody>();
         PlayerAnimationController = GetComponentInChildren<PlayerAnimationController>();
         PlayerCollisionSystem = GetComponentInChildren<PlayerCollisionSystem>();
         WeaponManager = GetComponentInChildren<WeaponManager>();
+        MaxHealth = PlayerPropertiesSO.BaseHealth;
 
         PlayerInputSystem.Start();
 

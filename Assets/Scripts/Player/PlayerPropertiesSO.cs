@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerPropertiesSO : ScriptableObject {
     [field: SerializeField] public float BaseSpeed { get; private set; }
     [field: SerializeField] public float BaseAttack {get; private set; }
+    [field: SerializeField] public int BaseHealth {get; private set; }
     [field: SerializeField] public float BaseDashSpeed { get; private set; }
     [field: SerializeField] public float BaseDashTime { get; private set; }
     [field: SerializeField] public float ResetNomalAttackTime { get; private set; }
