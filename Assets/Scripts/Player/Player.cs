@@ -4,22 +4,20 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour,IAttackable,IDamable
+public class Player : MonoBehaviour
 {
     [HideInInspector]public Rigidbody PlayerRigidbody;
     
     public PlayerPropertiesSO PlayerPropertiesSO;
     private PlayerStateMachine _playerStateMachine;
     public PlayerInputSystem PlayerInputSystem = new();
-    [HideInInspector] public PlayerCollisionSystem PlayerCollisionSystem;
+    [HideInInspector] public PlayerBodyCollisionManager PlayerBodyCollisionManager;
     [HideInInspector] public PlayerAnimationController PlayerAnimationController;
 
     [Header("Weapon")] 
     [HideInInspector] public WeaponManager WeaponManager;
     [field: SerializeField]public Transform WeaponLeftTransform { get; private set; }
     [field: SerializeField]public Transform WeaponRightTransform { get; private set; }
-    public float Attack { get ;set; }
-    public int MaxHealth { get ;set; }
 
     [Header("Test")] 
     public WeaponPropsSO IronWordSO;
@@ -32,9 +30,8 @@ public class Player : MonoBehaviour,IAttackable,IDamable
     {
         PlayerRigidbody = GetComponent<Rigidbody>();
         PlayerAnimationController = GetComponentInChildren<PlayerAnimationController>();
-        PlayerCollisionSystem = GetComponentInChildren<PlayerCollisionSystem>();
+        PlayerBodyCollisionManager = GetComponentInChildren<PlayerBodyCollisionManager>();
         WeaponManager = GetComponentInChildren<WeaponManager>();
-        MaxHealth = PlayerPropertiesSO.BaseHealth;
 
         PlayerInputSystem.Start();
 
@@ -72,7 +69,7 @@ public class Player : MonoBehaviour,IAttackable,IDamable
     public void UpdateReusableData()
     {
         PlayerReusableData.MovementInput = PlayerInputSystem.MovementInput;
-        PlayerReusableData.IsGround = PlayerCollisionSystem.isGround;
+        PlayerReusableData.IsGround = PlayerBodyCollisionManager.isGround;
     }
     
     
