@@ -19,10 +19,15 @@ public class Player : MonoBehaviour
     [field: SerializeField]public Transform WeaponLeftTransform { get; private set; }
     [field: SerializeField]public Transform WeaponRightTransform { get; private set; }
 
+    [Header("Battle System")]
+    [HideInInspector] public Damable Damable;
+
+
     [Header("Test")] 
     public WeaponPropsSO IronWordSO;
     public WeaponPropsSO GreenStaffSO;
     public WeaponPropsSO WoodBowSO;
+    public WeaponPropsSO FighterSO;
     private void Awake() {
         _playerStateMachine = new(this);
     }
@@ -32,22 +37,29 @@ public class Player : MonoBehaviour
         PlayerAnimationController = GetComponentInChildren<PlayerAnimationController>();
         PlayerBodyCollisionManager = GetComponentInChildren<PlayerBodyCollisionManager>();
         WeaponManager = GetComponentInChildren<WeaponManager>();
+        Damable = GetComponentInChildren<Damable>();
+
+        Damable.SetTagCanDealDamList(PlayerPropertiesSO.TagCanDealDamList);
 
         PlayerInputSystem.Start();
 
         _playerStateMachine.ChangeState(_playerStateMachine.PlayerIdleState);
-        
+
+
+        WeaponManager.EquipRightWeapon(FighterSO);
+        WeaponManager.EquipLeftWeapon(FighterSO);
         UIManager.Instance.OnSwordButtonClicked += () =>
         {
-            WeaponManager.EquipWeapon(IronWordSO);
+            WeaponManager.EquipRightWeapon(IronWordSO);
+            
         };
         UIManager.Instance.OnStaffButtonClicked += () =>
         {
-            WeaponManager.EquipWeapon(GreenStaffSO);
+            WeaponManager.EquipRightWeapon(GreenStaffSO);
         };
         UIManager.Instance.OnBowButtonClicked += () =>
         {
-            WeaponManager.EquipWeapon(WoodBowSO);
+            WeaponManager.EquipRightWeapon(WoodBowSO);
         };
 
         PlayerReusableData.IsNomalAttacking = false;

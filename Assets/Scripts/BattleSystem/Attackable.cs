@@ -5,11 +5,6 @@ public class Attackable: MonoBehaviour {
 
     public bool IsAttackSuccess { get; private set; }
 
-    protected Collider attackCollider;
-
-    protected virtual void Start() {
-        attackCollider = GetComponent<Collider>();
-    }
 
     protected virtual void OnTriggerEnter(Collider other) {
         Damable damable= other.gameObject.GetComponent<Damable>();
@@ -32,5 +27,9 @@ public class Attackable: MonoBehaviour {
                 IsAttackSuccess = false;
             }
         }
+    }
+
+    public void SetAttack(int attack) {
+        Attack = attack;
     }
 }

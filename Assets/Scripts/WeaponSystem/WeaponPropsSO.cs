@@ -3,6 +3,7 @@ using UnityEngine;
 
 public enum WeaponType
 {
+    Fighter,
     Sword,
     Staff,
     Bow,

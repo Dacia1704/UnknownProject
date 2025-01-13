@@ -7,7 +7,8 @@ using UnityEngine.PlayerLoop;
 public class WeaponManager: MonoBehaviour
 {
     protected WeaponObjectPooling weaponObjectPooling;
-    protected GameObject currentWeapon { get; private set; }
+    protected GameObject currentRightWeapon { get; private set; }
+    protected GameObject currentLeftWeapon { get; private set; }
 
     protected Player player;
 
@@ -24,23 +25,33 @@ public class WeaponManager: MonoBehaviour
         UpdateEquipmentState();
     }
 
-    public void EquipWeapon(WeaponPropsSO weapon)
+    public void EquipRightWeapon(WeaponPropsSO weapon)
     {
-        if(currentWeapon)
-            weaponObjectPooling.ReleaseObject(currentWeapon);
+        if(currentRightWeapon)
+            weaponObjectPooling.ReleaseObject(currentRightWeapon);
         GameObject poolingWeapon = weaponObjectPooling.GetObject(weapon.KeyObject);
-        currentWeapon = poolingWeapon;
+        currentRightWeapon = poolingWeapon;
         poolingWeapon.transform.SetParent(player.WeaponRightTransform);
+        poolingWeapon.transform.localPosition = Vector3.zero;
+        poolingWeapon.transform.localRotation = Quaternion.identity;
+    }
+    public void EquipLeftWeapon(WeaponPropsSO weapon)
+    {
+        if(currentLeftWeapon)
+            weaponObjectPooling.ReleaseObject(currentLeftWeapon);
+        GameObject poolingWeapon = weaponObjectPooling.GetObject(weapon.KeyObject);
+        currentRightWeapon = poolingWeapon;
+        poolingWeapon.transform.SetParent(player.WeaponLeftTransform);
         poolingWeapon.transform.localPosition = Vector3.zero;
         poolingWeapon.transform.localRotation = Quaternion.identity;
     }
 
     public void UpdateEquipmentState()
     {
-        if (currentWeapon)
+        if (currentRightWeapon)
         {
             player.PlayerAnimationController.SetFloatValueAnimation("equiped",1f);
-            WeaponPropsSO weaponSO = currentWeapon.GetComponent<Weapon>().ObjectPropsSO as WeaponPropsSO;
+            WeaponPropsSO weaponSO = currentRightWeapon.GetComponent<Weapon>().ObjectPropsSO as WeaponPropsSO;
             if (weaponSO.Type == WeaponType.Sword)
             {
                 player.PlayerAnimationController.SetBoolValueAnimation("sword",true);
@@ -57,6 +68,8 @@ public class WeaponManager: MonoBehaviour
                 player.PlayerAnimationController.SetBoolValueAnimation("sword",false);
                 player.PlayerAnimationController.SetBoolValueAnimation("staff",false);
                 player.PlayerAnimationController.SetBoolValueAnimation("bow",true);
+            } else {
+                player.PlayerAnimationController.SetFloatValueAnimation("equiped",0f);
             }
         }
         else

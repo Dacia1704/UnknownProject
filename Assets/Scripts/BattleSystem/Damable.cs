@@ -5,14 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Damable: MonoBehaviour {
     public int MaxHealth { get; set; }
-    protected Collider damableCollider;
-    [field: SerializeField]public List<string> TagCanDealDamList { get; private set; }
+    public List<string> TagCanDealDamList { get; private set; }
 
     public int IsGetAttack { get; private set; }
-
-    private void Start() {
-        damableCollider = GetComponent<Collider>();
-    }
 
     protected virtual void OnTriggerEnter(Collider other) {
         Attackable attackable= other.gameObject.GetComponent<Attackable>();
@@ -37,5 +32,9 @@ public class Damable: MonoBehaviour {
     }
     public void GetDamage(ref int health, int damage) {
         health = Mathf.Clamp(health - damage, 0, MaxHealth);
+    }
+
+    public void SetTagCanDealDamList(List<string> tagList) {
+        this.TagCanDealDamList = tagList;
     }
 }
