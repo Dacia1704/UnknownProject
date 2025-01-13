@@ -11,6 +11,9 @@ public abstract class Enemy : MonoBehaviour {
 
     public Player Player{ get; private set; }
 
+    public Attackable Attackable{ get; private set; }
+    public Damable Damable{ get; private set; }
+
     protected virtual void Awake() {
         enemyStateMachine = new(this);
     }
@@ -18,9 +21,13 @@ public abstract class Enemy : MonoBehaviour {
     protected virtual void Start() {
         Player = FindAnyObjectByType<Player>();
         Rigidbody= GetComponent<Rigidbody>();
+        Attackable = GetComponentInChildren<Attackable>();
+        Damable = GetComponentInChildren<Damable>();
         EnemyAnimationController = GetComponentInChildren<EnemyAnimationController>();
         EnemyCollisionSystem = GetComponentInChildren<EnemyCollisionSystem>();
         enemyStateMachine.ChangeState(enemyStateMachine.EnemyIdleState);
+
+        Damable.SetTagCanDealDamList(EnemyPropertiesSO.TagCanDealDamList);
     }
 
     protected virtual void Update() {

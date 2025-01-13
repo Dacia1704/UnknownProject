@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         PlayerInputSystem.Start();
 
         _playerStateMachine.ChangeState(_playerStateMachine.PlayerIdleState);
-
+        PlayerReusableData.CurrentPlayerStats = PlayerPropertiesSO.BaseStats;
 
         WeaponManager.EquipRightWeapon(FighterSO);
         WeaponManager.EquipLeftWeapon(FighterSO);
