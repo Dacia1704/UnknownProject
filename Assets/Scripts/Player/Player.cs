@@ -4,27 +4,30 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour,IAttackable,IDamable
+public class Player : MonoBehaviour
 {
     [HideInInspector]public Rigidbody PlayerRigidbody;
     
     public PlayerPropertiesSO PlayerPropertiesSO;
     private PlayerStateMachine _playerStateMachine;
     public PlayerInputSystem PlayerInputSystem = new();
-    [HideInInspector] public PlayerCollisionSystem PlayerCollisionSystem;
+    [HideInInspector] public PlayerBodyCollisionManager PlayerBodyCollisionManager;
     [HideInInspector] public PlayerAnimationController PlayerAnimationController;
 
     [Header("Weapon")] 
     [HideInInspector] public WeaponManager WeaponManager;
     [field: SerializeField]public Transform WeaponLeftTransform { get; private set; }
     [field: SerializeField]public Transform WeaponRightTransform { get; private set; }
-    public float Attack { get ;set; }
-    public int MaxHealth { get ;set; }
+
+    [Header("Battle System")]
+    [HideInInspector] public Damable Damable;
+
 
     [Header("Test")] 
     public WeaponPropsSO IronWordSO;
     public WeaponPropsSO GreenStaffSO;
     public WeaponPropsSO WoodBowSO;
+    public WeaponPropsSO FighterSO;
     private void Awake() {
         _playerStateMachine = new(this);
     }
@@ -32,25 +35,31 @@ public class Player : MonoBehaviour,IAttackable,IDamable
     {
         PlayerRigidbody = GetComponent<Rigidbody>();
         PlayerAnimationController = GetComponentInChildren<PlayerAnimationController>();
-        PlayerCollisionSystem = GetComponentInChildren<PlayerCollisionSystem>();
+        PlayerBodyCollisionManager = GetComponentInChildren<PlayerBodyCollisionManager>();
         WeaponManager = GetComponentInChildren<WeaponManager>();
-        MaxHealth = PlayerPropertiesSO.BaseHealth;
+        Damable = GetComponentInChildren<Damable>();
+
+        Damable.SetTagCanDealDamList(PlayerPropertiesSO.TagCanDealDamList);
 
         PlayerInputSystem.Start();
 
         _playerStateMachine.ChangeState(_playerStateMachine.PlayerIdleState);
-        
+
+
+        WeaponManager.EquipRightWeapon(FighterSO);
+        WeaponManager.EquipLeftWeapon(FighterSO);
         UIManager.Instance.OnSwordButtonClicked += () =>
         {
-            WeaponManager.EquipWeapon(IronWordSO);
+            WeaponManager.EquipRightWeapon(IronWordSO);
+            
         };
         UIManager.Instance.OnStaffButtonClicked += () =>
         {
-            WeaponManager.EquipWeapon(GreenStaffSO);
+            WeaponManager.EquipRightWeapon(GreenStaffSO);
         };
         UIManager.Instance.OnBowButtonClicked += () =>
         {
-            WeaponManager.EquipWeapon(WoodBowSO);
+            WeaponManager.EquipRightWeapon(WoodBowSO);
         };
 
         PlayerReusableData.IsNomalAttacking = false;
@@ -72,7 +81,7 @@ public class Player : MonoBehaviour,IAttackable,IDamable
     public void UpdateReusableData()
     {
         PlayerReusableData.MovementInput = PlayerInputSystem.MovementInput;
-        PlayerReusableData.IsGround = PlayerCollisionSystem.isGround;
+        PlayerReusableData.IsGround = PlayerBodyCollisionManager.isGround;
     }
     
     

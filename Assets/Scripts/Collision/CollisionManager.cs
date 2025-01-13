@@ -5,6 +5,18 @@ public abstract class CollisionManager : MonoBehaviour {
         return Physics.BoxCast(position, size * 0.5f, direction, Quaternion.identity,maxDistance, layer);
     }
 
+    protected virtual void OnCollisionEnter(Collision other) {
+        
+    }
+
+    protected virtual void OnCollisionStay(Collision other) {
+        
+    }
+
+    protected virtual void OnCollisionExit(Collision other) {
+        
+    }
+
 
     
 }

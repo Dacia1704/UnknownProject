@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour,IAttackable,IDamable {
+public abstract class Enemy : MonoBehaviour {
     [field: SerializeField] public EnemyPropertiesSO EnemyPropertiesSO { get; private set; }
     [HideInInspector] public Rigidbody Rigidbody {get; private set;}
 
@@ -11,9 +11,6 @@ public abstract class Enemy : MonoBehaviour,IAttackable,IDamable {
 
     public Player Player{ get; private set; }
 
-    public float Attack { get ;set; }
-    public int MaxHealth { get ;set; }
-
     protected virtual void Awake() {
         enemyStateMachine = new(this);
     }
@@ -23,7 +20,6 @@ public abstract class Enemy : MonoBehaviour,IAttackable,IDamable {
         Rigidbody= GetComponent<Rigidbody>();
         EnemyAnimationController = GetComponentInChildren<EnemyAnimationController>();
         EnemyCollisionSystem = GetComponentInChildren<EnemyCollisionSystem>();
-        MaxHealth = EnemyPropertiesSO.BaseHealth;
         enemyStateMachine.ChangeState(enemyStateMachine.EnemyIdleState);
     }
 

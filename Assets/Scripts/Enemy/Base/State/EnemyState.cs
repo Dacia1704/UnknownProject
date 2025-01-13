@@ -21,7 +21,6 @@ public abstract class EnemyState : IState
 
     public virtual void Update()
     {
-        Debug.Log(enemyStateMachine.Enemy.Rigidbody.velocity);
     }
 
     protected virtual void OnIdle() {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCollisionSystem: CollisionManager {
+public class PlayerBodyCollisionManager: CollisionManager {
 
     [field: Header("Layer Mask")]
     [SerializeField]protected LayerMask groundLayerMask;

@@ -33,7 +33,7 @@ public class AnimationController : MonoBehaviour
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(layerIndex);
 
-        if (stateInfo.IsName(animationName) && stateInfo.normalizedTime >= 0.95f)
+        if (stateInfo.IsName(animationName) && stateInfo.normalizedTime >= 1f)
         {
             return true;
         }

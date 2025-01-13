@@ -17,4 +17,4 @@ MonoBehaviour:
   <BaseAttack>k__BackingField: 1
   <IdleTrigger>k__BackingField: idle
   <MoveTrigger>k__BackingField: move
-  <BaseDistanceTrigger>k__BackingField: 5
+  <BaseDistanceTrigger>k__BackingField: 3
