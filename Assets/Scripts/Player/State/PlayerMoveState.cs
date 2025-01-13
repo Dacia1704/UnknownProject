@@ -20,10 +20,10 @@ public class PlayerMoveState : PlayerState
     {
         base.PhysicsUpdate();
         if (playerStateMachine.Player.PlayerInputSystem.BackwardInput) {
-            Move(playerStateMachine.Player.PlayerInputSystem.MovementInput,playerStateMachine.Player.PlayerPropertiesSO.BaseSpeed,true);
+            Move(playerStateMachine.Player.PlayerInputSystem.MovementInput,PlayerReusableData.CurrentPlayerStats.Speed,true);
         }
         else {
-            Move(playerStateMachine.Player.PlayerInputSystem.MovementInput,playerStateMachine.Player.PlayerPropertiesSO.BaseSpeed);
+            Move(playerStateMachine.Player.PlayerInputSystem.MovementInput,PlayerReusableData.CurrentPlayerStats.Speed);
         }
 
     }

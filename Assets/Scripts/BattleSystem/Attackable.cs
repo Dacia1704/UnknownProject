@@ -1,7 +1,7 @@
 using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Attackable: MonoBehaviour {
-    public int Attack { get; private set; }
+    public Stats AttackStats { get; private set; }
 
     public bool IsAttackSuccess { get; private set; }
 
@@ -29,7 +29,7 @@ public class Attackable: MonoBehaviour {
         }
     }
 
-    public void SetAttack(int attack) {
-        Attack = attack;
+    public void SetAttack(Stats Stats) {
+        AttackStats = Stats;
     }
 }
