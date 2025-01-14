@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WeaponPropsSO
   m_EditorClassIdentifier: 
   <ObjectPoolProps>k__BackingField:
+  - {fileID: 11400000, guid: 32013fab8aab67c40ac505769f124bf9, type: 2}
   - {fileID: 11400000, guid: 87592c159628fe64fbb4bb49e3a620f1, type: 2}
   - {fileID: 11400000, guid: bf649412148a4424895f0768142b2e80, type: 2}
   - {fileID: 11400000, guid: ccca1b18db42f014f8ed274e1bbf6b3a, type: 2}

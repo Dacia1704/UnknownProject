@@ -18,7 +18,6 @@ public abstract class ObjectPooling: MonoBehaviour
 
     public GameObject GetObject(string keyObject)
     {
-        Debug.Log(keyObject);
         if (pools.ContainsKey(keyObject))
         {
             return pools[keyObject].Get();

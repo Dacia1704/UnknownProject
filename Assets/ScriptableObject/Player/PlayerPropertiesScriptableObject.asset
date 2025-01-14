@@ -12,13 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7171fb53b421b43ab69ed0d7dc5977, type: 3}
   m_Name: PlayerPropertiesScriptableObject
   m_EditorClassIdentifier: 
-  <BaseSpeed>k__BackingField: 7
-  <BaseAttack>k__BackingField: 5
-  <BaseDashSpeed>k__BackingField: 15
+  <BaseStats>k__BackingField:
+    Speed: 5
+    Attack: 100
+    Defend: 20
+    Health: 1000
+    PoisonAccuracy: 0
+    BurnAccuracy: 0
+    FrozenAccuracy: 0
+  <BaseDashModifier>k__BackingField: 4
   <BaseDashTime>k__BackingField: 0.25
-  <ResetNomalAttackTime>k__BackingField: 0.5
+  <ResetNomalAttackTime>k__BackingField: 0.2
   <IdleBoolTrigger>k__BackingField: idle
   <MoveTrigger>k__BackingField: move
   <NomalAttackValueTrigger>k__BackingField: nomalAttack
   <IdleAnimationName>k__BackingField: Idle
   <MoveAnimationName>k__BackingField: Move
+  <TagCanDealDamList>k__BackingField:
+  - DamEnemy

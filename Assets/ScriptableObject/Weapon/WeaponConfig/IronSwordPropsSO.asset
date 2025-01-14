@@ -15,5 +15,5 @@ MonoBehaviour:
   KeyObject: IronWord
   ObjectPrefab: {fileID: 7606182865124193823, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
   Damage: 2
-  Type: 0
+  Type: 1
   Icon: {fileID: 0}

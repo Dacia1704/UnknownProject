@@ -15,5 +15,5 @@ MonoBehaviour:
   KeyObject: GreenStaff
   ObjectPrefab: {fileID: 2774299620641341504, guid: 0c4b96491a493a44fa372620ed55b438, type: 3}
   Damage: 2
-  Type: 1
+  Type: 2
   Icon: {fileID: 0}
