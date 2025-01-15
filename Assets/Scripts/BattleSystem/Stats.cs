@@ -5,9 +5,9 @@ public struct Stats
 {
     public int Speed;
     public int Attack;
+    public int AttackSpeed;
     public int Defend;
     public int Health;
-    public float PoisonAccuracy;
-    public float BurnAccuracy;
-    public float FrozenAccuracy;
+    public float Resistance;
+    public float Accuracy;
 }

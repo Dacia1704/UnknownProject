@@ -13,6 +13,6 @@ public class PlayerAnimationController: AnimationController
 
     private void Start()
     {
-        player.PlayerAnimationController.SetFloatValueAnimation(player.PlayerPropertiesSO.NomalAttackValueTrigger,-1.0f);
+        SetFloatValueAnimation(player.PlayerPropertiesSO.NomalAttackValueTrigger,-1.0f);
     }
 }
