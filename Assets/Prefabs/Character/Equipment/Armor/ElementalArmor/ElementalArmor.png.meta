@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e95e7d05f5109547b5e808ed152fd88
+guid: ef8cfc4183cac9f4a9d37584acf1238f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -126,10 +126,10 @@ TextureImporter:
       name: ElementalArmor_0
       rect:
         serializedVersion: 2
-        x: 722
-        y: 319
-        width: 467
-        height: 467
+        x: 673
+        y: 299
+        width: 575
+        height: 575
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be67d19bf169cfa4abf7eb350f905dc6
-      internalID: 1395283058
+      spriteID: 2a13b23d41fba464c880c468886633a4
+      internalID: -1600925030
       vertices: []
       indices: 
       edges: []
@@ -154,7 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ElementalArmor_0: 1395283058
+      ElementalArmor_0: -1600925030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
