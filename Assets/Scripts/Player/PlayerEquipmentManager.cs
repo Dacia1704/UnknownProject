@@ -4,9 +4,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class WeaponManager: MonoBehaviour
+public class PlayerEquipmentManager: MonoBehaviour
 {
-    protected WeaponObjectPooling weaponObjectPooling;
+    protected EquipmentPooling equipmentPooling;
     protected GameObject currentRightWeapon { get; private set; }
     protected GameObject currentLeftWeapon { get; private set; }
 
@@ -15,9 +15,14 @@ public class WeaponManager: MonoBehaviour
 
     private void Awake()
     {
-        weaponObjectPooling = GetComponent<WeaponObjectPooling>();
+        
         player = GetComponentInParent<Player>();
 
+    }
+
+    private void Start()
+    {
+        equipmentPooling = EquipmentManager.instance.EquipmentPooling;
     }
 
     private void Update()
@@ -25,21 +30,21 @@ public class WeaponManager: MonoBehaviour
         UpdateEquipmentState();
     }
 
-    public void EquipRightWeapon(WeaponPropsSO weapon)
+    public void EquipRightWeapon(PoolingEquipmentPropsSO poolingEquipmentSo)
     {
         if(currentRightWeapon)
-            weaponObjectPooling.ReleaseObject(currentRightWeapon);
-        GameObject poolingWeapon = weaponObjectPooling.GetObject(weapon.KeyObject);
+            equipmentPooling.ReleaseObject(currentRightWeapon);
+        GameObject poolingWeapon = equipmentPooling.GetObject(poolingEquipmentSo.KeyObject);
         currentRightWeapon = poolingWeapon;
         poolingWeapon.transform.SetParent(player.WeaponRightTransform);
         poolingWeapon.transform.localPosition = Vector3.zero;
         poolingWeapon.transform.localRotation = Quaternion.identity;
     }
-    public void EquipLeftWeapon(WeaponPropsSO weapon)
+    public void EquipLeftWeapon(PoolingEquipmentPropsSO poolingEquipmentSo)
     {
         if(currentLeftWeapon)
-            weaponObjectPooling.ReleaseObject(currentLeftWeapon);
-        GameObject poolingWeapon = weaponObjectPooling.GetObject(weapon.KeyObject);
+            equipmentPooling.ReleaseObject(currentLeftWeapon);
+        GameObject poolingWeapon = equipmentPooling.GetObject(poolingEquipmentSo.KeyObject);
         currentRightWeapon = poolingWeapon;
         poolingWeapon.transform.SetParent(player.WeaponLeftTransform);
         poolingWeapon.transform.localPosition = Vector3.zero;
@@ -51,19 +56,19 @@ public class WeaponManager: MonoBehaviour
         if (currentRightWeapon)
         {
             player.PlayerAnimationController.SetFloatValueAnimation("equiped",1f);
-            WeaponPropsSO weaponSO = currentRightWeapon.GetComponent<Weapon>().ObjectPropsSO as WeaponPropsSO;
-            if (weaponSO.Type == WeaponType.Sword)
+            PoolingEquipmentPropsSO poolingEquipmentSo = currentRightWeapon.GetComponent<Equipment>().PoolingObjectPropsSO as PoolingEquipmentPropsSO;
+            if (poolingEquipmentSo.WeaponType == WeaponType.Sword)
             {
                 player.PlayerAnimationController.SetBoolValueAnimation("sword",true);
                 player.PlayerAnimationController.SetBoolValueAnimation("staff",false);
                 player.PlayerAnimationController.SetBoolValueAnimation("bow",false);
             }
-            else if(weaponSO.Type == WeaponType.Staff)
+            else if(poolingEquipmentSo.WeaponType == WeaponType.Staff)
             {
                 player.PlayerAnimationController.SetBoolValueAnimation("sword",false);
                 player.PlayerAnimationController.SetBoolValueAnimation("staff",true);
                 player.PlayerAnimationController.SetBoolValueAnimation("bow",false);
-            } else if (weaponSO.Type == WeaponType.Bow)
+            } else if (poolingEquipmentSo.WeaponType == WeaponType.Bow)
             {
                 player.PlayerAnimationController.SetBoolValueAnimation("sword",false);
                 player.PlayerAnimationController.SetBoolValueAnimation("staff",false);

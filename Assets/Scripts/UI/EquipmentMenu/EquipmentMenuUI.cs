@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryUI : UIBase {
+public class EquipmentMenuUI : UIBase {
     // public event Action<InventoryItem> OnInventoryChanged;
 
     [SerializeField] private Button CloseButton;
