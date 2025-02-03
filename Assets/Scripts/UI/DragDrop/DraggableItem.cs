@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public abstract class DraggableItem : MonoBehaviour,IBeginDragHandler,IDragHandler, IEndDragHandler
 {
     [HideInInspector]public Image IconImage;
-    public Transform ParentAfterDrag;
+    [HideInInspector] public Transform ParentAfterDrag;
     
     protected virtual void OnEnable()
     {
@@ -13,7 +13,7 @@ public abstract class DraggableItem : MonoBehaviour,IBeginDragHandler,IDragHandl
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
+        // Debug.Log("OnBeginDrag");
         ParentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
@@ -22,7 +22,7 @@ public abstract class DraggableItem : MonoBehaviour,IBeginDragHandler,IDragHandl
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
+        // Debug.Log("OnDrag");
         Vector3 position = eventData.position;
         var canvas = IconImage.canvas;
         position.z = canvas.planeDistance;
@@ -31,7 +31,7 @@ public abstract class DraggableItem : MonoBehaviour,IBeginDragHandler,IDragHandl
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
+        // Debug.Log("OnEndDrag");
         transform.SetParent(ParentAfterDrag);
         
         Vector3 position = new Vector3(0, 0, IconImage.canvas.planeDistance);

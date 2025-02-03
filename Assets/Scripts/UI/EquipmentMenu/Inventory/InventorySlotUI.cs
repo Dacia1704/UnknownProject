@@ -1,12 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySlotUI : DropItem
 {
-        public InventoryItemUI InventoryItemUI { get; private set; }
-
-        private void Start()
-        {
-                InventoryItemUI = GetComponentInChildren<InventoryItemUI>();
-        }
 }

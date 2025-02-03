@@ -40,7 +40,7 @@ public abstract class ObjectPooling: MonoBehaviour
 
     public void ReleaseObject(GameObject objectToRealse)
     {
-        string keyObjectToRealse = objectToRealse.GetComponent<Equipment>().EquipmentPropsSO.KeyObject;
+        string keyObjectToRealse = objectToRealse.GetComponent<IPoolingObject>().PoolingObjectPropsSO.KeyObject;
         string keyObject = objectPoolingProps.PoolingObjectList.Find(obj => obj.KeyObject == keyObjectToRealse).KeyObject;
         objectToRealse.transform.SetParent(transform);
         pools[keyObject].Release(objectToRealse);

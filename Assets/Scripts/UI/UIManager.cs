@@ -1,19 +1,19 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
         public static UIManager Instance { get; private set; }
+        [SerializeField] protected Button randomDropButton;
         [SerializeField] protected Button swordButton;
         [SerializeField] protected Button staffButton;
         [SerializeField] protected Button bowButton;
         
         [Header("EquipmentMenu")]
         [SerializeField] protected Button equipmentButton;
-        public EquipmentMenuUI EquipmentMenuUI;
+        [HideInInspector] public EquipmentMenuUI EquipmentMenuUI;
 
         public event Action OnSwordButtonClicked;
         public event Action OnStaffButtonClicked;
@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
 
         private void Start()
         {
+                randomDropButton.onClick.AddListener(() => EquipmentManager.instance.RandomDrop());
                 
                 swordButton.onClick.AddListener(() => OnSwordButtonClicked?.Invoke());
                 staffButton.onClick.AddListener(() => OnStaffButtonClicked?.Invoke());
@@ -35,7 +36,11 @@ public class UIManager : MonoBehaviour
                 equipmentButton.onClick.AddListener(() =>
                 {
                         if (EquipmentMenuUI.gameObject.activeSelf) EquipmentMenuUI.Hide();
-                        else EquipmentMenuUI.Show();
+                        else
+                        {
+                                EquipmentMenuUI.Show();
+                                EquipmentMenuUI.UpdateInventoryUI(EquipmentManager.instance.InventoryItems);
+                        }
                 });
         }
         public bool IsPointerOverUIElement()

@@ -29,21 +29,21 @@ public class EquipmentManager : MonoBehaviour
                 EquipmentPooling = GetComponentInChildren<EquipmentPooling>();
         }
 
-        private void Start()
-        {
-                
-                StartCoroutine(GenEquipment());
-        }
+        // private void Start()
+        // {
+        //         
+        //         StartCoroutine(GenEquipment());
+        // }
 
-        private IEnumerator GenEquipment()
-        {
-                while (true)
-                {
-                        yield return new WaitForSeconds(2);
-                        RandomDrop();
-                        
-                }
-        }
+        // private IEnumerator GenEquipment()
+        // {
+        //         while (true)
+        //         {
+        //                 yield return new WaitForSeconds(2);
+        //                 RandomDrop();
+        //                 
+        //         }
+        // }
 
 
         #region Drop Equipment 
