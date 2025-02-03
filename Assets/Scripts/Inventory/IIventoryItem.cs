@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class InventoryItem
+public interface IInventoryItem
 {
-        public string KeyItem { get; set; }
         public Sprite SpriteItem { get; set; }
 }

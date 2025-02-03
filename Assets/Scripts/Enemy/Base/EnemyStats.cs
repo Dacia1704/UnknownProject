@@ -1,7 +1,8 @@
-﻿namespace Enemy.Base
+﻿using System;
+
+[Serializable]
+public class EnemyStats: Stats
 {
-    public class EnemyStats
-    {
-        
-    }
+        public float BaseDistanceTrigger { get; private set; }
+        public float DropRate { get; private set; }
 }

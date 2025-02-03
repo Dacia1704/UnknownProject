@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c0c63995a643ffa334d97d76981ed1, type: 3}
+  m_Name: GuardianCloak
+  m_EditorClassIdentifier: 
+  KeyObject: GuardianCloak
+  ObjectPrefab: {fileID: 7182624238594940511, guid: c56ada17f76c83f49a0d404307f89d90, type: 3}
+  <EquimentType>k__BackingField: 4
+  <WeaponType>k__BackingField: 0
+  <EquipmentSet>k__BackingField: 1
+  <SpriteItem>k__BackingField: {fileID: 162701268, guid: f12f246e4d32cb341bd8f9cc0c22fd74, type: 3}

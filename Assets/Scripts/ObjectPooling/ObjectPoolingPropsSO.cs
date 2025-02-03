@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ObjectProps", menuName = "ObjectProps")]
-public class PoolingObjectPropsSO : ScriptableObject
+// props of pool 
+[CreateAssetMenu(fileName = "ObjectPoolingProps", menuName = "ObjectPoolingProps")]
+public class ObjectPoolingPropsSO : ScriptableObject
 {
-    [field: SerializeField] public List<ObjectPropsSO> ObjectPoolProps { get; private set; }
+    [field: SerializeField] public List<PoolingObjectPropsSO> PoolingObjectList { get; private set; }
 }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c0c63995a643ffa334d97d76981ed1, type: 3}
+  m_Name: PrimordialNecklace
+  m_EditorClassIdentifier: 
+  KeyObject: PrimordialNecklace
+  ObjectPrefab: {fileID: 1000011841440206, guid: 0ed203d298c050b49bfabe788790e1c2, type: 3}
+  <EquimentType>k__BackingField: 2
+  <WeaponType>k__BackingField: 0
+  <EquipmentSet>k__BackingField: 0
+  <SpriteItem>k__BackingField: {fileID: 2099662029, guid: 39b2cdaa360bc6e46b3347f85133bc1e, type: 3}

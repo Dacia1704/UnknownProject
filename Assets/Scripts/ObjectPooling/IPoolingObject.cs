@@ -2,7 +2,7 @@
 
 
 
-public interface PoolingObject
+public interface IPoolingObject
 {
     public PoolingObjectPropsSO PoolingObjectPropsSO { get; set; }
 }

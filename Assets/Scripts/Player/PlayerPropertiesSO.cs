@@ -5,13 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerPropsSO", menuName = "PlayerPropsSO", order = 0)]
 public class PlayerPropertiesSO : ScriptableObject {
 
-    [field: SerializeField] public Stats BaseStats { get; private set; }
-
-
-    [field: SerializeField] public float BaseDashModifier { get; private set; }
-    [field: SerializeField] public float BaseDashTime { get; private set; }
-    [field: SerializeField] public float ResetNomalAttackTime { get; private set; }
-    
+    [field: SerializeField] public PlayerStats BaseStats { get; private set; }
     
     [field: Header("Animation Parameters")]
     [field: SerializeField] public string IdleBoolTrigger { get; private set; }

@@ -12,7 +12,7 @@ public abstract class EnemyAI: MonoBehaviour {
         enemy = GetComponent<Enemy>();
     }
     private void Start() {
-        distanceDetect = enemy.EnemyPropertiesSO.BaseDistanceTrigger;
+        distanceDetect = enemy.EnemyPropertiesSO.BaseStats.BaseDistanceTrigger;
         timeMissDetect = Time.time;
         isDetectedPlayer = false;
     }
@@ -25,7 +25,7 @@ public abstract class EnemyAI: MonoBehaviour {
     private void FixedUpdate() {
         if (Time.time - timeMissDetect > 1) {
             isDetectedPlayer = false;
-            distanceDetect = enemy.EnemyPropertiesSO.BaseDistanceTrigger;
+            distanceDetect = enemy.EnemyPropertiesSO.BaseStats.BaseDistanceTrigger;
         }
         if(isDetectedPlayer) {
             ChasePlayer();
@@ -35,7 +35,7 @@ public abstract class EnemyAI: MonoBehaviour {
 
     public void ChasePlayer() {
         Vector3 direction = (enemy.Player.transform.position - transform.position).normalized;
-        enemy.Rigidbody.velocity = direction * enemy.EnemyPropertiesSO.BaseSpeed;
+        enemy.Rigidbody.velocity = direction * enemy.EnemyPropertiesSO.BaseStats.Speed;
         this.transform.LookAt(enemy.Player.transform.position);
     }
 

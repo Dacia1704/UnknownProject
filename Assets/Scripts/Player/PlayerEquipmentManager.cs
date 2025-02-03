@@ -30,21 +30,21 @@ public class PlayerEquipmentManager: MonoBehaviour
         UpdateEquipmentState();
     }
 
-    public void EquipRightWeapon(PoolingEquipmentPropsSO poolingEquipmentSo)
+    public void EquipRightWeapon(EquipmentPropsSO equipmentSo)
     {
         if(currentRightWeapon)
             equipmentPooling.ReleaseObject(currentRightWeapon);
-        GameObject poolingWeapon = equipmentPooling.GetObject(poolingEquipmentSo.KeyObject);
+        GameObject poolingWeapon = equipmentPooling.GetObject(equipmentSo.KeyObject);
         currentRightWeapon = poolingWeapon;
         poolingWeapon.transform.SetParent(player.WeaponRightTransform);
         poolingWeapon.transform.localPosition = Vector3.zero;
         poolingWeapon.transform.localRotation = Quaternion.identity;
     }
-    public void EquipLeftWeapon(PoolingEquipmentPropsSO poolingEquipmentSo)
+    public void EquipLeftWeapon(EquipmentPropsSO equipmentSo)
     {
         if(currentLeftWeapon)
             equipmentPooling.ReleaseObject(currentLeftWeapon);
-        GameObject poolingWeapon = equipmentPooling.GetObject(poolingEquipmentSo.KeyObject);
+        GameObject poolingWeapon = equipmentPooling.GetObject(equipmentSo.KeyObject);
         currentRightWeapon = poolingWeapon;
         poolingWeapon.transform.SetParent(player.WeaponLeftTransform);
         poolingWeapon.transform.localPosition = Vector3.zero;
@@ -56,19 +56,19 @@ public class PlayerEquipmentManager: MonoBehaviour
         if (currentRightWeapon)
         {
             player.PlayerAnimationController.SetFloatValueAnimation("equiped",1f);
-            PoolingEquipmentPropsSO poolingEquipmentSo = currentRightWeapon.GetComponent<Equipment>().PoolingObjectPropsSO as PoolingEquipmentPropsSO;
-            if (poolingEquipmentSo.WeaponType == WeaponType.Sword)
+            EquipmentPropsSO equipmentSo = currentRightWeapon.GetComponent<Equipment>().EquipmentPropsSO;
+            if (equipmentSo.WeaponType == WeaponType.Sword)
             {
                 player.PlayerAnimationController.SetBoolValueAnimation("sword",true);
                 player.PlayerAnimationController.SetBoolValueAnimation("staff",false);
                 player.PlayerAnimationController.SetBoolValueAnimation("bow",false);
             }
-            else if(poolingEquipmentSo.WeaponType == WeaponType.Staff)
+            else if(equipmentSo.WeaponType == WeaponType.Staff)
             {
                 player.PlayerAnimationController.SetBoolValueAnimation("sword",false);
                 player.PlayerAnimationController.SetBoolValueAnimation("staff",true);
                 player.PlayerAnimationController.SetBoolValueAnimation("bow",false);
-            } else if (poolingEquipmentSo.WeaponType == WeaponType.Bow)
+            } else if (equipmentSo.WeaponType == WeaponType.Bow)
             {
                 player.PlayerAnimationController.SetBoolValueAnimation("sword",false);
                 player.PlayerAnimationController.SetBoolValueAnimation("staff",false);

@@ -37,4 +37,6 @@ public abstract class Enemy : MonoBehaviour {
     protected virtual void FixedUpdate() {
         enemyStateMachine.PhysicsUpdate();
     }
+    
+    
 }

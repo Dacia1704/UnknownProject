@@ -1,18 +1,19 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class InventoryItemUI: DraggableItem
 {
-    public WeaponPropsSO weaponPropsSO;
+    [FormerlySerializedAs("poolingEquipmentPropsSo")] [FormerlySerializedAs("PoolingWeaponPropsSO")] public EquipmentPropsSO equipmentPropsSo;
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        if (weaponPropsSO)
+        if (equipmentPropsSo)
         {
             Debug.Log("set up sprite");
-            IconImage.sprite = weaponPropsSO.IconSprite;
+            IconImage.sprite = equipmentPropsSo.SpriteItem;
         }
     }
     

@@ -11,10 +11,9 @@ public class UIManager : MonoBehaviour
         [SerializeField] protected Button staffButton;
         [SerializeField] protected Button bowButton;
         
-        [FormerlySerializedAs("InventoryButton")]
-        [Header("Inventory")]
-        [SerializeField] protected Button inventoryButton;
-        [SerializeField]private InventoryUI inventoryUI;
+        [Header("EquipmentMenu")]
+        [SerializeField] protected Button equipmentButton;
+        public EquipmentMenuUI EquipmentMenuUI;
 
         public event Action OnSwordButtonClicked;
         public event Action OnStaffButtonClicked;
@@ -24,7 +23,7 @@ public class UIManager : MonoBehaviour
         private void Awake()
         {
                 Instance = this;
-                inventoryUI = GetComponentInChildren<InventoryUI>();
+                EquipmentMenuUI = GetComponentInChildren<EquipmentMenuUI>();
         }
 
         private void Start()
@@ -33,16 +32,16 @@ public class UIManager : MonoBehaviour
                 swordButton.onClick.AddListener(() => OnSwordButtonClicked?.Invoke());
                 staffButton.onClick.AddListener(() => OnStaffButtonClicked?.Invoke());
                 bowButton.onClick.AddListener(() => OnBowButtonClicked?.Invoke());
-                inventoryButton.onClick.AddListener(() =>
+                equipmentButton.onClick.AddListener(() =>
                 {
-                        if (inventoryUI.gameObject.activeSelf) inventoryUI.Hide();
-                        else inventoryUI.Show();
+                        if (EquipmentMenuUI.gameObject.activeSelf) EquipmentMenuUI.Hide();
+                        else EquipmentMenuUI.Show();
                 });
         }
-        
-        
         public bool IsPointerOverUIElement()
         {
                 return EventSystem.current.IsPointerOverGameObject();
         }
+
+
 }
