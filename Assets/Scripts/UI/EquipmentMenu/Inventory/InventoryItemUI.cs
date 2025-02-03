@@ -1,23 +1,7 @@
-using System;
-using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-
-public class InventoryItemUI: DraggableItem
+﻿namespace UI.EquipmentMenu.Inventory
 {
-    [FormerlySerializedAs("poolingEquipmentPropsSo")] [FormerlySerializedAs("PoolingWeaponPropsSO")] public EquipmentPropsSO equipmentPropsSo;
-
-    protected override void OnEnable()
+    public class InventoryItemUI
     {
-        base.OnEnable();
-        if (equipmentPropsSo)
-        {
-            Debug.Log("set up sprite");
-            IconImage.sprite = equipmentPropsSo.SpriteItem;
-        }
+        
     }
-    
-    
-    
-    
 }
