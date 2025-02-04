@@ -5,15 +5,18 @@ using UnityEngine.UI;
 public abstract class DraggableItem : MonoBehaviour,IBeginDragHandler,IDragHandler, IEndDragHandler
 {
     [HideInInspector]public Image IconImage;
-    [HideInInspector] public Transform ParentAfterDrag;
+    public Transform ParentPreDrag;
+    public Transform ParentAfterDrag;
     
     protected virtual void OnEnable()
     {
         IconImage = GetComponent<Image>();
+        ParentPreDrag = transform.parent;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
         // Debug.Log("OnBeginDrag");
+        ParentPreDrag = transform.parent;
         ParentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
@@ -32,13 +35,33 @@ public abstract class DraggableItem : MonoBehaviour,IBeginDragHandler,IDragHandl
     public void OnEndDrag(PointerEventData eventData)
     {
         // Debug.Log("OnEndDrag");
-        transform.SetParent(ParentAfterDrag);
+        // transform.SetParent(ParentAfterDrag);
+        // Vector3 position = new Vector3(0, 0, IconImage.canvas.planeDistance);
+        // IconImage.rectTransform.localPosition = position;
+        // transform.SetAsLastSibling();
         
+        
+        ChangeDropItem(ParentAfterDrag);
+        
+        IconImage.raycastTarget = true;
+    }
+
+    public void ChangeDropItem(Transform newParent)
+    {
+        // if (newParent == null)
+        // {
+        //     Debug.LogError("dropItem null");
+        // }
+        // if (transform.root == newParent)
+        // {
+        //     Debug.LogError("trung root");
+        // }
+        // transform.SetParent(transform.root);
+        transform.SetParent(newParent);
         Vector3 position = new Vector3(0, 0, IconImage.canvas.planeDistance);
         IconImage.rectTransform.localPosition = position;
-        
         transform.SetAsLastSibling();
-        IconImage.raycastTarget = true;
+        // Debug.Log("Changing dropItem ");
     }
 
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class EquipmentMenuUI : UIBase {
@@ -8,21 +9,21 @@ public class EquipmentMenuUI : UIBase {
     
     public event Action<PlayerStats> OnPlayerStatsUpdated;
     
-    private PlayerStatsUI playerStatsUI;
     private InventoryUI inventoryUI;
+    private PlayerEquipmentUI playerEquipmentUI;
          
 
-    [SerializeField] private Button CloseButton;
+    [SerializeField] private Button closeButton;
     protected void Start()
     {
         
-        CloseButton.onClick.AddListener(() => Hide());
+        closeButton.onClick.AddListener(() => Hide());
         Hide();
 
         inventoryUI = GetComponentInChildren<InventoryUI>();
-        playerStatsUI = GetComponentInChildren<PlayerStatsUI>();
+        playerEquipmentUI = GetComponentInChildren<PlayerEquipmentUI>();
 
-        OnPlayerStatsUpdated += playerStatsUI.UpdateStatsText;
+        OnPlayerStatsUpdated += playerEquipmentUI.PlayerStatsUI.UpdateStatsText;
         OnInventoryChanged += inventoryUI.UpdateInventory;
     }
     

@@ -357,11 +357,11 @@ public class EquipmentManager : MonoBehaviour
                 AddItem(equipmentOb.GetComponent<Equipment>());
                 EquipmentPooling.ReleaseObject(equipmentOb);
 
-                Debug.LogError(InventoryItems.Count);
-                foreach (var data in InventoryItems)
-                {
-                        Debug.Log(data);
-                }
+                // Debug.LogError(InventoryItems.Count);
+                // foreach (var data in InventoryItems)
+                // {
+                //         Debug.Log(data);
+                // }
         }
         
         private void AddItem(Equipment item)

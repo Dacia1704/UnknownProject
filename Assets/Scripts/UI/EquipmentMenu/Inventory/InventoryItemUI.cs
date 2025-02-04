@@ -26,7 +26,20 @@ public class InventoryItemUI : DraggableItem,IPointerClickHandler
     private IEnumerator UpdateImageIcon()
     {
         yield return new WaitUntil(() => EquipmentData != null);
-        image.sprite = EquipmentData?.EquipmentPropsSO.SpriteItem;
+        
+        if (EquipmentData?.EquipmentPropsSO.SpriteItem)
+        {
+            image.sprite = EquipmentData.EquipmentPropsSO.SpriteItem;
+            Color newColor = image.color;
+            newColor.a = 1.0f;
+            image.color = newColor;
+        }
+        else
+        {
+            Color newColor = image.color;
+            newColor.a = 0f;
+            image.color = newColor;
+        }
     }
     private void UpdatePreviewEquipmentStats()
     {
@@ -37,7 +50,6 @@ public class InventoryItemUI : DraggableItem,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log(1);
         UpdatePreviewEquipmentStats();
     }
 }
