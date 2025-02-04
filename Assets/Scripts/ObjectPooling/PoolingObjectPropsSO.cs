@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "ObjectProps", menuName = "ObjectProps")]
-public class PoolingObjectPropsSO : ScriptableObject
+// props of object to pool
+public abstract class PoolingObjectPropsSO : ScriptableObject
 {
-    [field: SerializeField] public List<ObjectPropsSO> ObjectPoolProps { get; private set; }
+    public string KeyObject;
+    public GameObject ObjectPrefab;
 }

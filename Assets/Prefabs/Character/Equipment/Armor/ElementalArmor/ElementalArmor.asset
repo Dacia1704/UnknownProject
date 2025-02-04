@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c0c63995a643ffa334d97d76981ed1, type: 3}
+  m_Name: ElementalArmor
+  m_EditorClassIdentifier: 
+  KeyObject: ElementalArmor
+  ObjectPrefab: {fileID: 2068220315755293009, guid: 6be30dd377c23ce4da0a16b9153e615c, type: 3}
+  <EquimentType>k__BackingField: 1
+  <WeaponType>k__BackingField: 0
+  <EquipmentSet>k__BackingField: 2
+  <SpriteItem>k__BackingField: {fileID: -1600925030, guid: ef8cfc4183cac9f4a9d37584acf1238f, type: 3}

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044b99781682425aa7b52f9ac4188a12, type: 3}
+  m_Name: InventorySlotUIPropsSO
+  m_EditorClassIdentifier: 
+  KeyObject: InventorySlotUI
+  ObjectPrefab: {fileID: 7899008615928509523, guid: ed849e6da6ee99049aa477bcb090ce37, type: 3}

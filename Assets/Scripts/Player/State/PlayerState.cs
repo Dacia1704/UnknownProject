@@ -110,7 +110,7 @@ public abstract class PlayerState : IState
 			} 
 		} else if (PlayerReusableData.IsNomalAttacking == false)
 		{
-			if (Time.time - nomalAttackCounter >= playerPropertiesSO.ResetNomalAttackTime)
+			if (Time.time - nomalAttackCounter >= playerPropertiesSO.BaseStats.ResetNomalAttackTime)
 			{
 				currentAttack = 0;
 			}
