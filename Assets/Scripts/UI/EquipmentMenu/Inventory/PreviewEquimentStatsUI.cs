@@ -41,7 +41,7 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.Health != 0) subText = subText + "Hp: "+ equipmentData.EquipmentStats.Health.ToString() + "\n";
             if(equipmentData.EquipmentStats.AttackSpeed != 0) subText = subText +"AtkSpd: " + equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0) subText = subText +"Res: " + equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
-            if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc" + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
+            if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc: " + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
             subStats.text = subText;
         }
         else if (equipmentData.EquipmentPropsSO.EquimentType == EquimentType.Necklace)
@@ -54,7 +54,7 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.Defend != 0) subText = subText +"Def: " + equipmentData.EquipmentStats.Defend.ToString() + "\n";
             if(equipmentData.EquipmentStats.AttackSpeed != 0) subText = subText +"AtkSpd: " +  equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0) subText = subText +"Res: " +  equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
-            if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc" +  equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
+            if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc: " +  equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
             subStats.text = subText;
         }
         else if (equipmentData.EquipmentPropsSO.EquimentType == EquimentType.Weapon)
@@ -72,7 +72,7 @@ public class PreviewEquimentStatsUI : UIBase
         }
         else if (equipmentData.EquipmentPropsSO.EquimentType == EquimentType.Boots)
         {
-            mainStat.text = "Spd" + equipmentData.EquipmentStats.Speed.ToString();
+            mainStat.text = "Spd: " + equipmentData.EquipmentStats.Speed.ToString();
             
             string subText = "";
             if(equipmentData.EquipmentStats.Attack !=0 ) subText = subText + "Atk: " + equipmentData.EquipmentStats.Attack.ToString() + "\n";
@@ -80,7 +80,7 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.Defend != 0) subText = subText + "Def: " + equipmentData.EquipmentStats.Defend.ToString() + "\n";
             if(equipmentData.EquipmentStats.AttackSpeed != 0) subText = subText +"AtkSpd: " + equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0) subText = subText + "Res: " + equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
-            if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc" + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
+            if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc: " + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
             subStats.text = subText;
         }
         else

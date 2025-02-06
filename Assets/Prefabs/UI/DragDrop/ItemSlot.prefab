@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IconImage: {fileID: 0}
+  ParentPreDrag: {fileID: 0}
   ParentAfterDrag: {fileID: 0}
 --- !u!1 &7899008615928509523
 GameObject:
@@ -216,6 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036ff5e67e514fd089c7719676df4bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InventoryItemUI: {fileID: 0}
+  <PoolingObjectPropsSO>k__BackingField: {fileID: 11400000, guid: 1e287dcaf91d1b648a05ba0fe0653e5f, type: 2}
 --- !u!1 &8010668447726979920
 GameObject:
   m_ObjectHideFlags: 0

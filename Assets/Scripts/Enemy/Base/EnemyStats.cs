@@ -1,8 +1,9 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class EnemyStats: Stats
 {
-        public float BaseDistanceTrigger { get; private set; }
-        public float DropRate { get; private set; }
+        [field: SerializeField] public float BaseDistanceTrigger { get; private set; }
+        [field: SerializeField] public float DropRate { get; private set; }
 }

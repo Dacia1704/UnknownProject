@@ -15,6 +15,6 @@ MonoBehaviour:
   KeyObject: PrimordialSword
   ObjectPrefab: {fileID: 7606182865124193823, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
   <EquimentType>k__BackingField: 0
-  <WeaponType>k__BackingField: 3
+  <WeaponType>k__BackingField: 1
   <EquipmentSet>k__BackingField: 0
   <SpriteItem>k__BackingField: {fileID: -1091275298, guid: e906aec77149ef04f986569f13db62cb, type: 3}

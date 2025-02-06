@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <BaseStats>k__BackingField:
     Speed: 5
-    Attack: 100
+    Attack: 200
     AttackSpeed: 1
-    Defend: 20
-    Health: 1000
-    Resistance: 15
-    Accuracy: 10
+    Defend: 100
+    Health: 2000
+    Resistance: 0
+    Accuracy: 0
     <BaseDashModifier>k__BackingField: 4
     <BaseDashTime>k__BackingField: 0.25
     <ResetNomalAttackTime>k__BackingField: 0.2

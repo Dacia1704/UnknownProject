@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e884c679af52a4a8afe3c429e149cc, type: 3}
   m_Name: RedSlimePropertiesSO
   m_EditorClassIdentifier: 
-  <BaseSpeed>k__BackingField: 5
-  <BaseHealth>k__BackingField: 5
-  <BaseAttack>k__BackingField: 1
+  <BaseStats>k__BackingField:
+    Speed: 3
+    Attack: 5
+    AttackSpeed: 3
+    Defend: 12
+    Health: 12
+    Resistance: 0
+    Accuracy: 0
+    <BaseDistanceTrigger>k__BackingField: 3
+    <DropRate>k__BackingField: 1
   <IdleTrigger>k__BackingField: idle
   <MoveTrigger>k__BackingField: move
-  <BaseDistanceTrigger>k__BackingField: 3
   <TagCanDealDamList>k__BackingField:
   - DamPlayer

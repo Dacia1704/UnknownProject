@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public abstract class DraggableItem : MonoBehaviour,IBeginDragHandler,IDragHandler, IEndDragHandler
 {
     [HideInInspector]public Image IconImage;
-    public Transform ParentPreDrag;
-    public Transform ParentAfterDrag;
+    [HideInInspector]public Transform ParentPreDrag;
+    [HideInInspector]public Transform ParentAfterDrag;
     
     protected virtual void OnEnable()
     {
@@ -32,36 +32,18 @@ public abstract class DraggableItem : MonoBehaviour,IBeginDragHandler,IDragHandl
         IconImage.transform.position = canvas.worldCamera.ScreenToWorldPoint(position);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public virtual void OnEndDrag(PointerEventData eventData)
     {
-        // Debug.Log("OnEndDrag");
-        // transform.SetParent(ParentAfterDrag);
-        // Vector3 position = new Vector3(0, 0, IconImage.canvas.planeDistance);
-        // IconImage.rectTransform.localPosition = position;
-        // transform.SetAsLastSibling();
-        
-        
         ChangeDropItem(ParentAfterDrag);
-        
         IconImage.raycastTarget = true;
     }
 
     public void ChangeDropItem(Transform newParent)
     {
-        // if (newParent == null)
-        // {
-        //     Debug.LogError("dropItem null");
-        // }
-        // if (transform.root == newParent)
-        // {
-        //     Debug.LogError("trung root");
-        // }
-        // transform.SetParent(transform.root);
         transform.SetParent(newParent);
         Vector3 position = new Vector3(0, 0, IconImage.canvas.planeDistance);
         IconImage.rectTransform.localPosition = position;
         transform.SetAsLastSibling();
-        // Debug.Log("Changing dropItem ");
     }
 
 }

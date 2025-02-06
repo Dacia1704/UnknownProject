@@ -7,14 +7,14 @@ public class PlayerEquipmentSlotUI:  DropItem
 {
         [field: SerializeField]public EquimentType EquimentType { get; private set; }
         
-        private PlayerEquipmentUI playerEquipmentUI;
-        
-        [field: SerializeField] public InventoryItemUI InventoryItemUI { get; private set; }
+        [HideInInspector] public PlayerEquipmentUI PlayerEquipmentUI;
+
+        [HideInInspector] public InventoryItemUI InventoryItemUI;
 
 
         private void Start()
         {
-                playerEquipmentUI = GetComponentInParent<PlayerEquipmentUI>();
+                PlayerEquipmentUI = GetComponentInParent<PlayerEquipmentUI>();
                 InventoryItemUI = GetComponentInChildren<InventoryItemUI>();
                 
         }
@@ -28,12 +28,22 @@ public class PlayerEquipmentSlotUI:  DropItem
                         return;
                 }
                 
-                // base.OnDrop(eventData);
-                
-                
                 DraggableItem draggableItem = droppedObject.GetComponent<DraggableItem>();
                 Transform parentToSwap = draggableItem.ParentPreDrag;
                 this.InventoryItemUI.ChangeDropItem(parentToSwap);
+
+                if (parentToSwap?.GetComponent<PlayerEquipmentSlotUI>())
+                {
+                        parentToSwap.GetComponent<PlayerEquipmentSlotUI>().InventoryItemUI = this.InventoryItemUI;
+                }
+                else
+                {
+                        parentToSwap.GetComponent<InventorySlotUI>().InventoryItemUI = this.InventoryItemUI;
+                        if (parentToSwap.GetComponent<InventorySlotUI>().InventoryItemUI.EquipmentData == null)
+                        {
+                                parentToSwap.GetComponentInParent<InventoryUI>().InventorySlotUIObjectPooling.ReleaseObject(parentToSwap.gameObject);
+                        }
+                }
                 draggableItem.ParentAfterDrag = transform;
 
                 InventoryItemUI = temp;
