@@ -43,7 +43,8 @@ public class Player : MonoBehaviour
 
         PlayerInputSystem.Start();
 
-        PlayerStats = PlayerPropertiesSO.BaseStats;
+        PlayerStats = new PlayerStats(PlayerPropertiesSO.BaseStats);
+        UIManager.Instance.EquipmentMenuUI.SetBasePlayerStats(PlayerPropertiesSO.BaseStats);
 
         _playerStateMachine.ChangeState(_playerStateMachine.PlayerIdleState);
         PlayerReusableData.CurrentPlayerStats = PlayerPropertiesSO.BaseStats;
@@ -74,8 +75,6 @@ public class Player : MonoBehaviour
         PlayerInputSystem.Update();
         UpdateReusableData();
         _playerStateMachine.Update();
-        
-        UpdatePlayerStatsUI();
     }
 
     private void FixedUpdate() {
@@ -86,11 +85,6 @@ public class Player : MonoBehaviour
     {
         PlayerReusableData.MovementInput = PlayerInputSystem.MovementInput;
         PlayerReusableData.IsGround = PlayerBodyCollisionManager.isGround;
-    }
-
-    public void UpdatePlayerStatsUI()
-    {
-        UIManager.Instance.EquipmentMenuUI.UpdatePlayerStats(PlayerStats);
     }
     
     

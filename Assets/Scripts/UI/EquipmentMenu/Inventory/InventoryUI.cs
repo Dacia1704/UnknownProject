@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InventoryUI: MonoBehaviour
 {
-        private InventorySlotUIObjectPooling inventorySlotUIObjectPooling;
+        public InventorySlotUIObjectPooling InventorySlotUIObjectPooling { get; private set; }
 
         [SerializeField] private Transform contentInventory;
 
@@ -12,7 +12,7 @@ public class InventoryUI: MonoBehaviour
 
         private void Awake()
         {
-                inventorySlotUIObjectPooling = GetComponentInChildren<InventorySlotUIObjectPooling>();
+                InventorySlotUIObjectPooling = GetComponentInChildren<InventorySlotUIObjectPooling>();
                 
                 PreviewEquimentStatsUI = transform.parent.GetComponentInChildren<PreviewEquimentStatsUI>();
         }
@@ -21,11 +21,11 @@ public class InventoryUI: MonoBehaviour
         {
                 foreach (Transform child in contentInventory)
                 {
-                        inventorySlotUIObjectPooling.ReleaseObject(transform.gameObject);
+                        InventorySlotUIObjectPooling.ReleaseObject(child.gameObject);
                 }
                 foreach (EquipmentData data in dataList)
                 {
-                        GameObject slot =  inventorySlotUIObjectPooling.GetObject("InventorySlotUI");
+                        GameObject slot =  InventorySlotUIObjectPooling.GetObject("InventorySlotUI");
                         slot.transform.SetParent(contentInventory);
                         slot.transform.SetAsLastSibling();
                         

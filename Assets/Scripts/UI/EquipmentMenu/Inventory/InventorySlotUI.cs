@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotUI : DropItem
+public class InventorySlotUI : DropItem,IPoolingObject
 {
-    [field: SerializeField]public InventoryItemUI InventoryItemUI { get; private set; }
+    [HideInInspector] public InventoryItemUI InventoryItemUI;
+    [field: SerializeField] public PoolingObjectPropsSO PoolingObjectPropsSO { get; set; }
 
     private void Start()
     {
@@ -24,15 +25,28 @@ public class InventorySlotUI : DropItem
 
     public override void OnDrop(PointerEventData eventData)
     {
-        // base.OnDrop(eventData);
         GameObject droppedObject = eventData.pointerDrag;
         DraggableItem draggableItem = droppedObject.GetComponent<DraggableItem>();
         Transform parentToSwap = draggableItem.ParentPreDrag;
         this.InventoryItemUI.ChangeDropItem(parentToSwap);
+        if (parentToSwap?.GetComponent<PlayerEquipmentSlotUI>())
+        {
+            parentToSwap.GetComponent<PlayerEquipmentSlotUI>().InventoryItemUI = this.InventoryItemUI;
+        }
+        else
+        {
+            parentToSwap.GetComponent<InventorySlotUI>().InventoryItemUI = this.InventoryItemUI;
+            if (parentToSwap.GetComponent<InventorySlotUI>().InventoryItemUI.EquipmentData == null)
+            {
+                parentToSwap.GetComponentInParent<InventoryUI>().InventorySlotUIObjectPooling.ReleaseObject(parentToSwap.gameObject);
+            }
+        }
+        
         draggableItem.ParentAfterDrag = transform;
         InventoryItemUI = eventData.pointerDrag.GetComponent<InventoryItemUI>();
         
     }
-    
+
+
     
 }

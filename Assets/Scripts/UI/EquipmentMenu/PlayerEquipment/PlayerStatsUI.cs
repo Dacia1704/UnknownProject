@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PlayerStatsUI : MonoBehaviour
 {
+    
+    
     [field: SerializeField] private TextMeshProUGUI speedText ;
     [field: SerializeField] private TextMeshProUGUI attackText ;
     [field: SerializeField] private TextMeshProUGUI healthext ;
@@ -20,8 +22,8 @@ public class PlayerStatsUI : MonoBehaviour
         attackText.text = stats.Attack.ToString();
         healthext.text = stats.Health.ToString();
         defendText.text = stats.Defend.ToString();
-        attackSpeedText.text = stats.AttackSpeed.ToString();
-        resistanceText.text = stats.Resistance.ToString();
-        accuracyText.text = stats.Accuracy.ToString();
+        attackSpeedText.text = stats.AttackSpeed.ToString("F2");
+        resistanceText.text = stats.Resistance.ToString("F2");
+        accuracyText.text = stats.Accuracy.ToString("F2");
     }
 }

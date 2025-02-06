@@ -10,17 +10,11 @@ public class InventoryItemUI : DraggableItem,IPointerClickHandler
 
     private Image image;
     
-    private InventoryUI inventoryUI;
-    
-    
-
-
     private void Start()
     {
         image = GetComponent<Image>();
         StartCoroutine(UpdateImageIcon());
         
-        inventoryUI = GetComponentInParent<InventoryUI>();
     }
 
     private IEnumerator UpdateImageIcon()
@@ -43,13 +37,33 @@ public class InventoryItemUI : DraggableItem,IPointerClickHandler
     }
     private void UpdatePreviewEquipmentStats()
     {
-        inventoryUI.PreviewEquimentStatsUI.Show();
-        inventoryUI.PreviewEquimentStatsUI.SetEquipmentData(EquipmentData);
         
+        InventoryUI inventoryUI = GetComponentInParent<InventoryUI>();
+        PlayerEquipmentUI playerEquipmentUI = GetComponentInParent<PlayerEquipmentUI>();
+        if (inventoryUI != null)
+        {
+            inventoryUI.PreviewEquimentStatsUI.Show();
+            inventoryUI.PreviewEquimentStatsUI.SetEquipmentData(EquipmentData);
+        }
+        else
+        {
+            playerEquipmentUI.PreviewEquimentStatsUI.Show();
+            playerEquipmentUI.PreviewEquimentStatsUI.SetEquipmentData(EquipmentData);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         UpdatePreviewEquipmentStats();
+    }
+
+    public override void OnEndDrag(PointerEventData eventData)
+    {
+        base.OnEndDrag(eventData);
+
+        if (transform?.GetComponentInParent<PlayerEquipmentSlotUI>())
+        {
+            GetComponentInParent<PlayerEquipmentSlotUI>().PlayerEquipmentUI.UpdateListEquippedItems();
+        }
     }
 }

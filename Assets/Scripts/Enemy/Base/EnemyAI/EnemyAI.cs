@@ -44,7 +44,7 @@ public abstract class EnemyAI: MonoBehaviour {
         if(distance <= distanceDetect) {
             if (!isDetectedPlayer) {
                 isDetectedPlayer = true;
-                distanceDetect*=4;
+                distanceDetect*=2;
             }
             timeMissDetect = Time.time;
             return true;
