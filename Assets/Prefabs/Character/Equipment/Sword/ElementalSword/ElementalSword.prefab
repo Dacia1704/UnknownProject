@@ -9795,6 +9795,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 2dd2a0ffa782b8945a1dda7107a9f99a, type: 2}
+  <EquipmentStats>k__BackingField:
+    Speed: 0
+    Attack: 0
+    AttackSpeed: 0
+    Defend: 0
+    Health: 0
+    Resistance: 0
+    Accuracy: 0
+  attackTransform: {fileID: 4775197332251522}
 --- !u!65 &-8838610435030074559
 BoxCollider:
   m_ObjectHideFlags: 0

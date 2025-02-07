@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeyObject: Fighter
   ObjectPrefab: {fileID: 7855812230908351197, guid: e43d56137eb6d2d4c9aaf46c5b9794da, type: 3}
-  Type: 0
+  <EquimentType>k__BackingField: 0
+  <WeaponType>k__BackingField: 0
+  <EquipmentSet>k__BackingField: 0
   <SpriteItem>k__BackingField: {fileID: 0}

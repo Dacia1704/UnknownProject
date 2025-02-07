@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c6aff3e82244affb41f50f0598fbc1d, type: 3}
-  m_Name: InventoryUIObjectPooling
+  m_Script: {fileID: 11500000, guid: 4779236fbc644da6a3c3c9e9a86e3038, type: 3}
+  m_Name: FighterBulletSO
   m_EditorClassIdentifier: 
-  <PoolingObjectList>k__BackingField:
-  - {fileID: 11400000, guid: 1e287dcaf91d1b648a05ba0fe0653e5f, type: 2}
+  KeyObject: FighterBullet
+  ObjectPrefab: {fileID: 795075664313173746, guid: 2499cca25360c924a805593ec139b40a, type: 3}

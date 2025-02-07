@@ -8,7 +8,7 @@ public abstract class ObjectPooling: MonoBehaviour
 {
     protected Dictionary<string, ObjectPool<GameObject>> pools;
 
-    [SerializeField] protected ObjectPoolingPropsSO objectPoolingProps;
+    [SerializeField] protected ObjectPoolPropsSO objectPoolProps;
     
 
     private void Awake()
@@ -25,7 +25,7 @@ public abstract class ObjectPooling: MonoBehaviour
         pools[keyObject] = new ObjectPool<GameObject>(
             createFunc: () =>
             {
-                PoolingObjectPropsSO objProps = objectPoolingProps.PoolingObjectList.Find(obj => obj.KeyObject == keyObject);
+                PoolingObjectPropsSO objProps = objectPoolProps.PoolingObjectList.Find(obj => obj.KeyObject == keyObject);
                 return Instantiate(objProps.ObjectPrefab,transform);
             },
             actionOnGet: obj => obj.SetActive(true),
@@ -46,7 +46,7 @@ public abstract class ObjectPooling: MonoBehaviour
         // }
         // Debug.Log(objectToRealse.name);
         string keyObjectToRealse = objectToRealse.GetComponent<IPoolingObject>().PoolingObjectPropsSO.KeyObject;
-        string keyObject = objectPoolingProps.PoolingObjectList.Find(obj => obj.KeyObject == keyObjectToRealse).KeyObject;
+        string keyObject = objectPoolProps.PoolingObjectList.Find(obj => obj.KeyObject == keyObjectToRealse).KeyObject;
         objectToRealse.transform.SetParent(transform);
         pools[keyObject].Release(objectToRealse);
     }

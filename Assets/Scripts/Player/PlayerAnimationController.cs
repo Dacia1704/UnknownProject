@@ -15,4 +15,13 @@ public class PlayerAnimationController: AnimationController
     {
         SetFloatValueAnimation(player.PlayerPropertiesSO.NomalAttackValueTrigger,-1.0f);
     }
+
+    public void AttackRight()
+    {
+        player.playerWeaponManager.AttackRightWeapon();
+    }
+    public void AttackLeft()
+    {
+        player.playerWeaponManager.AttackLeftWeapon();
+    }
 }

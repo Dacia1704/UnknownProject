@@ -14,14 +14,15 @@ public class Player : MonoBehaviour
     [HideInInspector] public PlayerBodyCollisionManager PlayerBodyCollisionManager;
     [HideInInspector] public PlayerAnimationController PlayerAnimationController;
     
+    [FormerlySerializedAs("playerEquipmentManager")]
     [Header("Weapon")] 
-    [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
+    [HideInInspector] public PlayerWeaponManager playerWeaponManager;
     [field: SerializeField]public Transform WeaponLeftTransform { get; private set; }
     [field: SerializeField]public Transform WeaponRightTransform { get; private set; }
 
     [Header("Battle System")]
     [HideInInspector] public Damable Damable;
-    public PlayerStats PlayerStats;
+    [HideInInspector]public PlayerStats PlayerStats;
 
     [Header("Test")] 
     public EquipmentPropsSO IronWordSO;
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
         PlayerRigidbody = GetComponent<Rigidbody>();
         PlayerAnimationController = GetComponentInChildren<PlayerAnimationController>();
         PlayerBodyCollisionManager = GetComponentInChildren<PlayerBodyCollisionManager>();
-        playerEquipmentManager = GetComponentInChildren<PlayerEquipmentManager>();
+        playerWeaponManager = GetComponentInChildren<PlayerWeaponManager>();
         Damable = GetComponentInChildren<Damable>();
 
         Damable.SetTagCanDealDamList(PlayerPropertiesSO.TagCanDealDamList);
@@ -49,20 +50,20 @@ public class Player : MonoBehaviour
         _playerStateMachine.ChangeState(_playerStateMachine.PlayerIdleState);
         PlayerReusableData.CurrentPlayerStats = PlayerPropertiesSO.BaseStats;
 
-        playerEquipmentManager.EquipRightWeapon(FighterSO);
-        playerEquipmentManager.EquipLeftWeapon(FighterSO);
+        playerWeaponManager.EquipRightWeapon(FighterSO);
+        playerWeaponManager.EquipLeftWeapon(FighterSO);
         UIManager.Instance.OnSwordButtonClicked += () =>
         {
-            playerEquipmentManager.EquipRightWeapon(IronWordSO);
+            playerWeaponManager.EquipRightWeapon(IronWordSO);
             
         };
         UIManager.Instance.OnStaffButtonClicked += () =>
         {
-            playerEquipmentManager.EquipRightWeapon(GreenStaffSO);
+            playerWeaponManager.EquipRightWeapon(GreenStaffSO);
         };
         UIManager.Instance.OnBowButtonClicked += () =>
         {
-            playerEquipmentManager.EquipRightWeapon(WoodBowSO);
+            playerWeaponManager.EquipRightWeapon(WoodBowSO);
         };
 
         PlayerReusableData.IsNomalAttacking = false;
