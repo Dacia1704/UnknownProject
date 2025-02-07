@@ -39,7 +39,7 @@ public class PlayerEquipmentUI : MonoBehaviour
     public void SetPlayerStatsWithEquipment()
     {
         PlayerStats playerStats = new PlayerStats(equipmentMenuUI.baseStats);
-        Debug.Log(playerStats);
+        // Debug.Log(playerStats);
         foreach (InventoryItemUI item in ListEquippedItems)
         {
             if (item.EquipmentData != null)

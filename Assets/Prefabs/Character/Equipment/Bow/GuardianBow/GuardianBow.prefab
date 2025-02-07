@@ -120,3 +120,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 5fb651d4aa66f294db27300a0b58cc21, type: 2}
+  <EquipmentStats>k__BackingField:
+    Speed: 0
+    Attack: 0
+    AttackSpeed: 0
+    Defend: 0
+    Health: 0
+    Resistance: 0
+    Accuracy: 0
+  attackTransform: {fileID: 3595557804323297469}

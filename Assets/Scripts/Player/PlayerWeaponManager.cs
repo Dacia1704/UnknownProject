@@ -4,11 +4,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class PlayerEquipmentManager: MonoBehaviour
+public class PlayerWeaponManager: MonoBehaviour
 {
     protected EquipmentPooling equipmentPooling;
-    protected GameObject currentRightWeapon { get; private set; }
-    protected GameObject currentLeftWeapon { get; private set; }
+    [field: SerializeField]protected GameObject currentRightWeapon { get; private set; }
+    [field: SerializeField]protected GameObject currentLeftWeapon { get; private set; }
 
     protected Player player;
 
@@ -27,7 +27,17 @@ public class PlayerEquipmentManager: MonoBehaviour
 
     private void Update()
     {
-        UpdateEquipmentState();
+        UpdateWeaponState();
+    }
+
+    public void AttackRightWeapon()
+    {
+        currentRightWeapon.GetComponent<Equipment>().Attack(player.transform.forward);
+    }
+
+    public void AttackLeftWeapon()
+    {
+        currentLeftWeapon.GetComponent<Equipment>().Attack(player.transform.forward);
     }
 
     public void EquipRightWeapon(EquipmentPropsSO equipmentSo)
@@ -45,13 +55,13 @@ public class PlayerEquipmentManager: MonoBehaviour
         if(currentLeftWeapon)
             equipmentPooling.ReleaseObject(currentLeftWeapon);
         GameObject poolingWeapon = equipmentPooling.GetObject(equipmentSo.KeyObject);
-        currentRightWeapon = poolingWeapon;
+        currentLeftWeapon = poolingWeapon;
         poolingWeapon.transform.SetParent(player.WeaponLeftTransform);
         poolingWeapon.transform.localPosition = Vector3.zero;
         poolingWeapon.transform.localRotation = Quaternion.identity;
     }
 
-    public void UpdateEquipmentState()
+    public void UpdateWeaponState()
     {
         if (currentRightWeapon)
         {
