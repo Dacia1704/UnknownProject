@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4779236fbc644da6a3c3c9e9a86e3038, type: 3}
   m_Name: ElementalStaffBulletPropsSO
   m_EditorClassIdentifier: 
-  KeyObject: 
-  ObjectPrefab: {fileID: 0}
+  KeyObject: ElementalStaffBullet
+  ObjectPrefab: {fileID: 1537593200154216, guid: 7552ffd828908e243a3bf7ccf7e47412, type: 3}

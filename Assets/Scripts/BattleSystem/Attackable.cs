@@ -6,30 +6,31 @@ public class Attackable: MonoBehaviour {
     public bool IsAttackSuccess { get; private set; }
 
 
+    public void SetAttackStats(Stats stats)
+    {
+        this.AttackStats = stats;
+    }
+
+
     protected virtual void OnTriggerEnter(Collider other) {
         Damable damable= other.gameObject.GetComponent<Damable>();
         if(damable != null) {
-            if (damable.TagCanDealDamList.Contains(transform.tag)) {
+            // Debug.LogError(1 + " " + (damable.DamableLayers & (1 << this.gameObject.layer)));
+            if ((damable.DamableLayers & (1 << this.gameObject.layer)) !=0)
+            {
+                // Debug.LogError(2);
                 IsAttackSuccess = true;
             }
-            
         }
-    }
-
-    protected virtual void OnTriggerStay(Collider other) {
-        
     }
 
     protected virtual void OnTriggerExit(Collider other) {
         Damable damable= other.gameObject.GetComponent<Damable>();
         if(damable != null) {
-            if (damable.TagCanDealDamList.Contains(transform.tag)) {
+            if ((damable.DamableLayers & (1 << this.gameObject.layer)) !=0)
+            {
                 IsAttackSuccess = false;
             }
         }
-    }
-
-    public void SetAttack(Stats Stats) {
-        AttackStats = Stats;
     }
 }

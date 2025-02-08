@@ -18,10 +18,10 @@ TagManager:
   - Ground
   - PlayerModelLayer
   - 
-  - 
-  - 
-  - 
-  - 
+  - AttackPlayer
+  - AttackEnemy
+  - DamPlayer
+  - DamEnemy
   - 
   - 
   - 

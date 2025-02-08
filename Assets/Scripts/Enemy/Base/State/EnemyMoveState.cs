@@ -13,7 +13,9 @@ public class EnemyMoveState : EnemyState
     public override void Update()
     {
         base.Update();
+        OnHit();
         OnIdle();
+        
     }
 
     public override void Exit()

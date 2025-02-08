@@ -24,5 +24,6 @@ MonoBehaviour:
     <DropRate>k__BackingField: 1
   <IdleTrigger>k__BackingField: idle
   <MoveTrigger>k__BackingField: move
-  <TagCanDealDamList>k__BackingField:
-  - DamPlayer
+  <DamableLayers>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 1024

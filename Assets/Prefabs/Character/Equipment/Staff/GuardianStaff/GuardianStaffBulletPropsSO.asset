@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4779236fbc644da6a3c3c9e9a86e3038, type: 3}
   m_Name: GuardianStaffBulletPropsSO
   m_EditorClassIdentifier: 
-  KeyObject: 
-  ObjectPrefab: {fileID: 0}
+  KeyObject: GuardianStaffBullet
+  ObjectPrefab: {fileID: 1654736843778140, guid: 2ac4619bd7b95a54dac4447a85edd8f8, type: 3}

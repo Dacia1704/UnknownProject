@@ -6,5 +6,5 @@ public abstract class EnemyPropertiesSO : ScriptableObject {
 
     [field: SerializeField] public string IdleTrigger { get; private set; }
     [field: SerializeField] public string MoveTrigger { get; private set; }
-    [field: SerializeField] public List<string> TagCanDealDamList { get; private set; }
+    [field: SerializeField] public LayerMask DamableLayers { get; private set; }
 }

@@ -16,7 +16,7 @@ public class PlayerPropertiesSO : ScriptableObject {
     [field: SerializeField] public string MoveAnimationName { get; private set; }
 
     [field: Header("Battle System")]
-    [field: SerializeField] public List<string> TagCanDealDamList { get; private set; }
+    [field: SerializeField] public LayerMask DamableLayers { get; private set; }
     
 
 
