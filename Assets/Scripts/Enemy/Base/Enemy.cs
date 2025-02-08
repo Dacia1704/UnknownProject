@@ -23,7 +23,8 @@ public abstract class Enemy : MonoBehaviour {
     }
 
     protected virtual void Start() {
-        Player = FindAnyObjectByType<Player>();
+        Player = GameManager.instance.Player;
+        
         Rigidbody= GetComponent<Rigidbody>();
         Attackable = GetComponentInChildren<Attackable>();
         Damable = GetComponentInChildren<Damable>();
