@@ -13,6 +13,7 @@ public class EnemyIdleState : EnemyState
     public override void Update()
     {
         base.Update();
+        OnHit();
         OnMove();
     }
 

@@ -28,5 +28,6 @@ MonoBehaviour:
   <NomalAttackValueTrigger>k__BackingField: nomalAttack
   <IdleAnimationName>k__BackingField: Idle
   <MoveAnimationName>k__BackingField: Move
-  <TagCanDealDamList>k__BackingField:
-  - DamEnemy
+  <DamableLayers>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 2048

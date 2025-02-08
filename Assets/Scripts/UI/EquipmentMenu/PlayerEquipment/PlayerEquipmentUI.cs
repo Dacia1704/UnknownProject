@@ -56,7 +56,7 @@ public class PlayerEquipmentUI : MonoBehaviour
 
         equipmentMenuUI.PlayerStats = playerStats;
         
-        FindObjectOfType<Player>().PlayerStats = new PlayerStats(playerStats);
+        FindObjectOfType<Player>().SetPlayerStats(playerStats);
         PlayerStatsUI.UpdateStatsText(equipmentMenuUI.PlayerStats);
     }
 }

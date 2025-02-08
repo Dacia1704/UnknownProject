@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4779236fbc644da6a3c3c9e9a86e3038, type: 3}
   m_Name: GuardianSwordBulletPropsSO
   m_EditorClassIdentifier: 
-  KeyObject: 
-  ObjectPrefab: {fileID: 0}
+  KeyObject: GuardianSwordBullet
+  ObjectPrefab: {fileID: 2579094414100932814, guid: e16cde03e48e1f44b914a4653e56a72e, type: 3}

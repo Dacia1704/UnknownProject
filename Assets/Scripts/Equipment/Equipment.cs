@@ -22,8 +22,14 @@ using UnityEngine;
      {
          GameObject bullet = EquipmentManager.instance.EquipmentPooling.GetBulletEquipment(EquipmentPropsSO.EquipmentSet,
              EquipmentPropsSO.EquimentType, EquipmentPropsSO.WeaponType);
+         
+         //set up transform
          bullet.transform.position = attackTransform.position;
          bullet.transform.LookAt(new Vector3(bullet.transform.position.x + direction.x, bullet.transform.position.y,bullet.transform.position.z + direction.z));
+         
+         //setup stats
+         bullet.GetComponent<Bullet>().Attackable.SetAttackStats(transform.root.GetComponent<Player>().PlayerStats);
+         
          bullet.GetComponent<Rigidbody>().velocity = new Vector3(direction.x *20, 0, direction.z *20);
      }
      

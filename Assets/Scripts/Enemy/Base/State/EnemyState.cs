@@ -36,4 +36,12 @@ public abstract class EnemyState : IState
             enemyStateMachine.ChangeState(enemyStateMachine.EnemyMoveState);
         }
     }
+
+    protected virtual void OnHit()
+    {
+        if (enemyStateMachine.Enemy.Damable.IsGetAttack != 0)
+        {
+            enemyStateMachine.ChangeState(enemyStateMachine.EnemyHitState);
+        }
+    }
 }

@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     [Header("Battle System")]
     [HideInInspector] public Damable Damable;
-    [HideInInspector]public PlayerStats PlayerStats;
+    public PlayerStats PlayerStats { get; private set; }
 
     [Header("Test")] 
     public EquipmentPropsSO IronWordSO;
@@ -40,18 +40,24 @@ public class Player : MonoBehaviour
         playerWeaponManager = GetComponentInChildren<PlayerWeaponManager>();
         Damable = GetComponentInChildren<Damable>();
 
-        Damable.SetTagCanDealDamList(PlayerPropertiesSO.TagCanDealDamList);
+        Damable.SetDamableLayer(PlayerPropertiesSO.DamableLayers);
 
         PlayerInputSystem.Start();
-
-        PlayerStats = new PlayerStats(PlayerPropertiesSO.BaseStats);
+        
+        //set up stats
+        PlayerReusableData.CurrentPlayerStats = PlayerPropertiesSO.BaseStats;
+        SetPlayerStats(PlayerPropertiesSO.BaseStats);
         UIManager.Instance.EquipmentMenuUI.SetBasePlayerStats(PlayerPropertiesSO.BaseStats);
 
+        //setup state
         _playerStateMachine.ChangeState(_playerStateMachine.PlayerIdleState);
-        PlayerReusableData.CurrentPlayerStats = PlayerPropertiesSO.BaseStats;
+        PlayerReusableData.IsNomalAttacking = false;
 
+        //setup equipment
         playerWeaponManager.EquipRightWeapon(FighterSO);
         playerWeaponManager.EquipLeftWeapon(FighterSO);
+        
+        //test
         UIManager.Instance.OnSwordButtonClicked += () =>
         {
             playerWeaponManager.EquipRightWeapon(IronWordSO);
@@ -66,7 +72,6 @@ public class Player : MonoBehaviour
             playerWeaponManager.EquipRightWeapon(WoodBowSO);
         };
 
-        PlayerReusableData.IsNomalAttacking = false;
 
     }
 
@@ -86,6 +91,11 @@ public class Player : MonoBehaviour
     {
         PlayerReusableData.MovementInput = PlayerInputSystem.MovementInput;
         PlayerReusableData.IsGround = PlayerBodyCollisionManager.isGround;
+    }
+
+    public void SetPlayerStats(PlayerStats playerStats)
+    {
+        PlayerStats = new PlayerStats(playerStats);
     }
     
     

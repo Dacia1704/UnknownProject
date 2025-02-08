@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 171764692}
   - component: {fileID: 171764693}
   - component: {fileID: 171764694}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Damable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,6 +769,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce99e2f7057d9d47a131414679a5ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <DamableLayers>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!135 &171764694
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -784,7 +787,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1097,7 +1100,7 @@ GameObject:
   - component: {fileID: 243787264}
   - component: {fileID: 243787266}
   - component: {fileID: 243787265}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Attackable
   m_TagString: DamEnemy
   m_Icon: {fileID: 0}
@@ -11246,63 +11249,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3537792449865722905, guid: f96442df40a0bf74bbd6431cf2ee05d9, type: 3}
   m_PrefabInstance: {fileID: 1734589823}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2069163356
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4248687443148192093, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.586
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248687443148192093, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.508
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248687443148192093, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248687443148192093, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248687443148192093, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248687443148192093, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248687443148192093, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248687443148192093, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248687443148192093, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248687443148192093, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7606182865124193823, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
-      propertyPath: m_Name
-      value: PrimordialSword
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8bd276dec6f55874193870f1d772162c, type: 3}
 --- !u!1 &2078147197
 GameObject:
   m_ObjectHideFlags: 0
@@ -11800,7 +11746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2146679607
 Transform:
   m_ObjectHideFlags: 0
@@ -13729,18 +13675,7 @@ MonoBehaviour:
   <WeaponLeftTransform>k__BackingField: {fileID: 2584100974338476007}
   <WeaponRightTransform>k__BackingField: {fileID: 4039855463728742515}
   Damable: {fileID: 0}
-  PlayerStats:
-    Speed: 0
-    Attack: 0
-    AttackSpeed: 0
-    Defend: 0
-    Health: 0
-    Resistance: 0
-    Accuracy: 0
-    <BaseDashModifier>k__BackingField: 0
-    <BaseDashTime>k__BackingField: 0
-    <ResetNomalAttackTime>k__BackingField: 0
-  IronWordSO: {fileID: 11400000, guid: 87592c159628fe64fbb4bb49e3a620f1, type: 2}
+  IronWordSO: {fileID: 11400000, guid: 2dd2a0ffa782b8945a1dda7107a9f99a, type: 2}
   GreenStaffSO: {fileID: 11400000, guid: bf649412148a4424895f0768142b2e80, type: 2}
   WoodBowSO: {fileID: 11400000, guid: ccca1b18db42f014f8ed274e1bbf6b3a, type: 2}
   FighterSO: {fileID: 11400000, guid: 32013fab8aab67c40ac505769f124bf9, type: 2}
@@ -15046,6 +14981,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce99e2f7057d9d47a131414679a5ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <DamableLayers>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &5666982122683659548
 Transform:
   m_ObjectHideFlags: 0
@@ -15832,7 +15770,7 @@ GameObject:
   - component: {fileID: 4468606322034045001}
   - component: {fileID: 5655671019702387767}
   - component: {fileID: 1461229996634855869}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Damable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17018,4 +16956,3 @@ SceneRoots:
   - {fileID: 1534544065}
   - {fileID: 2099801621}
   - {fileID: 768601698}
-  - {fileID: 2069163356}
