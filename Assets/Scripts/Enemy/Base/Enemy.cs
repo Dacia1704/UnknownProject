@@ -15,6 +15,8 @@ public abstract class Enemy : MonoBehaviour {
 
     public Attackable Attackable{ get; private set; }
     public Damable Damable{ get; private set; }
+    
+    public EnemyAI EnemyAI { get; private set; }
 
     protected virtual void Awake() {
         enemyStateMachine = new(this);
@@ -25,6 +27,7 @@ public abstract class Enemy : MonoBehaviour {
         Rigidbody= GetComponent<Rigidbody>();
         Attackable = GetComponentInChildren<Attackable>();
         Damable = GetComponentInChildren<Damable>();
+        EnemyAI = GetComponent<EnemyAI>();
         EnemyAnimationController = GetComponentInChildren<EnemyAnimationController>();
         EnemyCollisionSystem = GetComponentInChildren<EnemyCollisionSystem>();
         enemyStateMachine.ChangeState(enemyStateMachine.EnemyIdleState);

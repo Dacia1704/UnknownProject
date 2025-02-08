@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class EnemyIdleState : EnemyState
 {
     public EnemyIdleState(EnemyStateMachine enemyStateMachine) : base(enemyStateMachine)
@@ -16,6 +18,7 @@ public class EnemyIdleState : EnemyState
         OnHit();
         OnMove();
     }
+    
 
     public override void Exit()
     {

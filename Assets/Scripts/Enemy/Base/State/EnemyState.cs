@@ -31,9 +31,16 @@ public abstract class EnemyState : IState
     }
 
     protected virtual void OnMove() {
-        if(enemyStateMachine.Enemy.Rigidbody.velocity.x < -0.1f || enemyStateMachine.Enemy.Rigidbody.velocity.x > 0.1f ||
-        enemyStateMachine.Enemy.Rigidbody.velocity.z < -0.1f || enemyStateMachine.Enemy.Rigidbody.velocity.z > 0.1f ) {
+        if(enemyStateMachine.Enemy.EnemyAI.ShouldChase) {
             enemyStateMachine.ChangeState(enemyStateMachine.EnemyMoveState);
+        }
+    }
+
+    protected virtual void OnAttack()
+    {
+        if (enemyStateMachine.Enemy.EnemyAI.ShouldAttack)
+        {
+            enemyStateMachine.ChangeState(enemyStateMachine.EnemyAttackState);
         }
     }
 

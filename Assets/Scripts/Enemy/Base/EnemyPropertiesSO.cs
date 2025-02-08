@@ -7,4 +7,7 @@ public abstract class EnemyPropertiesSO : ScriptableObject {
     [field: SerializeField] public string IdleTrigger { get; private set; }
     [field: SerializeField] public string MoveTrigger { get; private set; }
     [field: SerializeField] public LayerMask DamableLayers { get; private set; }
+    [field: SerializeField] public float BaseDistanceTrigger { get; private set; }
+    [field: SerializeField] public float DetectModifierDistance { get; private set; }
+    [field: SerializeField] public float AttackDistance { get; private set; }
 }

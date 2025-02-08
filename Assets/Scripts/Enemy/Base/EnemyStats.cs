@@ -4,7 +4,6 @@ using UnityEngine;
 [Serializable]
 public class EnemyStats: Stats
 {
-        [field: SerializeField] public float BaseDistanceTrigger { get; private set; }
         [field: SerializeField] public float DropRate { get; private set; }
 
         public EnemyStats(EnemyStats stats)
@@ -16,7 +15,6 @@ public class EnemyStats: Stats
                 this.Accuracy = stats.Accuracy;
                 this.AttackSpeed = stats.AttackSpeed;
                 this.Resistance = stats.Resistance;
-                this.BaseDistanceTrigger = stats.BaseDistanceTrigger;
                 this.DropRate = stats.DropRate;
         }
 }

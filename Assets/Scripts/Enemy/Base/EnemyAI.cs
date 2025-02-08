@@ -8,11 +8,16 @@ public abstract class EnemyAI: MonoBehaviour {
     protected float distanceDetect;
     protected float timeMissDetect;
 
+    public bool ShouldChase { get; private set; }
+    public bool ShouldAttack { get; private set; }
+
+    private float distance;
+
     private void Awake() {
         enemy = GetComponent<Enemy>();
     }
     private void Start() {
-        distanceDetect = enemy.EnemyPropertiesSO.BaseStats.BaseDistanceTrigger;
+        distanceDetect = enemy.EnemyPropertiesSO.BaseDistanceTrigger;
         timeMissDetect = Time.time;
         isDetectedPlayer = false;
     }
@@ -25,26 +30,38 @@ public abstract class EnemyAI: MonoBehaviour {
     private void FixedUpdate() {
         if (Time.time - timeMissDetect > 1) {
             isDetectedPlayer = false;
-            distanceDetect = enemy.EnemyPropertiesSO.BaseStats.BaseDistanceTrigger;
+            distanceDetect = enemy.EnemyPropertiesSO.BaseDistanceTrigger;
         }
         if(isDetectedPlayer) {
-            ChasePlayer();
+            SetChasePlayer();
+        }
+        else
+        {
+            ShouldAttack = false;
+            ShouldChase = false;
         }
     }
 
 
-    public void ChasePlayer() {
-        Vector3 direction = (enemy.Player.transform.position - transform.position).normalized;
-        enemy.Rigidbody.velocity = direction * enemy.EnemyPropertiesSO.BaseStats.Speed;
-        this.transform.LookAt(enemy.Player.transform.position);
+    public void SetChasePlayer() {
+        ShouldChase = true;
+
+        if (distance <= enemy.EnemyPropertiesSO.AttackDistance)
+        {
+            ShouldAttack = true;
+        }
+        else
+        {
+            ShouldAttack = false;
+        }
     }
 
     public bool DetectPlayer() {
-        float distance = Vector3.Distance(enemy.Player.transform.position, this.transform.position);
+        distance = Vector3.Distance(enemy.Player.transform.position, this.transform.position);
         if(distance <= distanceDetect) {
             if (!isDetectedPlayer) {
                 isDetectedPlayer = true;
-                distanceDetect*=2;
+                distanceDetect*= enemy.EnemyPropertiesSO.DetectModifierDistance;
             }
             timeMissDetect = Time.time;
             return true;
