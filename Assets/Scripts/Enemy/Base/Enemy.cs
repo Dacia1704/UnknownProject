@@ -31,12 +31,16 @@ public abstract class Enemy : MonoBehaviour {
         EnemyAI = GetComponent<EnemyAI>();
         EnemyAnimationController = GetComponentInChildren<EnemyAnimationController>();
         EnemyCollisionSystem = GetComponentInChildren<EnemyCollisionSystem>();
+        
         enemyStateMachine.ChangeState(enemyStateMachine.EnemyIdleState);
+        enemyStateMachine.Enemy.Damable.transform.gameObject.SetActive(true);
+        enemyStateMachine.Enemy.Attackable.transform.gameObject.SetActive(true);
         
         Damable.SetDamableLayer(EnemyPropertiesSO.DamableLayers);
 
         EnemyStats = new EnemyStats(EnemyPropertiesSO.BaseStats);
-        Damable.BaseDamableStats = new EnemyStats(EnemyStats);
+        Damable.DamableStats = new EnemyStats(EnemyStats);
+        Attackable.SetAttackStats(EnemyStats);
     }
 
     protected virtual void Update() {

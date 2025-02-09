@@ -9,20 +9,16 @@ public class EnemyIdleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemyStateMachine.Enemy.EnemyAnimationController.SetBoolValueAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.IdleTrigger, true);
+        enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.IdleAnimationName);
     }
 
     public override void Update()
     {
         base.Update();
+        OnDeath();
         OnHit();
+        OnAttack();
         OnMove();
     }
     
-
-    public override void Exit()
-    {
-        enemyStateMachine.Enemy.EnemyAnimationController.SetBoolValueAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.IdleTrigger, false);
-        base.Exit();
-    }
 }

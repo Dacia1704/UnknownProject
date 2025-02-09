@@ -3,12 +3,15 @@ using UnityEngine;
 public abstract class EnemyState : IState
 {
     protected EnemyStateMachine enemyStateMachine;
+
+    protected float attackCooldownCounter;
     public EnemyState(EnemyStateMachine enemyStateMachine) {
         this.enemyStateMachine = enemyStateMachine;
     }
     public virtual void Enter()
     {
         // Debug.Log("State: " + GetType().Name);
+        attackCooldownCounter = 0;
     }
 
     public virtual void Exit()
@@ -17,6 +20,10 @@ public abstract class EnemyState : IState
 
     public virtual void PhysicsUpdate()
     {
+        if (attackCooldownCounter > 0)
+        {
+            attackCooldownCounter -= Time.fixedDeltaTime;
+        } 
     }
 
     public virtual void Update()
@@ -38,7 +45,7 @@ public abstract class EnemyState : IState
 
     protected virtual void OnAttack()
     {
-        if (enemyStateMachine.Enemy.EnemyAI.ShouldAttack)
+        if (enemyStateMachine.Enemy.EnemyAI.ShouldAttack && attackCooldownCounter<=0)
         {
             enemyStateMachine.ChangeState(enemyStateMachine.EnemyAttackState);
         }
@@ -49,6 +56,14 @@ public abstract class EnemyState : IState
         if (enemyStateMachine.Enemy.Damable.IsGetAttack != 0)
         {
             enemyStateMachine.ChangeState(enemyStateMachine.EnemyHitState);
+        }
+    }
+
+    protected virtual void OnDeath()
+    {
+        if (enemyStateMachine.Enemy.EnemyStats.Health <= 0)
+        {
+            enemyStateMachine.ChangeState(enemyStateMachine.EnemyDeathState);
         }
     }
 }

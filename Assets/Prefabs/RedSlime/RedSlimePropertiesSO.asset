@@ -20,10 +20,12 @@ MonoBehaviour:
     Health: 12
     Resistance: 0
     Accuracy: 0
-    <BaseDistanceTrigger>k__BackingField: 3
     <DropRate>k__BackingField: 1
   <IdleTrigger>k__BackingField: idle
   <MoveTrigger>k__BackingField: move
   <DamableLayers>k__BackingField:
     serializedVersion: 2
     m_Bits: 1024
+  <BaseDistanceTrigger>k__BackingField: 2
+  <DetectModifierDistance>k__BackingField: 2
+  <AttackDistance>k__BackingField: 0.5

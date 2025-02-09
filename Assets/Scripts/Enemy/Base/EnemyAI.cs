@@ -8,10 +8,10 @@ public abstract class EnemyAI: MonoBehaviour {
     protected float distanceDetect;
     protected float timeMissDetect;
 
-    public bool ShouldChase { get; private set; }
-    public bool ShouldAttack { get; private set; }
+    [field: SerializeField]public bool ShouldChase { get; private set; }
+    [field: SerializeField]public bool ShouldAttack { get; private set; }
 
-    private float distance;
+    [SerializeField]private float distance;
 
     private void Awake() {
         enemy = GetComponent<Enemy>();
@@ -49,10 +49,12 @@ public abstract class EnemyAI: MonoBehaviour {
         if (distance <= enemy.EnemyPropertiesSO.AttackDistance)
         {
             ShouldAttack = true;
+            ShouldChase = false;
         }
         else
         {
             ShouldAttack = false;
+            ShouldChase = true;
         }
     }
 
@@ -74,8 +76,11 @@ public abstract class EnemyAI: MonoBehaviour {
         if(!isDetectedPlayer)
         {
             Gizmos.color = new Color(0f, 1f, 0f, 0.5f);
-        } else {
+        } else if(ShouldChase) {
             Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
+        } else if (ShouldAttack)
+        {
+            Gizmos.color = new Color(0f, 0f, 1f, 0.5f);
         }
         Gizmos.DrawWireSphere(transform.position, distanceDetect); 
     }

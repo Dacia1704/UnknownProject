@@ -9,13 +9,15 @@ public class EnemyMoveState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemyStateMachine.Enemy.EnemyAnimationController.SetBoolValueAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.MoveTrigger, true);
+        enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.MoveAnimationName);
     }
 
     public override void Update()
     {
         base.Update();
+        OnDeath();
         OnHit();
+        OnAttack();
         OnIdle();
         
     }
@@ -35,11 +37,5 @@ public class EnemyMoveState : EnemyState
         direction.y = 0;
         enemyStateMachine.Enemy.Rigidbody.velocity = direction * enemyStateMachine.Enemy.EnemyPropertiesSO.BaseStats.Speed;
         enemyStateMachine.Enemy.transform.LookAt(enemyStateMachine.Enemy.Player.transform.position);
-    }
-
-    public override void Exit()
-    {
-        enemyStateMachine.Enemy.EnemyAnimationController.SetBoolValueAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.MoveTrigger, false);
-        base.Exit();
     }
 }

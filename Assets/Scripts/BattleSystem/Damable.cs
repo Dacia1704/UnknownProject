@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class Damable: MonoBehaviour {
-    public Stats BaseDamableStats { get; set; }
+    public Stats DamableStats { get; set; }
     
     [field: SerializeField] public LayerMask DamableLayers { get; private set; }
 
@@ -32,7 +32,7 @@ public class Damable: MonoBehaviour {
         }
     }
     public void GetDamage(ref int health, int damage) {
-        health = Mathf.Clamp(health - damage, 0, BaseDamableStats.Health);
+        health = Mathf.Clamp(health - damage, 0, DamableStats.Health);
     }
     public void SetDamableLayer(LayerMask layers)
     {

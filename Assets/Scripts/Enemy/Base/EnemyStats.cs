@@ -4,6 +4,7 @@ using UnityEngine;
 [Serializable]
 public class EnemyStats: Stats
 {
+
         [field: SerializeField] public float DropRate { get; private set; }
 
         public EnemyStats(EnemyStats stats)

@@ -5,12 +5,14 @@ public class EnemyStateMachine: StateMachine {
     public EnemyMoveState EnemyMoveState { get; private set; }
     public EnemyAttackState EnemyAttackState { get; private set; }
     public EnemyHitState EnemyHitState { get; private set; }
+    public EnemyDeathState EnemyDeathState { get; private set; }
 
     public EnemyStateMachine(Enemy enemy) {
         this.Enemy = enemy;
         EnemyIdleState = new(this);
         EnemyMoveState = new(this);
         EnemyAttackState = new(this);
-        EnemyHitState = new EnemyHitState(this);
+        EnemyHitState = new (this);
+        EnemyDeathState = new(this);
     }
 }
