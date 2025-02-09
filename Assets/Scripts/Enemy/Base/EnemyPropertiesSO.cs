@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyPropertiesSO : ScriptableObject {
+[CreateAssetMenu(fileName = "EnemyPropertiesSO", menuName = "EnemyPropertiesSO", order = 0)]
+public class EnemyPropertiesSO : ScriptableObject {
     [field: SerializeField] public EnemyStats BaseStats { get;private set; }
 
     [field: SerializeField] public string IdleAnimationName { get; private set; }

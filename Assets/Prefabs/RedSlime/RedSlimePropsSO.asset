@@ -9,23 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84e884c679af52a4a8afe3c429e149cc, type: 3}
-  m_Name: RedSlimePropertiesSO
+  m_Script: {fileID: 11500000, guid: 0a091830b44369e4d9591dc85690c9f4, type: 3}
+  m_Name: RedSlimePropsSO
   m_EditorClassIdentifier: 
   <BaseStats>k__BackingField:
-    Speed: 3
-    Attack: 5
-    AttackSpeed: 3
-    Defend: 12
-    Health: 12
+    Speed: 5
+    Attack: 50
+    AttackSpeed: 1
+    Defend: 10
+    Health: 100
     Resistance: 0
     Accuracy: 0
-    <DropRate>k__BackingField: 1
-  <IdleTrigger>k__BackingField: idle
-  <MoveTrigger>k__BackingField: move
+    <DropRate>k__BackingField: 0
+  <IdleAnimationName>k__BackingField: Idle
+  <MoveAnimationName>k__BackingField: Move
+  <AttackAnimationName>k__BackingField: Attack
+  <HitAnimationName>k__BackingField: Hit
+  <DieAnimationName>k__BackingField: Death
   <DamableLayers>k__BackingField:
     serializedVersion: 2
     m_Bits: 1024
   <BaseDistanceTrigger>k__BackingField: 2
   <DetectModifierDistance>k__BackingField: 2
-  <AttackDistance>k__BackingField: 0.5
+  <AttackDistance>k__BackingField: 1
+  <AttackCooldown>k__BackingField: 1

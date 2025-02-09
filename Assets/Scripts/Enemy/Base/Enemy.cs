@@ -1,13 +1,12 @@
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour {
-    [field: SerializeField] public EnemyPropertiesSO EnemyPropertiesSO { get; private set; }
-    [HideInInspector] public Rigidbody Rigidbody {get; private set;}
-
+    
+    [field: SerializeField] public virtual EnemyPropertiesSO EnemyPropertiesSO { get; protected set; }
     protected EnemyStateMachine enemyStateMachine;
-
     public EnemyAnimationController EnemyAnimationController { get; private set; }
-    public EnemyCollisionSystem EnemyCollisionSystem { get; private set; }
+    public EnemyCollisionManager EnemyCollisionManager { get; private set; }
+    [HideInInspector] public Rigidbody Rigidbody {get; private set;}
 
     public Player Player{ get; private set; }
     
@@ -30,7 +29,7 @@ public abstract class Enemy : MonoBehaviour {
         Damable = GetComponentInChildren<Damable>();
         EnemyAI = GetComponent<EnemyAI>();
         EnemyAnimationController = GetComponentInChildren<EnemyAnimationController>();
-        EnemyCollisionSystem = GetComponentInChildren<EnemyCollisionSystem>();
+        EnemyCollisionManager = GetComponentInChildren<EnemyCollisionManager>();
         
         enemyStateMachine.ChangeState(enemyStateMachine.EnemyIdleState);
         enemyStateMachine.Enemy.Damable.transform.gameObject.SetActive(true);
