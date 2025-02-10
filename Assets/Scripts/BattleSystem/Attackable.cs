@@ -15,10 +15,8 @@ public class Attackable: MonoBehaviour {
     protected virtual void OnTriggerEnter(Collider other) {
         Damable damable= other.gameObject.GetComponent<Damable>();
         if(damable != null) {
-            // Debug.LogError(1 + " " + (damable.DamableLayers & (1 << this.gameObject.layer)));
             if ((damable.DamableLayers & (1 << this.gameObject.layer)) !=0)
             {
-                // Debug.LogError(2);
                 IsAttackSuccess = true;
             }
         }

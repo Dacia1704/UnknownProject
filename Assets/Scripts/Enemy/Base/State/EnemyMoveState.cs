@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class EnemyMoveState : EnemyState
 {
     public EnemyMoveState(EnemyStateMachine enemyStateMachine) : base(enemyStateMachine)
@@ -7,20 +9,33 @@ public class EnemyMoveState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemyStateMachine.Enemy.EnemyAnimationController.SetBoolValueAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.MoveTrigger, true);
+        enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.MoveAnimationName);
     }
 
     public override void Update()
     {
         base.Update();
+        OnDeath();
         OnHit();
+        OnAttack();
         OnIdle();
         
     }
-
-    public override void Exit()
+    
+    public override void PhysicsUpdate()
     {
-        enemyStateMachine.Enemy.EnemyAnimationController.SetBoolValueAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.MoveTrigger, false);
-        base.Exit();
+        base.PhysicsUpdate();
+        if (enemyStateMachine.Enemy.EnemyAI.ShouldChase)
+        {
+            ChasePlayer();
+        }
+    }
+
+    public virtual void ChasePlayer()
+    {
+        Vector3 direction = (enemyStateMachine.Enemy.Player.transform.position - enemyStateMachine.Enemy.transform.position).normalized;
+        direction.y = 0;
+        enemyStateMachine.Enemy.Rigidbody.velocity = direction * enemyStateMachine.Enemy.EnemyPropertiesSO.BaseStats.Speed;
+        enemyStateMachine.Enemy.transform.LookAt(enemyStateMachine.Enemy.Player.transform.position);
     }
 }

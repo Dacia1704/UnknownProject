@@ -55,10 +55,6 @@ public abstract class PlayerState : IState
 	{
 		playerStateMachine.Player.PlayerRigidbody.velocity = new Vector3(0, 0, 0);
 	}
-	
-	protected void Jump(float force) {
-		playerStateMachine.Player.PlayerRigidbody.AddForce(playerStateMachine.Player.transform.up * force, ForceMode.Impulse);
-	}
 
 	protected virtual void Attack()
 	{
@@ -66,6 +62,11 @@ public abstract class PlayerState : IState
 		{
 			PlayerReusableData.IsNomalAttacking = true;
 			playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,currentAttack);
+
+			if (PlayerReusableData.MovementInput == new Vector2(0, 0))
+			{
+				TurnPlayerToNearestEnemy();
+			}
 		}
 		else if (PlayerReusableData.IsNomalAttacking)
 		{
@@ -115,6 +116,35 @@ public abstract class PlayerState : IState
 				currentAttack = 0;
 			}
 		}
+	}
+
+
+	protected void TurnPlayerToNearestEnemy()
+	{
+		Enemy nearestEnemy = GetNearestEnemy();
+		TurnPlayer(nearestEnemy.transform.position);
+	}
+	protected void TurnPlayer(Vector3 target)
+	{
+		playerStateMachine.Player.transform.LookAt(new Vector3(target.x, playerStateMachine.Player.transform.position.y, target.z));
+	}
+
+	protected Enemy GetNearestEnemy()
+	{
+		float min = Mathf.Infinity;
+		Enemy nearest = null;
+
+		foreach (Enemy enemy in GameManager.instance.EnemiesList)
+		{
+			float distance = Vector3.Distance(playerStateMachine.Player.transform.position, enemy.transform.position);
+			if (min > distance)
+			{
+				nearest = enemy;
+				min = distance;
+			}
+		}
+		
+		return nearest;
 	}
 		
 	
