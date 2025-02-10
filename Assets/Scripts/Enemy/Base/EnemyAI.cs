@@ -3,18 +3,18 @@ using System.Collections;
 using UnityEngine;
 
 public abstract class EnemyAI: MonoBehaviour {
-    protected Enemy enemy;
+    protected Enemy enemy { get; private set; }
     protected bool isDetectedPlayer;
     protected float distanceDetect;
     protected float timeMissDetect;
 
-    [field: SerializeField]public bool ShouldChase { get; private set; }
-    [field: SerializeField]public bool ShouldAttack { get; private set; }
+    public bool ShouldChase { get; private set; }
+    public bool ShouldAttack { get; private set; }
 
-    [SerializeField]private float distance;
+    private float distance;
 
-    private void Awake() {
-        enemy = GetComponent<Enemy>();
+    protected virtual void Awake() {
+        enemy = GetComponentInParent<Enemy>();
     }
     private void Start() {
         distanceDetect = enemy.EnemyPropertiesSO.BaseDistanceTrigger;
@@ -22,12 +22,12 @@ public abstract class EnemyAI: MonoBehaviour {
         isDetectedPlayer = false;
     }
 
-    private void Update() {
+    protected virtual  void Update() {
         DetectPlayer();
         
     }
 
-    private void FixedUpdate() {
+    protected virtual void FixedUpdate() {
         if (Time.time - timeMissDetect > 1) {
             isDetectedPlayer = false;
             distanceDetect = enemy.EnemyPropertiesSO.BaseDistanceTrigger;

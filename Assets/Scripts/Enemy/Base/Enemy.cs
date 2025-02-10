@@ -2,20 +2,23 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour {
     
-    [field: SerializeField] public virtual EnemyPropertiesSO EnemyPropertiesSO { get; protected set; }
+    [field: SerializeField] public EnemyPropertiesSO EnemyPropertiesSO { get; protected set; }
     protected EnemyStateMachine enemyStateMachine;
-    public EnemyAnimationController EnemyAnimationController { get; private set; }
-    public EnemyCollisionManager EnemyCollisionManager { get; private set; }
-    [HideInInspector] public Rigidbody Rigidbody {get; private set;}
-
-    public Player Player{ get; private set; }
+    public EnemyAnimationController EnemyAnimationController { get; protected set; }
+    public EnemyCollisionManager EnemyCollisionManager { get; protected set; }
+    public EnemyAI EnemyAI { get; protected set; }
     
-    public EnemyStats EnemyStats { get; private set; }
-
-    public Attackable Attackable{ get; private set; }
-    public Damable Damable{ get; private set; }
     
-    public EnemyAI EnemyAI { get; private set; }
+    [HideInInspector] public Rigidbody Rigidbody {get; protected set;}
+
+    
+    public Player Player{ get; protected set; }
+    
+    public EnemyStats EnemyStats { get; protected set; }
+
+    public Attackable Attackable{ get; protected set; }
+    public Damable Damable{ get; protected set; }
+    
 
     protected virtual void Awake() {
         enemyStateMachine = new(this);
@@ -27,7 +30,7 @@ public abstract class Enemy : MonoBehaviour {
         Rigidbody= GetComponent<Rigidbody>();
         Attackable = GetComponentInChildren<Attackable>();
         Damable = GetComponentInChildren<Damable>();
-        EnemyAI = GetComponent<EnemyAI>();
+        EnemyAI = GetComponentInChildren<EnemyAI>();
         EnemyAnimationController = GetComponentInChildren<EnemyAnimationController>();
         EnemyCollisionManager = GetComponentInChildren<EnemyCollisionManager>();
         

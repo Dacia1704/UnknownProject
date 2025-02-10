@@ -6,4 +6,5 @@ public class ThornySlimePropertiesSO: EnemyPropertiesSO
         [field: SerializeField] public string DefendAnimationName { get; set; }
         [field: SerializeField] public string HitDefendAnimationName { get; set; }
         [field: SerializeField] public float DefendDetectDistance { get; private set; }
+        [field: SerializeField] public float DefendCoolDown { get; private set; }
 }

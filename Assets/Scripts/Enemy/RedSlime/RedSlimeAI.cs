@@ -1,3 +1,4 @@
-public class RedSlimeAI:EnemyAI {
-    
+﻿public class RedSlimeAI: EnemyAI
+{
+        
 }

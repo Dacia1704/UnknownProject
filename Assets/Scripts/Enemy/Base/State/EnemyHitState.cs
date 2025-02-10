@@ -20,6 +20,8 @@ public class EnemyHitState: EnemyState
             enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.HitAnimationName);
         }
         
+        enemyStateMachine.Enemy.Damable.ResetIsGetAttack();
+        
     }
     
     public override void Update()
