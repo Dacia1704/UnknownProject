@@ -33,8 +33,6 @@ public class Damable: MonoBehaviour {
     }
     public void GetDamage(ref int health, int damage) {
         health = Mathf.Clamp(health - damage, 0, DamableStats.Health);
-        
-        Debug.Log("get damage");
     }
 
     public void ResetIsGetAttack()

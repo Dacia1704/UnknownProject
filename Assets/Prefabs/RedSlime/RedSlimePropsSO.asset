@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedSlimePropsSO
   m_EditorClassIdentifier: 
   <BaseStats>k__BackingField:
-    Speed: 5
+    Speed: 2
     Attack: 50
     AttackSpeed: 1
     Defend: 10

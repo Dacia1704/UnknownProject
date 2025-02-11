@@ -46,14 +46,14 @@ public abstract class PlayerState : IState
 		Vector3 dir = new Vector3(newX, 0, newY);
 		playerStateMachine.Player.transform.rotation = Quaternion.RotateTowards(playerStateMachine.Player.transform.rotation, Quaternion.LookRotation(dir), 1000 * Time.deltaTime);
 		if (backward) {
-			playerStateMachine.Player.PlayerRigidbody.velocity = new Vector3(-1 *dir.x *speed,playerStateMachine.Player.PlayerRigidbody.velocity.y,-1*dir.z * speed);
+			playerStateMachine.Player.Rigidbody.velocity = new Vector3(-1 *dir.x *speed,playerStateMachine.Player.Rigidbody.velocity.y,-1*dir.z * speed);
 		} else {
-			playerStateMachine.Player.PlayerRigidbody.velocity = new Vector3(dir.x *speed,playerStateMachine.Player.PlayerRigidbody.velocity.y,dir.z * speed);
+			playerStateMachine.Player.Rigidbody.velocity = new Vector3(dir.x *speed,playerStateMachine.Player.Rigidbody.velocity.y,dir.z * speed);
 		}
     }
 	protected void ResetVelocity()
 	{
-		playerStateMachine.Player.PlayerRigidbody.velocity = new Vector3(0, 0, 0);
+		playerStateMachine.Player.Rigidbody.velocity = new Vector3(0, 0, 0);
 	}
 
 	protected virtual void Attack()

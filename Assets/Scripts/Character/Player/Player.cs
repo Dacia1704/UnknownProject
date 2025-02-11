@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-    [HideInInspector]public Rigidbody PlayerRigidbody;
+    
     
     public PlayerPropertiesSO PlayerPropertiesSO;
     private PlayerStateMachine _playerStateMachine;
@@ -19,9 +19,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public PlayerWeaponManager playerWeaponManager;
     [field: SerializeField]public Transform WeaponLeftTransform { get; private set; }
     [field: SerializeField]public Transform WeaponRightTransform { get; private set; }
-
-    [Header("Battle System")]
-    [HideInInspector] public Damable Damable;
+    
     public PlayerStats PlayerStats { get; private set; }
 
     [Header("Test")] 
@@ -32,13 +30,13 @@ public class Player : MonoBehaviour
     private void Awake() {
         _playerStateMachine = new(this);
     }
-    private void Start()
+    protected override void Start()
     {
-        PlayerRigidbody = GetComponent<Rigidbody>();
+        base.Start();
+        Rigidbody = GetComponent<Rigidbody>();
         PlayerAnimationController = GetComponentInChildren<PlayerAnimationController>();
         PlayerBodyCollisionManager = GetComponentInChildren<PlayerBodyCollisionManager>();
         playerWeaponManager = GetComponentInChildren<PlayerWeaponManager>();
-        Damable = GetComponentInChildren<Damable>();
 
         Damable.SetDamableLayer(PlayerPropertiesSO.DamableLayers);
 

@@ -10,6 +10,7 @@ public class EnemyHitState: EnemyState
     {
         base.Enter();
         enemyStateMachine.Enemy.Damable.GetDamage(ref enemyStateMachine.Enemy.EnemyStats.Health,enemyStateMachine.Enemy.Damable.IsGetAttack);
+        enemyStateMachine.Enemy.OnHealthChanged.Invoke(enemyStateMachine.Enemy.EnemyPropertiesSO.BaseStats.Health,enemyStateMachine.Enemy.EnemyStats.Health);
 
         if (enemyStateMachine.Enemy.EnemyStats.Health <= 0)
         {
