@@ -134,7 +134,7 @@ public abstract class PlayerState : IState
 		float min = Mathf.Infinity;
 		Enemy nearest = null;
 
-		foreach (Enemy enemy in GameManager.instance.EnemiesList)
+		foreach (Enemy enemy in GameManager.instance.EnemyManager.EnemiesList)
 		{
 			float distance = Vector3.Distance(playerStateMachine.Player.transform.position, enemy.transform.position);
 			if (min > distance)

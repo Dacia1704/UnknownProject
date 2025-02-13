@@ -25,7 +25,7 @@ public abstract class HealthBarUI: UIBase
         {
                 if (Mathf.Abs(healthSlider.value - easeHealthSlider.value) > 1 && getDam)
                 {
-                        Debug.Log("Update ease");
+                        // Debug.Log("Update ease");
                         easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, healthSlider.value, lerpSpeed);
                         healHealthSlider.value = easeHealthSlider.value;
                 } else if (Mathf.Abs(healHealthSlider.value - healthSlider.value) > 1 && !getDam)
