@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
         [Header("EquipmentMenu")]
         [SerializeField] protected Button equipmentButton;
         [HideInInspector] public EquipmentMenuUI EquipmentMenuUI;
+        [HideInInspector] public PlayerHealthBarUI PlayerHealthBarUI;
 
         public event Action OnSwordButtonClicked;
         public event Action OnStaffButtonClicked;
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour
         {
                 Instance = this;
                 EquipmentMenuUI = GetComponentInChildren<EquipmentMenuUI>();
+                PlayerHealthBarUI = GetComponentInChildren<PlayerHealthBarUI>();
         }
 
         private void Start()

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ThornySlimePropertiesSO
   m_EditorClassIdentifier: 
   <BaseStats>k__BackingField:
-    Speed: 5
-    Attack: 1
+    Speed: 2
+    Attack: 100
     AttackSpeed: 1
-    Defend: 1
-    Health: 1
+    Defend: 100
+    Health: 1000
     Resistance: 0
     Accuracy: 0
     <DropRate>k__BackingField: 0
