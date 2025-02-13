@@ -32,8 +32,10 @@ public abstract class Enemy : Character {
         
         SetUpState();
         
+        healthBarUI.Show();
         enemyStateMachine.Enemy.Damable.transform.gameObject.SetActive(true);
         enemyStateMachine.Enemy.Attackable.transform.gameObject.SetActive(true);
+        
         Damable.SetDamableLayer(EnemyPropertiesSO.DamableLayers);
         EnemyStats = new EnemyStats(EnemyPropertiesSO.BaseStats);
         Damable.DamableStats = new EnemyStats(EnemyStats);
@@ -44,17 +46,17 @@ public abstract class Enemy : Character {
         healthBarUI.SetUpEaseHealthSlider(EnemyStats.Health);
         healthBarUI.SetUpHealHealthSlider(EnemyStats.Health);
         
-        StartCoroutine(HealByTime());
+        // StartCoroutine(HealByTime());
     }
 
-    private IEnumerator HealByTime()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(2f);
-            Heal(50);
-        }
-    }
+    // private IEnumerator HealByTime()
+    // {
+    //     while (true)
+    //     {
+    //         yield return new WaitForSeconds(2f);
+    //         Heal(50);
+    //     }
+    // }
 
     protected virtual void Update() {
         enemyStateMachine.Update();
@@ -74,8 +76,20 @@ public abstract class Enemy : Character {
         EnemyStats.Health = Mathf.Clamp(EnemyStats.Health + healAmount, 0, EnemyPropertiesSO.BaseStats.Health);
         OnHealthHealed?.Invoke(EnemyStats.Health);
     }
-    
-    
-    
-    
+
+    public override void Death()
+    {
+        base.Death();
+        healthBarUI.Hide();
+        Damable.transform.gameObject.SetActive(false);
+        Attackable.transform.gameObject.SetActive(false);
+    }
+
+    public override void ResetCharacter()
+    {
+        base.ResetCharacter();
+        healthBarUI.Show();
+        Damable.transform.gameObject.SetActive(true);
+        Attackable.transform.gameObject.SetActive(true);
+    }
 }

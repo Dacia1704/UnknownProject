@@ -9,7 +9,6 @@
         base.Enter();
         enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.DieAnimationName);
         
-        enemyStateMachine.Enemy.Damable.transform.gameObject.SetActive(false);
-        enemyStateMachine.Enemy.Attackable.transform.gameObject.SetActive(false);
+        enemyStateMachine.Enemy.Death();
     }
 }
