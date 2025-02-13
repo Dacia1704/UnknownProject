@@ -22,4 +22,17 @@ public class PlayerStats: Stats
         BaseDashTime = stats.BaseDashTime;
         ResetNomalAttackTime = stats.ResetNomalAttackTime;
     }
+    public PlayerStats(PlayerStats stats,int currentHP)
+    {
+        Speed = stats.Speed;
+        Attack = stats.Attack;
+        Health = currentHP;
+        Defend = stats.Defend;
+        AttackSpeed = stats.AttackSpeed;
+        Accuracy = stats.Accuracy;
+        Resistance = stats.Resistance;
+        BaseDashModifier = stats.BaseDashModifier;
+        BaseDashTime = stats.BaseDashTime;
+        ResetNomalAttackTime = stats.ResetNomalAttackTime;
+    }
 }

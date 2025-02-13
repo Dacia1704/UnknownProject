@@ -6,14 +6,15 @@ public abstract class Character: MonoBehaviour
     [HideInInspector]public Rigidbody Rigidbody;
     
     protected HealthBarUI healthBarUI;
-    public Action<float,float> OnHealthChanged;
+    public Action<float> OnHealthDamaged;
+    public Action<float> OnHealthHealed;
+    public Action<float> OnMaxHealthChanged;
     
     
     [HideInInspector] public Damable Damable;
 
     protected virtual void Start()
     {
-        healthBarUI = GetComponentInChildren<HealthBarUI>();
         Damable = GetComponentInChildren<Damable>();
     }
 }

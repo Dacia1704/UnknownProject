@@ -4,47 +4,69 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarUI: UIBase
+public abstract class HealthBarUI: UIBase
 {
         [field: SerializeField] private Slider healthSlider;
         [field: SerializeField] private Slider easeHealthSlider;
-        private Character character;
+        [field: SerializeField] private Slider healHealthSlider;
+        protected Character character;
 
         [SerializeField]private float lerpSpeed = 0.05f;
-        private void Start()
+
+        private bool getDam;
+        protected virtual void Start()
         {
-                character = GetComponentInParent<Character>();
-                character.OnHealthChanged += UpdateHealth;
+                character.OnMaxHealthChanged += UpdateMaxHealth;
+                character.OnHealthDamaged += UpdateDamageHealth;
+                character.OnHealthHealed += UpdateHealHealth;
+        }
+        
+        protected virtual void FixedUpdate()
+        {
+                if (Mathf.Abs(healthSlider.value - easeHealthSlider.value) > 1 && getDam)
+                {
+                        Debug.Log("Update ease");
+                        easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, healthSlider.value, lerpSpeed);
+                        healHealthSlider.value = easeHealthSlider.value;
+                } else if (Mathf.Abs(healHealthSlider.value - healthSlider.value) > 1 && !getDam)
+                {
+                        healthSlider.value = Mathf.Lerp(healthSlider.value, healHealthSlider.value, lerpSpeed);
+                        easeHealthSlider.value = healthSlider.value;
+                }
+                
                 
         }
 
-        private void FixedUpdate()
+        protected virtual void UpdateDamageHealth(float current)
         {
-                if (Mathf.Abs(healthSlider.value - easeHealthSlider.value) > 1)
-                {
-                        // Debug.Log("Update ease " + Mathf.Abs(healthSlider.value - easeHealthSlider.value));
-                        easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, healthSlider.value, lerpSpeed);
-                }
+                healthSlider.value = current;
+                getDam = true;
         }
 
-        private void LateUpdate()
-        {
-                transform.LookAt(transform.position + Camera.main.transform.forward);
-        }
-
-        private void UpdateHealth(float max,float current)
+        protected virtual void UpdateMaxHealth(float max)
         {
                 healthSlider.maxValue = max;
-                healthSlider.value = current;
-                
                 easeHealthSlider.maxValue = max;
-
+                healHealthSlider.maxValue = max;
+        }
+        
+        protected virtual void UpdateHealHealth(float value)
+        {
+                healHealthSlider.value = value;
+                getDam = false;
         }
 
         public void SetUpEaseHealthSlider(float value)
         {
                 easeHealthSlider.value = value;
         }
+
+        public void SetUpHealHealthSlider(float value)
+        {
+                healHealthSlider.value = value;
+        }
+
+        
         
         
 }

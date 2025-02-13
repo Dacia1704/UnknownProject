@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public abstract class Enemy : Character {
@@ -27,6 +28,7 @@ public abstract class Enemy : Character {
         EnemyAI = GetComponentInChildren<EnemyAI>();
         EnemyAnimationController = GetComponentInChildren<EnemyAnimationController>();
         EnemyCollisionManager = GetComponentInChildren<EnemyCollisionManager>();
+        healthBarUI = GetComponentInChildren<HealthBarUI>();
         
         SetUpState();
         
@@ -37,8 +39,21 @@ public abstract class Enemy : Character {
         Damable.DamableStats = new EnemyStats(EnemyStats);
         Attackable.SetAttackStats(EnemyStats);
         
-        OnHealthChanged?.Invoke(EnemyPropertiesSO.BaseStats.Health,EnemyStats.Health);
+        OnMaxHealthChanged?.Invoke(EnemyPropertiesSO.BaseStats.Health);
+        OnHealthDamaged?.Invoke(EnemyStats.Health);
         healthBarUI.SetUpEaseHealthSlider(EnemyStats.Health);
+        healthBarUI.SetUpHealHealthSlider(EnemyStats.Health);
+        
+        StartCoroutine(HealByTime());
+    }
+
+    private IEnumerator HealByTime()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+            Heal(50);
+        }
     }
 
     protected virtual void Update() {
@@ -52,6 +67,12 @@ public abstract class Enemy : Character {
     protected virtual void SetUpState()
     {
         enemyStateMachine.ChangeState(enemyStateMachine.EnemyIdleState);
+    }
+    
+    public void Heal(int healAmount)
+    {
+        EnemyStats.Health = Mathf.Clamp(EnemyStats.Health + healAmount, 0, EnemyPropertiesSO.BaseStats.Health);
+        OnHealthHealed?.Invoke(EnemyStats.Health);
     }
     
     

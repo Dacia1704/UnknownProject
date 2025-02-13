@@ -152,7 +152,7 @@ public abstract class PlayerState : IState
 
 	//check state
 	protected virtual void OnIdle() {
-		if(PlayerReusableData.MovementInput == new Vector2(0, 0) && PlayerReusableData.IsGround) {
+		if(PlayerReusableData.MovementInput == new Vector2(0, 0)) {
 			
 			playerStateMachine.ChangeState(playerStateMachine.PlayerIdleState);
 		}

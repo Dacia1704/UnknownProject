@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder;
 using UnityEngine.Serialization;
 
 public class Player : Character
@@ -20,7 +21,8 @@ public class Player : Character
     [field: SerializeField]public Transform WeaponLeftTransform { get; private set; }
     [field: SerializeField]public Transform WeaponRightTransform { get; private set; }
     
-    public PlayerStats PlayerStats { get; private set; }
+    [field: SerializeField]public PlayerStats PlayerStats { get; private set; }
+    [field: SerializeField]public PlayerStats BasePlayerStats { get; private set; }
 
     [Header("Test")] 
     public EquipmentPropsSO IronWordSO;
@@ -43,8 +45,11 @@ public class Player : Character
         PlayerInputSystem.Start();
         
         //set up stats
+        healthBarUI = UIManager.Instance.PlayerHealthBarUI;
         PlayerReusableData.CurrentPlayerStats = PlayerPropertiesSO.BaseStats;
         SetPlayerStats(PlayerPropertiesSO.BaseStats);
+        healthBarUI.SetUpEaseHealthSlider(PlayerStats.Health);
+        healthBarUI.SetUpHealHealthSlider(PlayerStats.Health);
         UIManager.Instance.EquipmentMenuUI.SetBasePlayerStats(PlayerPropertiesSO.BaseStats);
 
         //setup state
@@ -70,8 +75,17 @@ public class Player : Character
             playerWeaponManager.EquipRightWeapon(WoodBowSO);
         };
 
-
+        // StartCoroutine(HealByTime());
     }
+
+    // private IEnumerator HealByTime()
+    // {
+    //     while (true)
+    //     {
+    //         yield return new WaitForSeconds(2f);
+    //         Heal(50);
+    //     }
+    // }
 
     // Update is called once per frame
     private void Update()
@@ -83,6 +97,7 @@ public class Player : Character
 
     private void FixedUpdate() {
         _playerStateMachine.PhysicsUpdate();
+        
     }
 
     public void UpdateReusableData()
@@ -93,7 +108,15 @@ public class Player : Character
 
     public void SetPlayerStats(PlayerStats playerStats)
     {
-        PlayerStats = new PlayerStats(playerStats);
+        BasePlayerStats = new PlayerStats(playerStats);
+        PlayerStats = new PlayerStats(playerStats,playerStats.Health);
+        OnMaxHealthChanged?.Invoke(BasePlayerStats.Health);
+        OnHealthDamaged?.Invoke(playerStats.Health);
+    }
+
+    public void Heal(int healAmount)
+    {
+        PlayerStats.Health  = Math.Clamp(PlayerStats.Health + healAmount, 0, BasePlayerStats.Health);
     }
     
     
