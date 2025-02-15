@@ -29,25 +29,14 @@ public class EquipmentManager : MonoBehaviour
                 EquipmentPooling = GetComponentInChildren<EquipmentPooling>();
         }
 
-        // private void Start()
-        // {
-        //         
-        //         StartCoroutine(GenEquipment());
-        // }
-
-        // private IEnumerator GenEquipment()
-        // {
-        //         while (true)
-        //         {
-        //                 yield return new WaitForSeconds(2);
-        //                 RandomDrop();
-        //                 
-        //         }
-        // }
+        private void Update()
+        {
+                CheckCollect();
+        }
 
 
         #region Drop Equipment 
-        public void RandomDrop()
+        public GameObject RandomDrop()
         {
                 EquipmentSet equipmentSet = GetRandomEquipmentProp();
                 EquimentType equimentType = GetRandomEquimentType();
@@ -59,6 +48,8 @@ public class EquipmentManager : MonoBehaviour
                 // Debug.Log(equipmentSet.ToString() +" "+ equimentType.ToString() +" " +weaponType.ToString() +" " + equipmentStats.ToString());
                 GameObject equipment = EquipmentPooling.GetEquipment(equipmentSet,equimentType,weaponType);
                 equipment.GetComponent<Equipment>().EquipmentStats = equipmentStats;
+
+                return equipment;
         }
         public WeaponType GetRandomWeaponType()
         {
@@ -351,28 +342,30 @@ public class EquipmentManager : MonoBehaviour
         #endregion
         
         #region CollectEquipment
-        
+
+        private void CheckCollect()
+        {
+                if (Input.GetMouseButtonDown(0))
+                {
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Equipment"),QueryTriggerInteraction.Collide))
+                        {
+                                CollectEquipment(hit.collider.gameObject);
+                        }
+                        
+                }
+        }
+
         public void CollectEquipment(GameObject equipmentOb)
         {
                 AddItem(equipmentOb.GetComponent<Equipment>());
                 EquipmentPooling.ReleaseObject(equipmentOb);
-
-                // Debug.LogError(InventoryItems.Count);
-                // foreach (var data in InventoryItems)
-                // {
-                //         Debug.Log(data);
-                // }
         }
         
         private void AddItem(Equipment item)
         {
                 InventoryItems.Add(new EquipmentData(item.EquipmentPropsSO,item.EquipmentStats));
         }
-
-        // private void RemoveItem(Equipment item)
-        // {
-        //         InventoryItems.Remove(item);
-        // }
         
         #endregion
 }

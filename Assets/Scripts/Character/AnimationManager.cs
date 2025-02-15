@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public class AnimationController : MonoBehaviour
+public class AnimationManager : MonoBehaviour
 {
     protected Animator animator;
     protected virtual void Awake()

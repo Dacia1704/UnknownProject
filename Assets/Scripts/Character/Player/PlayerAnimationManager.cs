@@ -1,7 +1,7 @@
 
 using System;
 
-public class PlayerAnimationController: AnimationController
+public class PlayerAnimationManager: AnimationManager
 {
     protected Player player;
 

@@ -3,11 +3,11 @@ using UnityEngine;
 
 public abstract class UIBase : MonoBehaviour
 {
-    public void Show() {
+    public void Enable() {
         gameObject.SetActive(true);
     }
 
-    public void Hide() {
+    public void Disable() {
         gameObject.SetActive(false);
     }
 }

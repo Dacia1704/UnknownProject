@@ -1,18 +1,19 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class Enemy : Character {
     
     [field: SerializeField] public EnemyPropertiesSO EnemyPropertiesSO { get; protected set; }
     protected EnemyStateMachine enemyStateMachine;
-    public EnemyAnimationController EnemyAnimationController { get; protected set; }
-    public EnemyCollisionManager EnemyCollisionManager { get; protected set; }
+    public EnemyAnimationManager EnemyAnimationManager { get; protected set; }
+    public BodyColliderManager BodyColliderManager { get; private set; }
     public EnemyAI EnemyAI { get; protected set; }
     
     public Player Player{ get; protected set; }
     
-    public EnemyStats EnemyStats { get; protected set; }
+    [field: SerializeField]public EnemyStats EnemyStats { get; protected set; }
 
     public Attackable Attackable{ get; protected set; }
     
@@ -26,37 +27,26 @@ public abstract class Enemy : Character {
         Rigidbody= GetComponent<Rigidbody>();
         Attackable = GetComponentInChildren<Attackable>();
         EnemyAI = GetComponentInChildren<EnemyAI>();
-        EnemyAnimationController = GetComponentInChildren<EnemyAnimationController>();
-        EnemyCollisionManager = GetComponentInChildren<EnemyCollisionManager>();
+        EnemyAnimationManager = GetComponentInChildren<EnemyAnimationManager>();
+        BodyColliderManager = GetComponentInChildren<BodyColliderManager>();
         healthBarUI = GetComponentInChildren<HealthBarUI>();
         
-        SetUpState();
-        
-        healthBarUI.Show();
-        enemyStateMachine.Enemy.Damable.transform.gameObject.SetActive(true);
-        enemyStateMachine.Enemy.Attackable.transform.gameObject.SetActive(true);
+        SetUpState(); // need reset
+        Damable.gameObject.SetActive(true); // need reset
+        Attackable.gameObject.SetActive(true); // need reset
+        EnemyStats = new EnemyStats(EnemyPropertiesSO.BaseStats); // need reset
         
         Damable.SetDamableLayer(EnemyPropertiesSO.DamableLayers);
-        EnemyStats = new EnemyStats(EnemyPropertiesSO.BaseStats);
-        Damable.DamableStats = new EnemyStats(EnemyStats);
-        Attackable.SetAttackStats(EnemyStats);
+        Damable.DamableStats = new EnemyStats(EnemyPropertiesSO.BaseStats);
+        Attackable.SetAttackStats(EnemyPropertiesSO.BaseStats);
         
         OnMaxHealthChanged?.Invoke(EnemyPropertiesSO.BaseStats.Health);
         OnHealthDamaged?.Invoke(EnemyStats.Health);
         healthBarUI.SetUpEaseHealthSlider(EnemyStats.Health);
         healthBarUI.SetUpHealHealthSlider(EnemyStats.Health);
-        
-        // StartCoroutine(HealByTime());
     }
-
-    // private IEnumerator HealByTime()
-    // {
-    //     while (true)
-    //     {
-    //         yield return new WaitForSeconds(2f);
-    //         Heal(50);
-    //     }
-    // }
+    
+    
 
     protected virtual void Update() {
         enemyStateMachine.Update();
@@ -70,26 +60,36 @@ public abstract class Enemy : Character {
     {
         enemyStateMachine.ChangeState(enemyStateMachine.EnemyIdleState);
     }
-    
-    public void Heal(int healAmount)
-    {
-        EnemyStats.Health = Mathf.Clamp(EnemyStats.Health + healAmount, 0, EnemyPropertiesSO.BaseStats.Health);
-        OnHealthHealed?.Invoke(EnemyStats.Health);
-    }
 
-    public override void Death()
+    public override void DeathStart()
     {
-        base.Death();
-        healthBarUI.Hide();
+        base.DeathStart();
         Damable.transform.gameObject.SetActive(false);
         Attackable.transform.gameObject.SetActive(false);
+        GameObject equipment = EquipmentManager.instance.RandomDrop();
+        equipment.transform.position = transform.position;
     }
-
+    public override void DeathEnd()
+    {
+        base.DeathEnd();
+        BodyColliderManager.gameObject.SetActive(false);  // when body collider disable, character body will drop
+    }
     public override void ResetCharacter()
     {
         base.ResetCharacter();
-        healthBarUI.Show();
         Damable.transform.gameObject.SetActive(true);
         Attackable.transform.gameObject.SetActive(true);
+        BodyColliderManager.gameObject.SetActive(true);
+        EnemyStats = new EnemyStats(EnemyPropertiesSO.BaseStats);
+        OnHealthDamaged?.Invoke(EnemyStats.Health);
+        healthBarUI.SetUpEaseHealthSlider(EnemyStats.Health);
+        healthBarUI.SetUpHealHealthSlider(EnemyStats.Health);
+    }
+
+    private IEnumerator ResetToPushInPool()
+    {
+        yield return new WaitForSeconds(5f);
+        ResetCharacter();
+        GameManager.instance.EnemyManager.EnemyPooling.ReturnEnemyToPool(this.gameObject);
     }
 }

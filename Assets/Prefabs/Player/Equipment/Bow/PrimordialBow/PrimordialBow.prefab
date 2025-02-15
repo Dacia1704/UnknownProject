@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1934961972617727210}
   - component: {fileID: 8372314249246557217}
   - component: {fileID: 2281448820358889321}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: PrimordialBow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,14 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: ccca1b18db42f014f8ed274e1bbf6b3a, type: 2}
-  <EquipmentStats>k__BackingField:
-    Speed: 0
-    Attack: 0
-    AttackSpeed: 0
-    Defend: 0
-    Health: 0
-    Resistance: 0
-    Accuracy: 0
   attackTransform: {fileID: 6126427605891242249}
 --- !u!65 &2281448820358889321
 BoxCollider:

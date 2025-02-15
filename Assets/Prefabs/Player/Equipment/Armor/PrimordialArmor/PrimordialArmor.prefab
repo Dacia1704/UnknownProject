@@ -2607,7 +2607,7 @@ GameObject:
   - component: {fileID: 8615050744382967045}
   - component: {fileID: 593662761092239661}
   - component: {fileID: 6957188033614332358}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: PrimordialArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2644,6 +2644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: b1bc56d97cd35c141936ecc05dc25fae, type: 2}
+  attackTransform: {fileID: 0}
 --- !u!65 &6957188033614332358
 BoxCollider:
   m_ObjectHideFlags: 0

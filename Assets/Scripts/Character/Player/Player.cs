@@ -10,18 +10,15 @@ public class Player : Character
     
     
     public PlayerPropertiesSO PlayerPropertiesSO;
-    private PlayerStateMachine _playerStateMachine;
+    private PlayerStateMachine playerStateMachine;
     public PlayerInputSystem PlayerInputSystem = new();
-    [HideInInspector] public PlayerBodyCollisionManager PlayerBodyCollisionManager;
-    [HideInInspector] public PlayerAnimationController PlayerAnimationController;
-    
-    [FormerlySerializedAs("playerEquipmentManager")]
+    [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [Header("Weapon")] 
     [HideInInspector] public PlayerWeaponManager playerWeaponManager;
     [field: SerializeField]public Transform WeaponLeftTransform { get; private set; }
     [field: SerializeField]public Transform WeaponRightTransform { get; private set; }
-    
-    [field: SerializeField]public PlayerStats PlayerStats { get; private set; }
+
+    [field: SerializeField] public PlayerStats PlayerStats{ get; private set; }
     [field: SerializeField]public PlayerStats BasePlayerStats { get; private set; }
 
     [Header("Test")] 
@@ -29,32 +26,37 @@ public class Player : Character
     public EquipmentPropsSO GreenStaffSO;
     public EquipmentPropsSO WoodBowSO;
     public EquipmentPropsSO FighterSO;
+
+    [HideInInspector]public bool IsNomalAttacking;
     private void Awake() {
-        _playerStateMachine = new(this);
+        playerStateMachine = new(this);
     }
     protected override void Start()
     {
         base.Start();
         Rigidbody = GetComponent<Rigidbody>();
-        PlayerAnimationController = GetComponentInChildren<PlayerAnimationController>();
-        PlayerBodyCollisionManager = GetComponentInChildren<PlayerBodyCollisionManager>();
+        playerAnimationManager = GetComponentInChildren<PlayerAnimationManager>();
         playerWeaponManager = GetComponentInChildren<PlayerWeaponManager>();
-
-        Damable.SetDamableLayer(PlayerPropertiesSO.DamableLayers);
-
+        
         PlayerInputSystem.Start();
         
         //set up stats
         healthBarUI = UIManager.Instance.PlayerHealthBarUI;
-        PlayerReusableData.CurrentPlayerStats = PlayerPropertiesSO.BaseStats;
-        SetPlayerStats(PlayerPropertiesSO.BaseStats);
+        BasePlayerStats = new PlayerStats(PlayerPropertiesSO.BaseStats);
+        PlayerStats = new PlayerStats(PlayerPropertiesSO.BaseStats);
+        
+        Damable.SetDamableLayer(PlayerPropertiesSO.DamableLayers);
+        Damable.DamableStats = new PlayerStats(BasePlayerStats);
+        
+        OnMaxHealthChanged?.Invoke(PlayerPropertiesSO.BaseStats.Health);
+        OnHealthDamaged?.Invoke(PlayerPropertiesSO.BaseStats.Health);
         healthBarUI.SetUpEaseHealthSlider(PlayerStats.Health);
         healthBarUI.SetUpHealHealthSlider(PlayerStats.Health);
         UIManager.Instance.EquipmentMenuUI.SetBasePlayerStats(PlayerPropertiesSO.BaseStats);
 
         //setup state
-        _playerStateMachine.ChangeState(_playerStateMachine.PlayerIdleState);
-        PlayerReusableData.IsNomalAttacking = false;
+        playerStateMachine.ChangeState(playerStateMachine.PlayerIdleState);
+        IsNomalAttacking = false;
 
         //setup equipment
         playerWeaponManager.EquipRightWeapon(FighterSO);
@@ -86,24 +88,14 @@ public class Player : Character
     //         Heal(50);
     //     }
     // }
-
-    // Update is called once per frame
     private void Update()
     {
         PlayerInputSystem.Update();
-        UpdateReusableData();
-        _playerStateMachine.Update();
+        playerStateMachine.Update();
     }
-
     private void FixedUpdate() {
-        _playerStateMachine.PhysicsUpdate();
+        playerStateMachine.PhysicsUpdate();
         
-    }
-
-    public void UpdateReusableData()
-    {
-        PlayerReusableData.MovementInput = PlayerInputSystem.MovementInput;
-        PlayerReusableData.IsGround = PlayerBodyCollisionManager.isGround;
     }
 
     public void SetPlayerStats(PlayerStats playerStats)
@@ -111,7 +103,7 @@ public class Player : Character
         BasePlayerStats = new PlayerStats(playerStats);
         PlayerStats = new PlayerStats(playerStats,playerStats.Health);
         OnMaxHealthChanged?.Invoke(BasePlayerStats.Health);
-        OnHealthDamaged?.Invoke(playerStats.Health);
+        OnHealthDamaged?.Invoke(BasePlayerStats.Health);
     }
 
     public void Heal(int healAmount)

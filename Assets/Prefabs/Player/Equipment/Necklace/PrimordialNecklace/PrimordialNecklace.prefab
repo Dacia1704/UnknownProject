@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23000010455495602}
   - component: {fileID: -4468577186381935398}
   - component: {fileID: 6767518737763744445}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: PrimordialNecklace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 4a571ee95a4a6354b8874abea9370098, type: 2}
+  attackTransform: {fileID: 0}
 --- !u!65 &6767518737763744445
 BoxCollider:
   m_ObjectHideFlags: 0

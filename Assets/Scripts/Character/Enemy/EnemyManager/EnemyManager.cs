@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
-    private EnemyPooling enemyPooling;
+    public EnemyPooling EnemyPooling { get; private set; }
 
     private List<SpawnPoint> spawnPointsList; 
 
@@ -16,7 +17,7 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         EnemiesList = new List<Enemy>();
-        enemyPooling = GetComponentInChildren<EnemyPooling>();
+        EnemyPooling = GetComponentInChildren<EnemyPooling>();
         spawnPointsList = GetComponentsInChildren<SpawnPoint>().ToList();
         StartCoroutine(SpawnEnemyCoroutine());
     }
@@ -35,7 +36,7 @@ public class EnemyManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        GameObject enemy = enemyPooling.GetRandomEnemy();
+        GameObject enemy = EnemyPooling.GetRandomEnemy();
         AddEnemyToList(enemy.GetComponent<Enemy>());
         int randomPoint = Random.Range(0, spawnPointsList.Count);
         enemy.transform.position = new Vector3(spawnPointsList[randomPoint].transform.position.x,

@@ -9,7 +9,7 @@ public class ThornySlimeDefendState:ThornySlimeState
     public override void Enter()
     {
         base.Enter();
-        enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(thornySlimeStateMachine.ThornySlime.ThornySlimePropertiesSO.DefendAnimationName);
+        enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(thornySlimeStateMachine.ThornySlime.ThornySlimePropertiesSO.DefendAnimationName);
         
         
     }
@@ -18,9 +18,9 @@ public class ThornySlimeDefendState:ThornySlimeState
     {
         base.Update();
         OnHitDefend();
-        if (thornySlimeStateMachine.ThornySlime.ThornySlimeAI.ShouldDefend == false 
-            && enemyStateMachine.Enemy.EnemyAnimationController.IsAnimationEnded(thornySlimeStateMachine.ThornySlime.ThornySlimePropertiesSO.DefendAnimationName,0))
+        if (enemyStateMachine.Enemy.EnemyAnimationManager.IsAnimationEnded(thornySlimeStateMachine.ThornySlime.ThornySlimePropertiesSO.DefendAnimationName,0))
         {
+            thornySlimeStateMachine.ThornySlime.ThornySlimeAI.ShouldDefend = false;
             OnIdle();
         }
     }

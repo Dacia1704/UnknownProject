@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3595557804323297469}
   - component: {fileID: 453217939841996568}
   - component: {fileID: 2427106056267965394}
-  - component: {fileID: 453217939841996575}
   - component: {fileID: -5257038199465544592}
-  m_Layer: 0
+  - component: {fileID: 3428512093225983191}
+  m_Layer: 17
   m_Name: GuardianBow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,8 +85,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &453217939841996575
-MeshCollider:
+--- !u!114 &-5257038199465544592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228365931688133127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e760abd8972446d8bf3a590dd79ff9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 5fb651d4aa66f294db27300a0b58cc21, type: 2}
+  attackTransform: {fileID: 3595557804323297469}
+--- !u!65 &3428512093225983191
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,29 +117,6 @@ MeshCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6132041091034060240, guid: f2313de6d6114514da7b09c4b6ac3fcf, type: 3}
---- !u!114 &-5257038199465544592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4228365931688133127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e760abd8972446d8bf3a590dd79ff9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 5fb651d4aa66f294db27300a0b58cc21, type: 2}
-  <EquipmentStats>k__BackingField:
-    Speed: 0
-    Attack: 0
-    AttackSpeed: 0
-    Defend: 0
-    Health: 0
-    Resistance: 0
-    Accuracy: 0
-  attackTransform: {fileID: 3595557804323297469}
+  serializedVersion: 3
+  m_Size: {x: 0.40245116, y: 1.5650086, z: 0.11166441}
+  m_Center: {x: -0.106174506, y: 0, z: -0.00013396889}

@@ -12,14 +12,19 @@ public abstract class Character: MonoBehaviour
     public Action<float> OnMaxHealthChanged;
     
     
-    [HideInInspector] public Damable Damable;
+    public Damable Damable;
 
     protected virtual void Start()
     {
         Damable = GetComponentInChildren<Damable>();
     }
 
-    public virtual void Death()
+    public virtual void DeathStart()
+    {
+        
+    }
+
+    public virtual void DeathEnd()
     {
         
     }

@@ -20,14 +20,19 @@ MonoBehaviour:
     Health: 2000
     Resistance: 0
     Accuracy: 0
-    <BaseDashModifier>k__BackingField: 4
+    <BaseDashModifier>k__BackingField: 2.5
     <BaseDashTime>k__BackingField: 0.25
     <ResetNomalAttackTime>k__BackingField: 0.2
+    <HitCooldown>k__BackingField: 1
   <IdleBoolTrigger>k__BackingField: idle
   <MoveTrigger>k__BackingField: move
   <NomalAttackValueTrigger>k__BackingField: nomalAttack
+  <HitTrigger>k__BackingField: hit
+  <DeathTrigger>k__BackingField: death
   <IdleAnimationName>k__BackingField: Idle
   <MoveAnimationName>k__BackingField: Move
+  <HitAnimationName>k__BackingField: Hit
+  <DeathAnimationName>k__BackingField: Death
   <DamableLayers>k__BackingField:
     serializedVersion: 2
     m_Bits: 2048

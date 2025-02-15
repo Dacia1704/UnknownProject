@@ -40,11 +40,6 @@ public abstract class ObjectPooling: MonoBehaviour
 
     public void ReleaseObject(GameObject objectToRealse)
     {
-        // if (objectToRealse.GetComponent<IPoolingObject>() == null)
-        // {
-        //     Debug.Log("IpoolingObject is null");
-        // }
-        // Debug.Log(objectToRealse.name);
         string keyObjectToRealse = objectToRealse.GetComponent<IPoolingObject>().PoolingObjectPropsSO.KeyObject;
         string keyObject = objectPoolProps.PoolingObjectList.Find(obj => obj.KeyObject == keyObjectToRealse).KeyObject;
         objectToRealse.transform.SetParent(transform);

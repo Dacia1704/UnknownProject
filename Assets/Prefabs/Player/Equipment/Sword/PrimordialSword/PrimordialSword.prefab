@@ -4934,7 +4934,7 @@ GameObject:
   - component: {fileID: 2653322732541670241}
   - component: {fileID: 7324912817582084158}
   - component: {fileID: 5363299024255010916}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: PrimordialSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5020,14 +5020,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 87592c159628fe64fbb4bb49e3a620f1, type: 2}
-  <EquipmentStats>k__BackingField:
-    Speed: 0
-    Attack: 0
-    AttackSpeed: 0
-    Defend: 0
-    Health: 0
-    Resistance: 0
-    Accuracy: 0
   attackTransform: {fileID: 4248687443148192093}
 --- !u!65 &5363299024255010916
 BoxCollider:

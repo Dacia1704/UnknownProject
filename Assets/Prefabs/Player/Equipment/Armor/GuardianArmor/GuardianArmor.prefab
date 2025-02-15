@@ -1865,7 +1865,7 @@ GameObject:
   - component: {fileID: 5858649246263928023}
   - component: {fileID: 8070738217081904638}
   - component: {fileID: 7634342333863959585}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GuardianArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1902,6 +1902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 6b14ac3d8f3070c4e80455e5c04e7b09, type: 2}
+  attackTransform: {fileID: 0}
 --- !u!65 &7634342333863959585
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23000010834650084}
   - component: {fileID: 7838028256919097663}
   - component: {fileID: 8394664194507786120}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GuardianNecklace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 9da663c617aaee742b0af18d8f73eb21, type: 2}
+  attackTransform: {fileID: 0}
 --- !u!65 &8394664194507786120
 BoxCollider:
   m_ObjectHideFlags: 0

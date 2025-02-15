@@ -19,8 +19,8 @@ public class EquipmentMenuUI : UIBase {
     protected void Start()
     {
         
-        closeButton.onClick.AddListener(() => Hide());
-        Hide();
+        closeButton.onClick.AddListener(() => Disable());
+        Disable();
 
         inventoryUI = GetComponentInChildren<InventoryUI>();
         playerEquipmentUI = GetComponentInChildren<PlayerEquipmentUI>();

@@ -9,13 +9,12 @@ public class EnemyMoveState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.MoveAnimationName);
+        enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.MoveAnimationName);
     }
 
     public override void Update()
     {
         base.Update();
-        OnDeath();
         OnHit();
         OnAttack();
         OnIdle();

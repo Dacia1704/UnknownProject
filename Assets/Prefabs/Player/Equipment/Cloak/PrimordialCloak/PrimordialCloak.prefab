@@ -2479,7 +2479,7 @@ GameObject:
   - component: {fileID: 8246112736868289278}
   - component: {fileID: 4857812623335738340}
   - component: {fileID: 8983447779897075647}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: PrimordialCloak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2516,6 +2516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: a9a0d4490ca2e39419da644d11cd170f, type: 2}
+  attackTransform: {fileID: 0}
 --- !u!65 &8983447779897075647
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2535,8 +2536,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6623503, y: 1.3526773, z: 0.35419646}
+  m_Center: {x: 0.0054885596, y: 0.8190428, z: -0.1816475}
 --- !u!1 &8805564285379877630
 GameObject:
   m_ObjectHideFlags: 0

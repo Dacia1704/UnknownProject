@@ -54,7 +54,7 @@ MonoBehaviour:
   healthSlider: {fileID: 6404944011579937042}
   easeHealthSlider: {fileID: 4867352443374860091}
   healHealthSlider: {fileID: 2947054821935725706}
-  lerpSpeed: 0.05
+  lerpSpeed: 0.1
 --- !u!1 &2383641777296849302
 GameObject:
   m_ObjectHideFlags: 0

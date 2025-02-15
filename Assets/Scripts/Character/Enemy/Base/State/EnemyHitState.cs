@@ -18,7 +18,7 @@ public class EnemyHitState: EnemyState
         }
         else
         {
-            enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.HitAnimationName);
+            enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.HitAnimationName);
         }
         
         enemyStateMachine.Enemy.Damable.ResetIsGetAttack();
@@ -29,9 +29,8 @@ public class EnemyHitState: EnemyState
     {
         base.Update();
 
-        if (enemyStateMachine.Enemy.Damable.IsGetAttack == 0 && enemyStateMachine.Enemy.EnemyAnimationController.IsAnimationEnded(enemyStateMachine.Enemy.EnemyPropertiesSO.HitAnimationName,0))
+        if (enemyStateMachine.Enemy.Damable.IsGetAttack == 0 && enemyStateMachine.Enemy.EnemyAnimationManager.IsAnimationEnded(enemyStateMachine.Enemy.EnemyPropertiesSO.HitAnimationName,0))
         {
-            OnDeath();
             OnAttack();
             OnMove();
             OnIdle();

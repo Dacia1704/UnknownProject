@@ -2089,7 +2089,7 @@ GameObject:
   - component: {fileID: 7514923801227276289}
   - component: {fileID: 6571257406542076415}
   - component: {fileID: 3181582728893976567}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GuardianBoots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2126,6 +2126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 1f42189b563ae934da937c3f2aaf2101, type: 2}
+  attackTransform: {fileID: 0}
 --- !u!65 &3181582728893976567
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -2089,7 +2089,7 @@ GameObject:
   - component: {fileID: 7558762130233591013}
   - component: {fileID: -5885105480951966408}
   - component: {fileID: 2164381242695967866}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GuardianCloak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2126,6 +2126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 6fe2e1399a0197b4690f7bd03a820ab6, type: 2}
+  attackTransform: {fileID: 0}
 --- !u!65 &2164381242695967866
 BoxCollider:
   m_ObjectHideFlags: 0

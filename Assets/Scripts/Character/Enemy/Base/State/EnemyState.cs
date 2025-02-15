@@ -58,12 +58,4 @@ public abstract class EnemyState : IState
             enemyStateMachine.ChangeState(enemyStateMachine.EnemyHitState);
         }
     }
-
-    protected virtual void OnDeath()
-    {
-        if (enemyStateMachine.Enemy.EnemyStats.Health <= 0)
-        {
-            enemyStateMachine.ChangeState(enemyStateMachine.EnemyDeathState);
-        }
-    }
 }
