@@ -8,7 +8,6 @@
     {
         base.Enter();
         enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.DieAnimationName);
-        
         enemyStateMachine.Enemy.DeathStart();
     }
 

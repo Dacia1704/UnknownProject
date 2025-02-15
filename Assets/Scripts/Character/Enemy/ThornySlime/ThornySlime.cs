@@ -10,6 +10,7 @@ public class ThornySlime : Enemy
 
     protected override void Awake()
     {
+        base.Awake();
         enemyStateMachine = new ThornySlimeStateMachine(this);
         thornySlimeStateMachine = (ThornySlimeStateMachine)enemyStateMachine;
     }

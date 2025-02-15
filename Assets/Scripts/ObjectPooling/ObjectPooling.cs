@@ -32,8 +32,8 @@ public abstract class ObjectPooling: MonoBehaviour
             actionOnRelease: obj => obj.SetActive(false),
             actionOnDestroy: Destroy,
             collectionCheck: false,
-            defaultCapacity: 10,
-            maxSize: 20
+            defaultCapacity: 30,
+            maxSize: 50
         );
         return pools[keyObject].Get();
     }

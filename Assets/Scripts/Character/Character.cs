@@ -12,9 +12,9 @@ public abstract class Character: MonoBehaviour
     public Action<float> OnMaxHealthChanged;
     
     
-    public Damable Damable;
+    [HideInInspector]public Damable Damable;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         Damable = GetComponentInChildren<Damable>();
     }

@@ -28,20 +28,18 @@ public class Player : Character
     public EquipmentPropsSO FighterSO;
 
     [HideInInspector]public bool IsNomalAttacking;
-    private void Awake() {
+    protected override  void Awake() {
+        base.Awake();
         playerStateMachine = new(this);
-    }
-    protected override void Start()
-    {
-        base.Start();
         Rigidbody = GetComponent<Rigidbody>();
         playerAnimationManager = GetComponentInChildren<PlayerAnimationManager>();
         playerWeaponManager = GetComponentInChildren<PlayerWeaponManager>();
-        
-        PlayerInputSystem.Start();
-        
-        //set up stats
         healthBarUI = UIManager.Instance.PlayerHealthBarUI;
+    }
+    protected void Start()
+    {
+        PlayerInputSystem.Start();
+        //set up stats
         BasePlayerStats = new PlayerStats(PlayerPropertiesSO.BaseStats);
         PlayerStats = new PlayerStats(PlayerPropertiesSO.BaseStats);
         

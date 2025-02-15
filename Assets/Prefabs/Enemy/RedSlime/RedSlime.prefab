@@ -930,6 +930,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   Damable: {fileID: 0}
   <EnemyPropertiesSO>k__BackingField: {fileID: 11400000, guid: 133df6b7925e2054db40ca1c6f11c25e, type: 2}
+  <PoolingObjectPropsSO>k__BackingField: {fileID: 11400000, guid: 1062731eaf1913a4ab49f53f9e9ebca1, type: 2}
   <EnemyStats>k__BackingField:
     Speed: 0
     Attack: 0
