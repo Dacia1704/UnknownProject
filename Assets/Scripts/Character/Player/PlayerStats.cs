@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -19,6 +20,7 @@ public class PlayerStats: Stats
         AttackSpeed = stats.AttackSpeed;
         Accuracy = stats.Accuracy;
         Resistance = stats.Resistance;
+        CanDealDebuffEffects = new List<DebuffEffect>(stats.CanDealDebuffEffects);
         BaseDashModifier = stats.BaseDashModifier;
         BaseDashTime = stats.BaseDashTime;
         ResetNomalAttackTime = stats.ResetNomalAttackTime;
@@ -32,6 +34,7 @@ public class PlayerStats: Stats
         AttackSpeed = stats.AttackSpeed;
         Accuracy = stats.Accuracy;
         Resistance = stats.Resistance;
+        CanDealDebuffEffects = new List<DebuffEffect>(stats.CanDealDebuffEffects);
         BaseDashModifier = stats.BaseDashModifier;
         BaseDashTime = stats.BaseDashTime;
         ResetNomalAttackTime = stats.ResetNomalAttackTime;
@@ -45,6 +48,7 @@ public class PlayerStats: Stats
         AttackSpeed = 0;
         Accuracy = 0;
         Resistance = 0;
+        CanDealDebuffEffects = new List<DebuffEffect>();
         BaseDashModifier = 0;
         BaseDashTime = 0;
         ResetNomalAttackTime = 0;
@@ -57,8 +61,9 @@ public class PlayerStats: Stats
         Health = baseStats.Health + bonusStats.Health;
         Defend = baseStats.Defend + bonusStats.Defend;
         AttackSpeed = baseStats.AttackSpeed + bonusStats.AttackSpeed;
-        Accuracy = baseStats.Accuracy + bonusStats.Accuracy;
+        Accuracy = baseStats.Accuracy + bonusStats.Accuracy; 
         Resistance = baseStats.Resistance + bonusStats.Resistance;
+        CanDealDebuffEffects = baseStats.CanDealDebuffEffects;
         BaseDashModifier = baseStats.BaseDashModifier;
         BaseDashTime = baseStats.BaseDashTime;
         ResetNomalAttackTime = baseStats.ResetNomalAttackTime;

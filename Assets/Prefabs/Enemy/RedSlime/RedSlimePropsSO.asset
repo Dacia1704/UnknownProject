@@ -20,6 +20,7 @@ MonoBehaviour:
     Health: 500
     Resistance: 0
     Accuracy: 0
+    CanDealDebuffEffects: 00000000
     <DropRate>k__BackingField: 0
   <IdleAnimationName>k__BackingField: Idle
   <MoveAnimationName>k__BackingField: Move

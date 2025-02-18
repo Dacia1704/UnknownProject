@@ -20,6 +20,7 @@ public abstract class Enemy : Character,IPoolingObject {
 
     public float YPosReset { get; private set; }
     
+    
     protected override void Awake() {
         base.Awake();
         enemyStateMachine = new(this);

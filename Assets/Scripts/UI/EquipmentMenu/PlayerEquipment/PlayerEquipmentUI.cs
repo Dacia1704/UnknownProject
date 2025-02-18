@@ -59,6 +59,10 @@ public class PlayerEquipmentUI : MonoBehaviour
                 playerStats.AttackSpeed += item.EquipmentData.EquipmentStats.AttackSpeed;
                 playerStats.Accuracy += item.EquipmentData.EquipmentStats.Accuracy;
                 playerStats.Resistance += item.EquipmentData.EquipmentStats.Resistance;
+                if ( item.EquipmentData.EquipmentStats.CanDealDebuffEffects.Count >0 &&!playerStats.CanDealDebuffEffects.Contains(item.EquipmentData.EquipmentStats.CanDealDebuffEffects[0]) && item.EquipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None)
+                {
+                    playerStats.CanDealDebuffEffects.Add(item.EquipmentData.EquipmentStats.CanDealDebuffEffects[0]);
+                }
             }
         }
         PlayerStats setBonusStats = new PlayerStats();

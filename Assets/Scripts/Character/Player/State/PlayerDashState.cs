@@ -37,7 +37,7 @@ public class PlayerDashState: PlayerState
     {
         
         base.PhysicsUpdate();
-        Dash(playerStateMachine.Player.PlayerStats.Speed * playerStateMachine.Player.PlayerPropertiesSO.BaseStats.BaseDashModifier);
+        Dash(((float)playerStateMachine.Player.PlayerStats.Speed/10f) * playerStateMachine.Player.PlayerPropertiesSO.BaseStats.BaseDashModifier);
         _dashTime += Time.fixedDeltaTime;
         if (_dashTime > playerStateMachine.Player.PlayerPropertiesSO.BaseStats.BaseDashTime)
         {

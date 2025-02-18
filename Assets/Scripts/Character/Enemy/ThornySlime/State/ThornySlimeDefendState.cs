@@ -27,7 +27,7 @@ public class ThornySlimeDefendState:ThornySlimeState
 
     private void OnHitDefend()
     {
-        if (enemyStateMachine.Enemy.Damable.IsGetAttack != 0)
+        if (enemyStateMachine.Enemy.Damable.AttackableStats.Attack != 0)
         {
             enemyStateMachine.ChangeState(thornySlimeStateMachine.ThornySlimeHitDefendState);
         }

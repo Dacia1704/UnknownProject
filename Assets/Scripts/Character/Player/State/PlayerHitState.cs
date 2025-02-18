@@ -10,11 +10,8 @@ public class PlayerHitState: PlayerState
     public override void Enter()
     {
         base.Enter();
-        playerStateMachine.Player.Damable.GetDamage(ref playerStateMachine.Player.PlayerStats.Health,playerStateMachine.Player.Damable.IsGetAttack);
+        playerStateMachine.Player.Damable.GetDamage(ref playerStateMachine.Player.PlayerStats.Health,playerStateMachine.Player.Damable.AttackableStats.Attack);
         playerStateMachine.Player.OnHealthDamaged?.Invoke(playerStateMachine.Player.PlayerStats.Health);
-
-        // Debug.Log(playerStateMachine.Player.PlayerStats.Health+" " + playerStateMachine.Player.Damable.IsGetAttack);
-        
         if (playerStateMachine.Player.PlayerStats.Health <= 0)
         {
             playerStateMachine.ChangeState(playerStateMachine.PlayerDeathState);
@@ -23,7 +20,7 @@ public class PlayerHitState: PlayerState
         {
             playerStateMachine.Player.playerAnimationManager.SetBoolValueAnimation(playerPropertiesSO.HitTrigger,true);
         }
-        playerStateMachine.Player.Damable.ResetIsGetAttack();
+        playerStateMachine.Player.Damable.ResetAttackableStats();
     }
 
     public override void Update()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public enum EquimentType
 {
@@ -50,4 +51,15 @@ public static class EquipmentStatsRange
 [Serializable]
 public class EquipmentStats: Stats
 {
+    public EquipmentStats()
+    {
+        Speed = 0;
+        Attack = 0;
+        Health = 0;
+        Defend = 0;
+        AttackSpeed = 0;
+        Accuracy = 0;
+        Resistance = 0;
+        CanDealDebuffEffects = new List<DebuffEffect>();
+    }
 }

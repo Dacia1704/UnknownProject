@@ -189,7 +189,7 @@ public abstract class PlayerState : IState
 
 	protected virtual void OnHit()
 	{
-		if (playerStateMachine.Player.Damable.IsGetAttack > 0 && hitCounter <=0f)
+		if (playerStateMachine.Player.Damable.AttackableStats.Attack > 0 && hitCounter <=0f)
 		{
 			playerStateMachine.ChangeState(playerStateMachine.PlayerHitState);
 		}

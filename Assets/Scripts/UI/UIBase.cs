@@ -10,4 +10,9 @@ public abstract class UIBase : MonoBehaviour
     public void Disable() {
         gameObject.SetActive(false);
     }
+    
+    protected void LookAtCamera()
+    {
+        transform.LookAt(transform.position + Camera.main.transform.forward);  
+    }
 }

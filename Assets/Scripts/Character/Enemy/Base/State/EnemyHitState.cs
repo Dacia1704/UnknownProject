@@ -9,7 +9,11 @@ public class EnemyHitState: EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemyStateMachine.Enemy.Damable.GetDamage(ref enemyStateMachine.Enemy.EnemyStats.Health,enemyStateMachine.Enemy.Damable.IsGetAttack);
+        enemyStateMachine.Enemy.Damable.GetDamage(ref enemyStateMachine.Enemy.EnemyStats.Health,enemyStateMachine.Enemy.Damable.AttackableStats.Attack);
+        GameManager.instance.FloatingTextUIObjectPooling.ShowFloatingHP(enemyStateMachine.Enemy.transform,"- " + enemyStateMachine.Enemy.Damable.AttackableStats.Attack.ToString()
+            ,enemyStateMachine.Enemy.transform.position,Color.red);
+        
+        enemyStateMachine.Enemy.InvokeOnDebuffEffect(enemyStateMachine.Enemy.Damable.RandomDebuffEffect());
         enemyStateMachine.Enemy.OnHealthDamaged.Invoke(enemyStateMachine.Enemy.EnemyStats.Health);
 
         if (enemyStateMachine.Enemy.EnemyStats.Health <= 0)
@@ -21,7 +25,7 @@ public class EnemyHitState: EnemyState
             enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.HitAnimationName);
         }
         
-        enemyStateMachine.Enemy.Damable.ResetIsGetAttack();
+        enemyStateMachine.Enemy.Damable.ResetAttackableStats();
         
     }
     
@@ -29,7 +33,7 @@ public class EnemyHitState: EnemyState
     {
         base.Update();
 
-        if (enemyStateMachine.Enemy.Damable.IsGetAttack == 0 && enemyStateMachine.Enemy.EnemyAnimationManager.IsAnimationEnded(enemyStateMachine.Enemy.EnemyPropertiesSO.HitAnimationName,0))
+        if (enemyStateMachine.Enemy.Damable.AttackableStats.Attack == 0 && enemyStateMachine.Enemy.EnemyAnimationManager.IsAnimationEnded(enemyStateMachine.Enemy.EnemyPropertiesSO.HitAnimationName,0))
         {
             OnAttack();
             OnMove();

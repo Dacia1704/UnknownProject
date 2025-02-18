@@ -47,10 +47,7 @@ public class EnemyHealthBarUI: HealthBarUI
                 LookAtCamera();
         }
         
-        protected void LookAtCamera()
-        {
-                transform.LookAt(transform.position + Camera.main.transform.forward);  
-        }
+        
 
         public void HideHPBarUI()
         {

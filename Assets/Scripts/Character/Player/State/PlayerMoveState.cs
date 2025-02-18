@@ -21,10 +21,10 @@ public class PlayerMoveState : PlayerState
     {
         base.PhysicsUpdate();
         if (playerStateMachine.Player.PlayerInputSystem.BackwardInput) {
-            Move(playerStateMachine.Player.PlayerInputSystem.MovementInput,playerStateMachine.Player.PlayerStats.Speed/10,true);
+            Move(playerStateMachine.Player.PlayerInputSystem.MovementInput,(float)playerStateMachine.Player.PlayerStats.Speed/10,true);
         }
         else {
-            Move(playerStateMachine.Player.PlayerInputSystem.MovementInput,playerStateMachine.Player.PlayerStats.Speed);
+            Move(playerStateMachine.Player.PlayerInputSystem.MovementInput,(float)playerStateMachine.Player.PlayerStats.Speed/10);
         }
 
     }

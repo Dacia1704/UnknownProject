@@ -10,7 +10,7 @@ public class ThornySlimeHitDefendState:ThornySlimeState
     {
         base.Enter();
         enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(thornySlimeStateMachine.ThornySlime.ThornySlimePropertiesSO.HitDefendAnimationName);
-        thornySlimeStateMachine.ThornySlime.Damable.ResetIsGetAttack();
+        thornySlimeStateMachine.ThornySlime.Damable.ResetAttackableStats();
     }
 
     public override void Update()

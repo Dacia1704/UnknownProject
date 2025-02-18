@@ -11,6 +11,5 @@ public class PlayerDeathState: PlayerState
         base.Enter();
         
         playerStateMachine.Player.playerAnimationManager.SetBoolValueAnimation(playerPropertiesSO.DeathTrigger,true);
-        Debug.Log("set death");
     }
 }

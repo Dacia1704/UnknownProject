@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerPropertiesScriptableObject
   m_EditorClassIdentifier: 
   <BaseStats>k__BackingField:
-    Speed: 5
+    Speed: 50
     Attack: 200
     AttackSpeed: 1
     Defend: 100

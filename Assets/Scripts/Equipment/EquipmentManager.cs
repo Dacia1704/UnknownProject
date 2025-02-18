@@ -104,7 +104,8 @@ public class EquipmentManager : MonoBehaviour
                 randomStats.Health = Random.Range(EquipmentStatsRange.Health.Item1,EquipmentStatsRange.Health.Item2);
                 randomStats.Accuracy = Random.Range(EquipmentStatsRange.Accuracy.Item1,EquipmentStatsRange.Accuracy.Item2);
                 randomStats.Resistance = Random.Range(EquipmentStatsRange.Resistance.Item1,EquipmentStatsRange.Resistance.Item2);
-                
+                randomStats.CanDealDebuffEffects.Add((DebuffEffect)Random.Range(0,
+                        Enum.GetValues(typeof(DebuffEffect)).Length));
                 
                 List<Action> stats = new List<Action>
                 {

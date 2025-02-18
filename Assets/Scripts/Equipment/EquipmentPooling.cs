@@ -29,7 +29,6 @@ public class EquipmentPooling: ObjectPooling
     {
         return GetObject(GetKeyObjectEquiment(set, type,wtype));
     }
-
     public GameObject GetBulletEquipment(EquipmentSet set, EquimentType type, WeaponType wtype)
     {
         string keyObject = GetKeyObjectBulletEquiment(set, type,wtype);
@@ -52,6 +51,14 @@ public class EquipmentPooling: ObjectPooling
             maxSize: 50
         );
         return pools[keyObject].Get();
+    }
+
+    public void ReleaseBulletEquipment(GameObject bulletOb)
+    {
+        string keyObjectToRealse = bulletOb.GetComponent<IPoolingObject>().PoolingObjectPropsSO.KeyObject;
+        string keyObject = bulletPoolPropsSO.PoolingObjectList.Find(obj => obj.KeyObject == keyObjectToRealse).KeyObject;
+        bulletOb.transform.SetParent(transform);
+        pools[keyObject].Release(bulletOb);
     }
     
 }
