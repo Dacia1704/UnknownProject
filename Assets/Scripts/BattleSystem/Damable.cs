@@ -23,6 +23,8 @@ public class Damable: MonoBehaviour {
             if ((DamableLayers & (1 << other.gameObject.layer)) !=0)
             {
                 AttackableStats = attackable.AttackStats.Clone();
+                GameObject hitEffect = EquipmentManager.instance.EquipmentPooling.GetHiEffectEquipment();
+                hitEffect.transform.position = other.ClosestPoint(transform.position);
             }
         }
     }

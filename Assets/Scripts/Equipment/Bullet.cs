@@ -11,7 +11,6 @@ public class Bullet : MonoBehaviour,IPoolingObject
         private void Awake()
         {
                 this.Attackable = GetComponentInChildren<Attackable>();
-                
         }
 
         private void OnEnable()
@@ -23,7 +22,6 @@ public class Bullet : MonoBehaviour,IPoolingObject
         {
                 yield return new WaitUntil(() => (Attackable.IsAttackSuccess || Attackable.IsMapCollider));
                 yield return new WaitForSeconds(((BulletPropsSO)PoolingObjectPropsSO).TimeRemainAfterHit);
-                Debug.Log("Disappear");
                 Attackable.IsAttackSuccess = false;
                 Attackable.IsMapCollider = false;
                 EquipmentManager.instance.EquipmentPooling.ReleaseBulletEquipment(this.gameObject);

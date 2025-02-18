@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeyObject: PrimordialSwordBullet
   ObjectPrefab: {fileID: 8698827901085634939, guid: 00fd64026e1f8fa47b16c3f7460bf29e, type: 3}
+  <TimeRemainAfterHit>k__BackingField: 0.5

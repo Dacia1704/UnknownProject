@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeyObject: ElementalBowBullet
   ObjectPrefab: {fileID: 542930045751872908, guid: 42abdb940dece87439ae4d2593b871d6, type: 3}
+  <TimeRemainAfterHit>k__BackingField: 10

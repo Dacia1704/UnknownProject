@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeyObject: GuardianSwordBullet
   ObjectPrefab: {fileID: 2579094414100932814, guid: e16cde03e48e1f44b914a4653e56a72e, type: 3}
+  <TimeRemainAfterHit>k__BackingField: 0.5

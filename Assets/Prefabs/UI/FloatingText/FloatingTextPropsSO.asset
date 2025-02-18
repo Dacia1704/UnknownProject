@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FloatingTextPropsSO
   m_EditorClassIdentifier: 
   KeyObject: FloatingText
-  ObjectPrefab: {fileID: 4136795996376716823, guid: 7df51f7b08fd1dc4a964befcff341c1b, type: 3}
+  ObjectPrefab: {fileID: 1179349377575419324, guid: dc0aeee36def73d49aeef54a9bddb4b9, type: 3}
