@@ -18,7 +18,7 @@ public abstract class PlayerState : IState
 	}
     public virtual void Enter()
     {
-		// Debug.Log("State: " + GetType().Name);
+		Debug.Log("State: " + GetType().Name);
 		nomalAttackCounter = Time.time;
 		hitCounter = playerPropertiesSO.BaseStats.HitCooldown;
 

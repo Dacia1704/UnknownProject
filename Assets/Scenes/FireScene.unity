@@ -406,6 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPoolProps: {fileID: 11400000, guid: 865183fc1a05ebf46b4fad23de855700, type: 2}
   bulletPoolPropsSO: {fileID: 11400000, guid: 76a28cba319c1254cb942cb5187b71ca, type: 2}
+  hitEffectPoolPropsSO: {fileID: 11400000, guid: 6de66a3d43010e140a10ab2b931f6898, type: 2}
 --- !u!1 &58030311 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4202724668555032227, guid: f96442df40a0bf74bbd6431cf2ee05d9, type: 3}
@@ -1416,7 +1417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210813474}
   - component: {fileID: 210813475}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1469,7 +1470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 218663856}
   - component: {fileID: 218663857}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1485,7 +1486,7 @@ Transform:
   m_GameObject: {fileID: 218663855}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.58086425, z: -0, w: 0.8140005}
-  m_LocalPosition: {x: 15.4, y: 3.86, z: 37.23}
+  m_LocalPosition: {x: 17.3, y: 3.86, z: 36.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2444,7 +2445,7 @@ GameObject:
   m_Component:
   - component: {fileID: 316631555}
   - component: {fileID: 316631556}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2899,7 +2900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 328514299}
   - component: {fileID: 328514300}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3612,7 +3613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 408171236}
   - component: {fileID: 408171237}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8364,7 +8365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 888300488}
   - component: {fileID: 888300489}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9262,7 +9263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1000921789}
   - component: {fileID: 1000921790}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10684,7 +10685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1197847432}
   - component: {fileID: 1197847433}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12966,7 +12967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1460740080}
   - component: {fileID: 1460740081}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13962,7 +13963,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561628706}
   - component: {fileID: 1561628707}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15683,7 +15684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1704845223}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: ColliderMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15699,7 +15700,7 @@ Transform:
   m_GameObject: {fileID: 1704845222}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15819,7 +15820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735886242}
   - component: {fileID: 1735886243}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15872,7 +15873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1738274129}
   - component: {fileID: 1738274130}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22088,7 +22089,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1896911926}
   - component: {fileID: 1896911927}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6aff3e82244affb41f50f0598fbc1d, type: 3}
   m_Name: HitEffectPoolProps
   m_EditorClassIdentifier: 
-  <PoolingObjectList>k__BackingField: []
+  <PoolingObjectList>k__BackingField:
+  - {fileID: 11400000, guid: dbdb14c5aca1f5d42b9a3da48d00d303, type: 2}

@@ -10,6 +10,8 @@ public class PlayerHitState: PlayerState
     public override void Enter()
     {
         base.Enter();
+        playerStateMachine.Player.IsNomalAttacking = false;
+        playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
         playerStateMachine.Player.Damable.GetDamage(ref playerStateMachine.Player.PlayerStats.Health,playerStateMachine.Player.Damable.AttackableStats.Attack);
         playerStateMachine.Player.OnHealthDamaged?.Invoke(playerStateMachine.Player.PlayerStats.Health);
         if (playerStateMachine.Player.PlayerStats.Health <= 0)
@@ -25,9 +27,9 @@ public class PlayerHitState: PlayerState
 
     public override void Update()
     {
-        base.Update();
         if (playerStateMachine.Player.playerAnimationManager.IsAnimationEnded(playerPropertiesSO.HitAnimationName, 1))
         {
+            Debug.Log("Can leave hit State");
             OnDash();
             OnMove();
             OnIdle();
