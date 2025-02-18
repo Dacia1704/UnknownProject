@@ -11,21 +11,22 @@ public class Bullet : MonoBehaviour,IPoolingObject
         private void Awake()
         {
                 this.Attackable = GetComponentInChildren<Attackable>();
-                StartCoroutine(DisappearCoroutine());
+                
+        }
 
+        private void OnEnable()
+        {
+            StartCoroutine(DisappearCoroutine());
         }
 
         private IEnumerator DisappearCoroutine()
         {
-            while (true)
-            {
-                yield return new WaitUntil(() => Attackable.IsAttackSuccess || Attackable.IsMapCollider);
+                yield return new WaitUntil(() => (Attackable.IsAttackSuccess || Attackable.IsMapCollider));
                 yield return new WaitForSeconds(((BulletPropsSO)PoolingObjectPropsSO).TimeRemainAfterHit);
                 Debug.Log("Disappear");
                 Attackable.IsAttackSuccess = false;
                 Attackable.IsMapCollider = false;
                 EquipmentManager.instance.EquipmentPooling.ReleaseBulletEquipment(this.gameObject);
-            }
         }
         
         

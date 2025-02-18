@@ -3,9 +3,9 @@ using UnityEngine;
 public class Attackable: MonoBehaviour {
     public Stats AttackStats { get; private set; }
 
-    public bool IsAttackSuccess { get; set; }
+    [field: SerializeField] public bool IsAttackSuccess { get; set; }
     
-    public bool IsMapCollider { get; set; }
+    [field: SerializeField] public bool IsMapCollider { get; set; }
 
     public void SetAttackStats(Stats stats)
     {
