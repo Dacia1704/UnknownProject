@@ -11,7 +11,7 @@ public class Player : Character
     
     public PlayerPropertiesSO PlayerPropertiesSO;
     private PlayerStateMachine playerStateMachine;
-    public PlayerInputSystem PlayerInputSystem = new();
+    public PlayerInputManager PlayerInputManager = new();
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [Header("Weapon")] 
     [HideInInspector] public PlayerWeaponManager playerWeaponManager;
@@ -21,11 +21,7 @@ public class Player : Character
     [field: SerializeField] public PlayerStats PlayerStats{ get; private set; }
     [field: SerializeField]public PlayerStats BasePlayerStats { get; private set; }
 
-    [Header("Test")] 
-    public EquipmentPropsSO IronWordSO;
-    public EquipmentPropsSO GreenStaffSO;
-    public EquipmentPropsSO WoodBowSO;
-    public EquipmentPropsSO FighterSO;
+    
 
     [HideInInspector]public bool IsNomalAttacking;
     protected override  void Awake() {
@@ -38,7 +34,7 @@ public class Player : Character
     }
     protected void Start()
     {
-        PlayerInputSystem.Start();
+        PlayerInputManager.Start();
         //set up stats
         BasePlayerStats = new PlayerStats(PlayerPropertiesSO.BaseStats);
         PlayerStats = new PlayerStats(PlayerPropertiesSO.BaseStats);
@@ -55,40 +51,11 @@ public class Player : Character
         //setup state
         playerStateMachine.ChangeState(playerStateMachine.PlayerIdleState);
         IsNomalAttacking = false;
-
-        //setup equipment
-        playerWeaponManager.EquipRightWeapon(FighterSO);
-        playerWeaponManager.EquipLeftWeapon(FighterSO);
         
-        //test
-        UIManager.Instance.OnSwordButtonClicked += () =>
-        {
-            playerWeaponManager.EquipRightWeapon(IronWordSO);
-            
-        };
-        UIManager.Instance.OnStaffButtonClicked += () =>
-        {
-            playerWeaponManager.EquipRightWeapon(GreenStaffSO);
-        };
-        UIManager.Instance.OnBowButtonClicked += () =>
-        {
-            playerWeaponManager.EquipRightWeapon(WoodBowSO);
-        };
-
-        // StartCoroutine(HealByTime());
     }
-
-    // private IEnumerator HealByTime()
-    // {
-    //     while (true)
-    //     {
-    //         yield return new WaitForSeconds(2f);
-    //         Heal(50);
-    //     }
-    // }
     private void Update()
     {
-        PlayerInputSystem.Update();
+        PlayerInputManager.Update();
         playerStateMachine.Update();
     }
     private void FixedUpdate() {

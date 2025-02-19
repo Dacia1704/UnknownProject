@@ -43,7 +43,18 @@ public class Damable: MonoBehaviour {
     
     public void ResetAttackableStats()
     {
-        AttackableStats = new Stats();
+        AttackableStats = new Stats()
+        {
+            Speed = 0,
+            Attack = 0,
+            Defend = 0,
+            Health = 0,
+            Resistance = 0,
+            Accuracy = 0,
+            AttackSpeed = 0,
+            CanDealDebuffEffects = new List<DebuffEffect>()
+            
+        };
     }
     public void SetDamableLayer(LayerMask layers)
     {

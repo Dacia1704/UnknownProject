@@ -13,8 +13,8 @@ public class PlayerDashState: PlayerState
         base.Enter();
         _isDashing = true;
         _dashTime = 0;
-        _dashDirection = playerStateMachine.Player.PlayerInputSystem.MovementInput;
-        if(playerStateMachine.Player.PlayerInputSystem.BackwardInput) {
+        _dashDirection = playerStateMachine.Player.PlayerInputManager.MovementInput;
+        if(playerStateMachine.Player.PlayerInputManager.BackwardInput) {
             playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,1);
         } else {
             playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,0);

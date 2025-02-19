@@ -17,6 +17,8 @@ public class OverlayScreen: UIBase
                 Instance = this;
                 image = GetComponent<Image>();
                 canvasGroup = GetComponent<CanvasGroup>();
+                
+                transform.SetAsLastSibling();
         }
 
 

@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class EquipmentMenuUI : UIBase {
     public event Action<List<EquipmentData>> OnInventoryChanged;
     
-    public event Action OnEquipmentChanged; 
+    public event Action<List<InventoryItemUI>> OnEquipmentChanged; 
     
     private InventoryUI inventoryUI;
-    private PlayerEquipmentUI playerEquipmentUI;
+    public PlayerEquipmentUI playerEquipmentUI;
     [HideInInspector] public PlayerStats baseStats;
     [HideInInspector] public PlayerStats PlayerStats;
          
@@ -37,7 +37,7 @@ public class EquipmentMenuUI : UIBase {
 
     public void UpdatePlayerStats()
     {
-        OnEquipmentChanged?.Invoke();
+        OnEquipmentChanged?.Invoke(playerEquipmentUI.ListEquippedItems);
     }
 
     public void UpdateInventoryUI(List<EquipmentData> equipmentData)
