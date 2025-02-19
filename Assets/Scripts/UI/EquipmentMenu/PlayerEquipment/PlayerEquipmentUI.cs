@@ -74,7 +74,7 @@ public class PlayerEquipmentUI : MonoBehaviour
 
         equipmentMenuUI.PlayerStats = new PlayerStats(playerStats,setBonusStats);
         
-        GameManager.instance.Player.SetPlayerStats(playerStats);
+        GameManager.Instance.Player.SetPlayerStats(playerStats);
         PlayerStatsUI.UpdateStatsText(equipmentMenuUI.PlayerStats);
     }
 
