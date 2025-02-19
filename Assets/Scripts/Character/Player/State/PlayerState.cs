@@ -43,7 +43,7 @@ public abstract class PlayerState : IState
 
 	//logic
     protected virtual void Move(Vector2 direction, float speed,bool backward= false) {
-		if (playerStateMachine.Player.PlayerInputSystem.MovementInput == Vector2.zero) return;
+		if (playerStateMachine.Player.PlayerInputManager.MovementInput == Vector2.zero) return;
 		float newAngle = - Camera.main.transform.eulerAngles.y;
 		float angleRadians = Mathf.Deg2Rad * newAngle;
         float newX = direction.x * Mathf.Cos(angleRadians) - direction.y * Mathf.Sin(angleRadians);
@@ -63,12 +63,12 @@ public abstract class PlayerState : IState
 
 	protected virtual void Attack()
 	{
-		if (playerStateMachine.Player.PlayerInputSystem.NomalAttackInput && playerStateMachine.Player.IsNomalAttacking == false)
+		if (playerStateMachine.Player.PlayerInputManager.NomalAttackInput && playerStateMachine.Player.IsNomalAttacking == false)
 		{
 			playerStateMachine.Player.IsNomalAttacking = true;
 			playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,currentAttack);
 
-			if (playerStateMachine.Player.PlayerInputSystem.MovementInput == new Vector2(0, 0))
+			if (playerStateMachine.Player.PlayerInputManager.MovementInput == new Vector2(0, 0))
 			{
 				TurnPlayerToMousePosition();
 			}
@@ -168,20 +168,20 @@ public abstract class PlayerState : IState
 
 	//check state
 	protected virtual void OnIdle() {
-		if(playerStateMachine.Player.PlayerInputSystem.MovementInput == new Vector2(0, 0)) {
+		if(playerStateMachine.Player.PlayerInputManager.MovementInput == new Vector2(0, 0)) {
 			
 			playerStateMachine.ChangeState(playerStateMachine.PlayerIdleState);
 		}
 	}
 	protected virtual void OnMove() {
-		if(playerStateMachine.Player.PlayerInputSystem.MovementInput != new Vector2(0, 0)) {
+		if(playerStateMachine.Player.PlayerInputManager.MovementInput != new Vector2(0, 0)) {
 			playerStateMachine.ChangeState(playerStateMachine.PlayerMoveState);
 		}
 	}
 
 	protected virtual void OnDash()
 	{
-		if (playerStateMachine.Player.PlayerInputSystem.DashInput)
+		if (playerStateMachine.Player.PlayerInputManager.DashInput)
 		{
 			playerStateMachine.ChangeState(playerStateMachine.PlayerDashState);
 		}

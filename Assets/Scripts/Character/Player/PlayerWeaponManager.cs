@@ -1,8 +1,10 @@
 ﻿
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Serialization;
 
 public class PlayerWeaponManager: MonoBehaviour
 {
@@ -11,6 +13,11 @@ public class PlayerWeaponManager: MonoBehaviour
     protected GameObject currentLeftWeapon { get; private set; }
 
     protected Player player;
+    
+    protected List<EquipmentPropsSO> weaponsList ;
+    private int currentWeaponIndex = 0;
+    
+    [SerializeField] private EquipmentPropsSO fighterSO;
 
 
     private void Awake()
@@ -23,11 +30,22 @@ public class PlayerWeaponManager: MonoBehaviour
     private void Start()
     {
         equipmentPooling = EquipmentManager.instance.EquipmentPooling;
+        weaponsList = new List<EquipmentPropsSO>();
+        currentWeaponIndex = 0;
+        EquipRightWeapon(fighterSO);
+        EquipLeftWeapon(fighterSO);
+        UIManager.Instance.EquipmentMenuUI.OnEquipmentChanged += UpdateWeapon;
     }
 
     private void Update()
     {
         UpdateWeaponState();
+
+        if (player.PlayerInputManager.SwapWeaponInput)
+        {
+            SwapWeapon();
+            player.PlayerInputManager.SwapWeaponInput = false;
+        }
     }
 
     public void AttackRightWeapon()
@@ -39,6 +57,45 @@ public class PlayerWeaponManager: MonoBehaviour
     {
         currentLeftWeapon.GetComponent<Equipment>().Attack(player.transform.forward);
     }
+
+    public void SwapWeapon()
+    {
+        if (weaponsList.Count <= 1) return;
+        if (currentWeaponIndex == 0)
+        {
+            EquipRightWeapon(weaponsList[1]);
+            currentWeaponIndex = 1;
+        }
+        else
+        {
+            EquipRightWeapon(weaponsList[0]);
+            currentWeaponIndex = 0;
+        }
+    }
+
+    public void UpdateWeapon(List<InventoryItemUI> listEquippedItems)
+    {
+        weaponsList.Clear();
+        foreach (InventoryItemUI item in listEquippedItems)
+        {
+            if (item.EquipmentData?.EquipmentPropsSO.EquimentType == EquimentType.Weapon)
+            {
+                weaponsList.Add(item.EquipmentData.EquipmentPropsSO);
+            }
+        }
+
+        if (weaponsList.Count > 0)
+        {
+            EquipRightWeapon(weaponsList[0]);
+            currentWeaponIndex = 0;
+        }
+        else
+        {
+            EquipRightWeapon(fighterSO);
+            EquipLeftWeapon(fighterSO);
+        }
+    }
+    
 
     public void EquipRightWeapon(EquipmentPropsSO equipmentSo)
     {

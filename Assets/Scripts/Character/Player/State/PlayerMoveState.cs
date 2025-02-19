@@ -20,11 +20,11 @@ public class PlayerMoveState : PlayerState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        if (playerStateMachine.Player.PlayerInputSystem.BackwardInput) {
-            Move(playerStateMachine.Player.PlayerInputSystem.MovementInput,(float)playerStateMachine.Player.PlayerStats.Speed/10,true);
+        if (playerStateMachine.Player.PlayerInputManager.BackwardInput) {
+            Move(playerStateMachine.Player.PlayerInputManager.MovementInput,(float)playerStateMachine.Player.PlayerStats.Speed/10,true);
         }
         else {
-            Move(playerStateMachine.Player.PlayerInputSystem.MovementInput,(float)playerStateMachine.Player.PlayerStats.Speed/10);
+            Move(playerStateMachine.Player.PlayerInputManager.MovementInput,(float)playerStateMachine.Player.PlayerStats.Speed/10);
         }
 
     }
@@ -38,9 +38,9 @@ public class PlayerMoveState : PlayerState
 
     private void UpdateMoveAnimation() {
         float x = playerStateMachine.Player.playerAnimationManager.GetFloatValueAnimation(playerPropertiesSO.MoveTrigger);
-        if(playerStateMachine.Player.PlayerInputSystem.BackwardInput && x!=1) {
+        if(playerStateMachine.Player.PlayerInputManager.BackwardInput && x!=1) {
             playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,1);
-        } else if( !playerStateMachine.Player.PlayerInputSystem.BackwardInput && x!=0) {
+        } else if( !playerStateMachine.Player.PlayerInputManager.BackwardInput && x!=0) {
             playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,0);
         }
     }

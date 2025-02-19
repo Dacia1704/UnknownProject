@@ -10,11 +10,12 @@ public class EnemyHitState: EnemyState
     {
         base.Enter();
         enemyStateMachine.Enemy.Damable.GetDamage(ref enemyStateMachine.Enemy.EnemyStats.Health,enemyStateMachine.Enemy.Damable.AttackableStats.Attack);
+        enemyStateMachine.Enemy.InvokeOnDebuffEffect(enemyStateMachine.Enemy.Damable.RandomDebuffEffect());
         PlayHitEffect();
         GameManager.Instance.FloatingTextUIObjectPooling.ShowFloatingHP(enemyStateMachine.Enemy.transform,"- " + enemyStateMachine.Enemy.Damable.AttackableStats.Attack.ToString()
             ,enemyStateMachine.Enemy.transform.position,Color.red);
+        enemyStateMachine.Enemy.Damable.ResetAttackableStats();
         
-        enemyStateMachine.Enemy.InvokeOnDebuffEffect(enemyStateMachine.Enemy.Damable.RandomDebuffEffect());
         enemyStateMachine.Enemy.OnHealthDamaged.Invoke(enemyStateMachine.Enemy.EnemyStats.Health);
 
         if (enemyStateMachine.Enemy.EnemyStats.Health <= 0)
@@ -26,20 +27,16 @@ public class EnemyHitState: EnemyState
             enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.HitAnimationName);
         }
         
-        enemyStateMachine.Enemy.Damable.ResetAttackableStats();
         
     }
     
     public override void Update()
     {
         base.Update();
-
-        if (enemyStateMachine.Enemy.Damable.AttackableStats.Attack == 0 && enemyStateMachine.Enemy.EnemyAnimationManager.IsAnimationEnded(enemyStateMachine.Enemy.EnemyPropertiesSO.HitAnimationName,0))
-        {
-            OnAttack();
-            OnMove();
-            OnIdle();
-        }
+        OnHit();
+        OnAttack();
+        OnMove();
+        OnIdle();
     }
 
 

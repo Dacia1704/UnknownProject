@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class Stats
@@ -20,15 +21,18 @@ public class Stats
 
     public Stats Clone()
     {
-        Stats newStats = new Stats();
-        newStats.Speed = this.Speed;
-        newStats.Attack = this.Attack;
-        newStats.Defend = this.Defend;
-        newStats.Health = this.Health;
-        newStats.Resistance = this.Resistance;
-        newStats.Accuracy = this.Accuracy;
-        newStats.AttackSpeed = this.AttackSpeed;
-        newStats.CanDealDebuffEffects = new List<DebuffEffect>(this.CanDealDebuffEffects);
+        Stats newStats = new Stats
+        {
+            Speed = this.Speed,
+            Attack = this.Attack,
+            Defend = this.Defend,
+            Health = this.Health,
+            Resistance = this.Resistance,
+            Accuracy = this.Accuracy,
+            AttackSpeed = this.AttackSpeed,
+            CanDealDebuffEffects = new List<DebuffEffect>(this.CanDealDebuffEffects)
+            
+        };
         return newStats;
     }
 }

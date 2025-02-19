@@ -2,12 +2,13 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputSystem {
+public class PlayerInputManager {
 	private PlayerInputActions playerInputActions;
 	public Vector2 MovementInput { get; private set; }
 	public bool NomalAttackInput { get; private set; }
 	public bool DashInput { get; private set; }
 	public bool BackwardInput { get; private set; }
+	public bool SwapWeaponInput { get; set; }
     public void Start() {
 		playerInputActions = new PlayerInputActions();
 		EnablePlayerInput();
@@ -21,6 +22,8 @@ public class PlayerInputSystem {
 		playerInputActions.Player.Backward.started += onPlayerInputBackwardStarted;
 		playerInputActions.Player.Backward.performed += onPlayerInputBackwardPerformed;
 		playerInputActions.Player.Backward.canceled += onPlayerInputBackwardCanceled;
+		playerInputActions.Player.SwapWeapon.started += onPlayerInputSwapWeaponStarted;
+		playerInputActions.Player.SwapWeapon.canceled += onPlayerInputSwapWeaponCanceled;
 
     }
 
@@ -74,6 +77,16 @@ public class PlayerInputSystem {
 	private void onPlayerInputDashCanceled(InputAction.CallbackContext context)
 	{
 		DashInput = false;
+	}
+
+	private void onPlayerInputSwapWeaponStarted(InputAction.CallbackContext context)
+	{
+		SwapWeaponInput = true;
+	}
+
+	private void onPlayerInputSwapWeaponCanceled(InputAction.CallbackContext context)
+	{
+		SwapWeaponInput = false;
 	}
 
 	public void EnablePlayerInput() {
