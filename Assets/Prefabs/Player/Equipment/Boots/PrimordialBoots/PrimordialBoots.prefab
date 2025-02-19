@@ -2377,7 +2377,7 @@ GameObject:
   - component: {fileID: 8708848024771672747}
   - component: {fileID: 1547865818114743223}
   - component: {fileID: 2857802422508618304}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: PrimordialBoots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2414,6 +2414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 662eccc948a93a94fa752dec71ff595f, type: 2}
+  attackTransform: {fileID: 0}
 --- !u!65 &2857802422508618304
 BoxCollider:
   m_ObjectHideFlags: 0

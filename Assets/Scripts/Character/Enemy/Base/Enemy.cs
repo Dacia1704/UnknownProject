@@ -1,60 +1,52 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public abstract class Enemy : Character {
+public abstract class Enemy : Character,IPoolingObject {
     
     [field: SerializeField] public EnemyPropertiesSO EnemyPropertiesSO { get; protected set; }
+    [field: SerializeField]public PoolingObjectPropsSO PoolingObjectPropsSO { get; set; }
     protected EnemyStateMachine enemyStateMachine;
-    public EnemyAnimationController EnemyAnimationController { get; protected set; }
-    public EnemyCollisionManager EnemyCollisionManager { get; protected set; }
+    public EnemyAnimationManager EnemyAnimationManager { get; protected set; }
+    public BodyColliderManager BodyColliderManager { get; private set; }
     public EnemyAI EnemyAI { get; protected set; }
     
     public Player Player{ get; protected set; }
     
-    public EnemyStats EnemyStats { get; protected set; }
+    [field: SerializeField]public EnemyStats EnemyStats { get; protected set; }
 
     public Attackable Attackable{ get; protected set; }
-    
-    protected virtual void Awake() {
-        enemyStateMachine = new(this);
-    }
 
-    protected override void Start() {
-        base.Start();
-        Player = GameManager.instance.Player;
+    public float YPosReset { get; private set; }
+    
+    
+    protected override void Awake() {
+        base.Awake();
+        enemyStateMachine = new(this);
         Rigidbody= GetComponent<Rigidbody>();
         Attackable = GetComponentInChildren<Attackable>();
         EnemyAI = GetComponentInChildren<EnemyAI>();
-        EnemyAnimationController = GetComponentInChildren<EnemyAnimationController>();
-        EnemyCollisionManager = GetComponentInChildren<EnemyCollisionManager>();
+        EnemyAnimationManager = GetComponentInChildren<EnemyAnimationManager>();
+        BodyColliderManager = GetComponentInChildren<BodyColliderManager>();
         healthBarUI = GetComponentInChildren<HealthBarUI>();
-        
-        SetUpState();
-        
-        enemyStateMachine.Enemy.Damable.transform.gameObject.SetActive(true);
-        enemyStateMachine.Enemy.Attackable.transform.gameObject.SetActive(true);
-        Damable.SetDamableLayer(EnemyPropertiesSO.DamableLayers);
-        EnemyStats = new EnemyStats(EnemyPropertiesSO.BaseStats);
-        Damable.DamableStats = new EnemyStats(EnemyStats);
-        Attackable.SetAttackStats(EnemyStats);
-        
-        OnMaxHealthChanged?.Invoke(EnemyPropertiesSO.BaseStats.Health);
-        OnHealthDamaged?.Invoke(EnemyStats.Health);
-        healthBarUI.SetUpEaseHealthSlider(EnemyStats.Health);
-        healthBarUI.SetUpHealHealthSlider(EnemyStats.Health);
-        
-        StartCoroutine(HealByTime());
+        Player = GameManager.instance.Player;
+        YPosReset = transform.position.y;
     }
 
-    private IEnumerator HealByTime()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(2f);
-            Heal(50);
-        }
+    protected  void Start() {
+        Damable.SetDamableLayer(EnemyPropertiesSO.DamableLayers);
+        Damable.DamableStats = new EnemyStats(EnemyPropertiesSO.BaseStats);
+        Attackable.SetAttackStats(EnemyPropertiesSO.BaseStats);
+        OnMaxHealthChanged?.Invoke(EnemyPropertiesSO.BaseStats.Health);
+        SetUpState();
     }
+
+    private void OnEnable()
+    {
+        ResetCharacter();
+    }
+
 
     protected virtual void Update() {
         enemyStateMachine.Update();
@@ -68,14 +60,40 @@ public abstract class Enemy : Character {
     {
         enemyStateMachine.ChangeState(enemyStateMachine.EnemyIdleState);
     }
-    
-    public void Heal(int healAmount)
+
+    public override void DeathStart()
     {
-        EnemyStats.Health = Mathf.Clamp(EnemyStats.Health + healAmount, 0, EnemyPropertiesSO.BaseStats.Health);
-        OnHealthHealed?.Invoke(EnemyStats.Health);
+        base.DeathStart();
+        Damable.transform.gameObject.SetActive(false);
+        Attackable.transform.gameObject.SetActive(false);
+        GameObject equipment = EquipmentManager.instance.RandomDrop();
+        equipment.transform.position = transform.position;
     }
-    
-    
-    
+    public override void DeathEnd()
+    {
+        base.DeathEnd();
+        BodyColliderManager.gameObject.SetActive(false);  // when body collider disable, character body will drop
+        StartCoroutine(ReturnToPool());
+    }
+    public override void ResetCharacter()
+    {
+        base.ResetCharacter();
+        Damable.transform.gameObject.SetActive(true);
+        Attackable.transform.gameObject.SetActive(true);
+        BodyColliderManager.gameObject.SetActive(true);
+        EnemyStats = new EnemyStats(EnemyPropertiesSO.BaseStats);
+        OnHealthDamaged?.Invoke(EnemyStats.Health);
+        healthBarUI.SetUpEaseHealthSlider(EnemyStats.Health);
+        healthBarUI.SetUpHealHealthSlider(EnemyStats.Health);
+        transform.position = new Vector3(transform.position.x, YPosReset, transform.position.z);
+    }
+
+    private IEnumerator ReturnToPool()
+    {
+        yield return new WaitForSeconds(5f);
+        SetUpState();
+        GameManager.instance.EnemyManager.EnemyPooling.ReturnEnemyToPool(this.gameObject);
+    }
+
     
 }

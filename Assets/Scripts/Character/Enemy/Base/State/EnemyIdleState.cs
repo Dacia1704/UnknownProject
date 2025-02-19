@@ -9,16 +9,18 @@ public class EnemyIdleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.IdleAnimationName);
+        enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.IdleAnimationName);
     }
 
     public override void Update()
     {
         base.Update();
-        OnDeath();
-        OnHit();
-        OnAttack();
-        OnMove();
+        if (enemyStateMachine.Enemy.BodyColliderManager.IsGrounded)
+        {
+            OnHit();
+            OnAttack();
+            OnMove();
+        }
     }
     
 }

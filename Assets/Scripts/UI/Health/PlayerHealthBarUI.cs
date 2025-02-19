@@ -1,8 +1,10 @@
-﻿public class PlayerHealthBarUI: HealthBarUI
+﻿using UnityEngine;
+
+public class PlayerHealthBarUI: HealthBarUI
 {
-        protected override void Start()
+        protected override void OnEnable()
         {
                 character = GameManager.instance.Player;
-                base.Start();
+                base.OnEnable();
         }
 }

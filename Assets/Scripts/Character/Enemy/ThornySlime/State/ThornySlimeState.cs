@@ -10,7 +10,7 @@ public class ThornySlimeState: EnemyState
 
     protected override void OnHit()
     {
-        if (enemyStateMachine.Enemy.Damable.IsGetAttack != 0 && !thornySlimeStateMachine.ThornySlime.ThornySlimeAI.ShouldDefend)
+        if (enemyStateMachine.Enemy.Damable.AttackableStats.Attack != 0 && !thornySlimeStateMachine.ThornySlime.ThornySlimeAI.ShouldDefend)
         {
             enemyStateMachine.ChangeState(enemyStateMachine.EnemyHitState);
         }

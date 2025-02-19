@@ -39,6 +39,14 @@ public class ThornySlimeAI:EnemyAI
                 }
         }
 
+        private void OnTriggerExit(Collider other)
+        {
+                if ((enemy.EnemyPropertiesSO.DamableLayers & (1 << other.gameObject.layer)) != 0 && defendCounter <=0)
+                {
+                        ShouldDefend = false;
+                }
+        }
+
         public void ResetDefendCounter()
         {
                 defendCounter = thornySlime.ThornySlimePropertiesSO.DefendCoolDown;

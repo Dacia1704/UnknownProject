@@ -53,17 +53,9 @@ public abstract class EnemyState : IState
 
     protected virtual void OnHit()
     {
-        if (enemyStateMachine.Enemy.Damable.IsGetAttack != 0)
+        if (enemyStateMachine.Enemy.Damable.AttackableStats.Attack != 0)
         {
             enemyStateMachine.ChangeState(enemyStateMachine.EnemyHitState);
-        }
-    }
-
-    protected virtual void OnDeath()
-    {
-        if (enemyStateMachine.Enemy.EnemyStats.Health <= 0)
-        {
-            enemyStateMachine.ChangeState(enemyStateMachine.EnemyDeathState);
         }
     }
 }

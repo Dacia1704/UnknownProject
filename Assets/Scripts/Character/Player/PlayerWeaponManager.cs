@@ -7,8 +7,8 @@ using UnityEngine.PlayerLoop;
 public class PlayerWeaponManager: MonoBehaviour
 {
     protected EquipmentPooling equipmentPooling;
-    [field: SerializeField]protected GameObject currentRightWeapon { get; private set; }
-    [field: SerializeField]protected GameObject currentLeftWeapon { get; private set; }
+    protected GameObject currentRightWeapon { get; private set; }
+    protected GameObject currentLeftWeapon { get; private set; }
 
     protected Player player;
 
@@ -65,31 +65,31 @@ public class PlayerWeaponManager: MonoBehaviour
     {
         if (currentRightWeapon)
         {
-            player.PlayerAnimationController.SetFloatValueAnimation("equiped",1f);
+            player.playerAnimationManager.SetFloatValueAnimation("equiped",1f);
             EquipmentPropsSO equipmentSo = currentRightWeapon.GetComponent<Equipment>().EquipmentPropsSO;
             if (equipmentSo.WeaponType == WeaponType.Sword)
             {
-                player.PlayerAnimationController.SetBoolValueAnimation("sword",true);
-                player.PlayerAnimationController.SetBoolValueAnimation("staff",false);
-                player.PlayerAnimationController.SetBoolValueAnimation("bow",false);
+                player.playerAnimationManager.SetBoolValueAnimation("sword",true);
+                player.playerAnimationManager.SetBoolValueAnimation("staff",false);
+                player.playerAnimationManager.SetBoolValueAnimation("bow",false);
             }
             else if(equipmentSo.WeaponType == WeaponType.Staff)
             {
-                player.PlayerAnimationController.SetBoolValueAnimation("sword",false);
-                player.PlayerAnimationController.SetBoolValueAnimation("staff",true);
-                player.PlayerAnimationController.SetBoolValueAnimation("bow",false);
+                player.playerAnimationManager.SetBoolValueAnimation("sword",false);
+                player.playerAnimationManager.SetBoolValueAnimation("staff",true);
+                player.playerAnimationManager.SetBoolValueAnimation("bow",false);
             } else if (equipmentSo.WeaponType == WeaponType.Bow)
             {
-                player.PlayerAnimationController.SetBoolValueAnimation("sword",false);
-                player.PlayerAnimationController.SetBoolValueAnimation("staff",false);
-                player.PlayerAnimationController.SetBoolValueAnimation("bow",true);
+                player.playerAnimationManager.SetBoolValueAnimation("sword",false);
+                player.playerAnimationManager.SetBoolValueAnimation("staff",false);
+                player.playerAnimationManager.SetBoolValueAnimation("bow",true);
             } else {
-                player.PlayerAnimationController.SetFloatValueAnimation("equiped",0f);
+                player.playerAnimationManager.SetFloatValueAnimation("equiped",0f);
             }
         }
         else
         {
-            player.PlayerAnimationController.SetFloatValueAnimation("equiped",0f);
+            player.playerAnimationManager.SetFloatValueAnimation("equiped",0f);
         }
     }
 }

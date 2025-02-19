@@ -10,6 +10,7 @@ public abstract class PlayerState : IState
 	
 	protected float currentAttack = 0;
 	protected float nomalAttackCounter = 0;
+	protected float hitCounter = 0;
 	public  PlayerState (PlayerStateMachine playerStateMachine) {
 		this.playerStateMachine = playerStateMachine;
 		this.playerPropertiesSO = playerStateMachine.Player.PlayerPropertiesSO;
@@ -17,8 +18,9 @@ public abstract class PlayerState : IState
 	}
     public virtual void Enter()
     {
-		// Debug.Log("State: " + GetType().Name);
+		Debug.Log("State: " + GetType().Name);
 		nomalAttackCounter = Time.time;
+		hitCounter = playerPropertiesSO.BaseStats.HitCooldown;
 
     }
 
@@ -28,7 +30,10 @@ public abstract class PlayerState : IState
 
     public virtual void PhysicsUpdate()
     {
-
+	    if (hitCounter > 0)
+	    {
+		    hitCounter -= Time.fixedDeltaTime;
+	    }
     }
 
     public virtual void Update()
@@ -38,7 +43,7 @@ public abstract class PlayerState : IState
 
 	//logic
     protected virtual void Move(Vector2 direction, float speed,bool backward= false) {
-		if (PlayerReusableData.MovementInput == Vector2.zero) return;
+		if (playerStateMachine.Player.PlayerInputSystem.MovementInput == Vector2.zero) return;
 		float newAngle = - Camera.main.transform.eulerAngles.y;
 		float angleRadians = Mathf.Deg2Rad * newAngle;
         float newX = direction.x * Mathf.Cos(angleRadians) - direction.y * Mathf.Sin(angleRadians);
@@ -58,23 +63,23 @@ public abstract class PlayerState : IState
 
 	protected virtual void Attack()
 	{
-		if (playerStateMachine.Player.PlayerInputSystem.NomalAttackInput && PlayerReusableData.IsNomalAttacking == false)
+		if (playerStateMachine.Player.PlayerInputSystem.NomalAttackInput && playerStateMachine.Player.IsNomalAttacking == false)
 		{
-			PlayerReusableData.IsNomalAttacking = true;
-			playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,currentAttack);
+			playerStateMachine.Player.IsNomalAttacking = true;
+			playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,currentAttack);
 
-			if (PlayerReusableData.MovementInput == new Vector2(0, 0))
+			if (playerStateMachine.Player.PlayerInputSystem.MovementInput == new Vector2(0, 0))
 			{
-				TurnPlayerToNearestEnemy();
+				TurnPlayerToMousePosition();
 			}
 		}
-		else if (PlayerReusableData.IsNomalAttacking)
+		else if (playerStateMachine.Player.IsNomalAttacking)
 		{
-			if (playerStateMachine.Player.PlayerAnimationController.IsAnimationEnded(
+			if (playerStateMachine.Player.playerAnimationManager.IsAnimationEnded(
 				    "SwordNomalAttack", 1) )
 			{
-				PlayerReusableData.IsNomalAttacking = false;
-				playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
+				playerStateMachine.Player.IsNomalAttacking = false;
+				playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
 				nomalAttackCounter = Time.time;
 				if (currentAttack == 0)
 				{
@@ -84,21 +89,21 @@ public abstract class PlayerState : IState
 				{
 					currentAttack = 0;
 				}
-			} else if (playerStateMachine.Player.PlayerAnimationController.IsAnimationEnded(
+			} else if (playerStateMachine.Player.playerAnimationManager.IsAnimationEnded(
 				           "StaffNomalAttack", 1))
 			{
-				PlayerReusableData.IsNomalAttacking = false;
-				playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
-			} else if (playerStateMachine.Player.PlayerAnimationController.IsAnimationEnded(
+				playerStateMachine.Player.IsNomalAttacking = false;
+				playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
+			} else if (playerStateMachine.Player.playerAnimationManager.IsAnimationEnded(
 				           "BowNomalAttack", 1))
 			{
-				PlayerReusableData.IsNomalAttacking = false;
-				playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
-			} else if (playerStateMachine.Player.PlayerAnimationController.IsAnimationEnded(
+				playerStateMachine.Player.IsNomalAttacking = false;
+				playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
+			} else if (playerStateMachine.Player.playerAnimationManager.IsAnimationEnded(
 				           "FighterNomalAttack", 1))
 			{
-				PlayerReusableData.IsNomalAttacking = false;
-				playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
+				playerStateMachine.Player.IsNomalAttacking = false;
+				playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
 				nomalAttackCounter = Time.time;
 				if (currentAttack == 0)
 				{
@@ -109,7 +114,7 @@ public abstract class PlayerState : IState
 					currentAttack = 0;
 				}
 			} 
-		} else if (PlayerReusableData.IsNomalAttacking == false)
+		} else if (playerStateMachine.Player.IsNomalAttacking == false)
 		{
 			if (Time.time - nomalAttackCounter >= playerPropertiesSO.BaseStats.ResetNomalAttackTime)
 			{
@@ -123,6 +128,17 @@ public abstract class PlayerState : IState
 	{
 		Enemy nearestEnemy = GetNearestEnemy();
 		TurnPlayer(nearestEnemy.transform.position);
+	}
+
+	protected void TurnPlayerToMousePosition()
+	{
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Ground")))
+		{
+			Vector3 worldPosition = hit.point;
+			// Debug.Log("Mouse World Position: " + worldPosition);
+			TurnPlayer(worldPosition);
+		}
 	}
 	protected void TurnPlayer(Vector3 target)
 	{
@@ -152,22 +168,30 @@ public abstract class PlayerState : IState
 
 	//check state
 	protected virtual void OnIdle() {
-		if(PlayerReusableData.MovementInput == new Vector2(0, 0)) {
+		if(playerStateMachine.Player.PlayerInputSystem.MovementInput == new Vector2(0, 0)) {
 			
 			playerStateMachine.ChangeState(playerStateMachine.PlayerIdleState);
 		}
 	}
 	protected virtual void OnMove() {
-		if(PlayerReusableData.MovementInput != new Vector2(0, 0) && PlayerReusableData.IsGround) {
+		if(playerStateMachine.Player.PlayerInputSystem.MovementInput != new Vector2(0, 0)) {
 			playerStateMachine.ChangeState(playerStateMachine.PlayerMoveState);
 		}
 	}
 
 	protected virtual void OnDash()
 	{
-		if (PlayerReusableData.IsGround && playerStateMachine.Player.PlayerInputSystem.DashInput)
+		if (playerStateMachine.Player.PlayerInputSystem.DashInput)
 		{
 			playerStateMachine.ChangeState(playerStateMachine.PlayerDashState);
+		}
+	}
+
+	protected virtual void OnHit()
+	{
+		if (playerStateMachine.Player.Damable.AttackableStats.Attack > 0 && hitCounter <=0f)
+		{
+			playerStateMachine.ChangeState(playerStateMachine.PlayerHitState);
 		}
 	}
 

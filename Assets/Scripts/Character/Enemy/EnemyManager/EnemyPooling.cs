@@ -12,4 +12,10 @@ public class EnemyPooling : ObjectPooling
         {
                 return GetObject(keyObject);
         }
+
+        public void ReturnEnemyToPool(GameObject enemyObject)
+        {
+                enemyObject.SetActive(false);
+                ReleaseObject(enemyObject);
+        }
 }

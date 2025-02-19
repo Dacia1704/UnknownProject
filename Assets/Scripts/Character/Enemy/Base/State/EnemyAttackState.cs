@@ -9,7 +9,7 @@ public class EnemyAttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.AttackAnimationName);
+        enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.AttackAnimationName);
         attackCooldownCounter = enemyStateMachine.Enemy.EnemyPropertiesSO.AttackCooldown;
     }
     
@@ -17,9 +17,8 @@ public class EnemyAttackState : EnemyState
     {
         base.Update();
 
-        if (enemyStateMachine.Enemy.Damable.IsGetAttack == 0 && enemyStateMachine.Enemy.EnemyAnimationController.IsAnimationEnded(enemyStateMachine.Enemy.EnemyPropertiesSO.AttackAnimationName,0))
+        if (enemyStateMachine.Enemy.Damable.AttackableStats.Attack == 0 && enemyStateMachine.Enemy.EnemyAnimationManager.IsAnimationEnded(enemyStateMachine.Enemy.EnemyPropertiesSO.AttackAnimationName,0))
         {
-            OnDeath();
             OnMove();
             OnIdle();
         }

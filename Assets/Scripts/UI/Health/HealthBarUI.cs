@@ -6,15 +6,17 @@ using UnityEngine.UI;
 
 public abstract class HealthBarUI: UIBase
 {
-        [field: SerializeField] private Slider healthSlider;
-        [field: SerializeField] private Slider easeHealthSlider;
-        [field: SerializeField] private Slider healHealthSlider;
+        [field: SerializeField] protected Slider healthSlider;
+        [field: SerializeField] protected Slider easeHealthSlider;
+        [field: SerializeField] protected Slider healHealthSlider;
         protected Character character;
 
-        [SerializeField]private float lerpSpeed = 0.05f;
+        [SerializeField]protected float lerpSpeed = 0.05f;
 
-        private bool getDam;
-        protected virtual void Start()
+        protected bool getDam;
+
+
+        protected virtual void OnEnable()
         {
                 character.OnMaxHealthChanged += UpdateMaxHealth;
                 character.OnHealthDamaged += UpdateDamageHealth;

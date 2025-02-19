@@ -9,14 +9,14 @@ public class ThornySlimeHitDefendState:ThornySlimeState
     public override void Enter()
     {
         base.Enter();
-        enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(thornySlimeStateMachine.ThornySlime.ThornySlimePropertiesSO.HitDefendAnimationName);
-        thornySlimeStateMachine.ThornySlime.Damable.ResetIsGetAttack();
+        enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(thornySlimeStateMachine.ThornySlime.ThornySlimePropertiesSO.HitDefendAnimationName);
+        thornySlimeStateMachine.ThornySlime.Damable.ResetAttackableStats();
     }
 
     public override void Update()
     {
         base.Update();
-        if(enemyStateMachine.Enemy.EnemyAnimationController.IsAnimationEnded(thornySlimeStateMachine.ThornySlime.ThornySlimePropertiesSO.HitDefendAnimationName,0))
+        if(enemyStateMachine.Enemy.EnemyAnimationManager.IsAnimationEnded(thornySlimeStateMachine.ThornySlime.ThornySlimePropertiesSO.HitDefendAnimationName,0))
         {
             OnDefend();
         }

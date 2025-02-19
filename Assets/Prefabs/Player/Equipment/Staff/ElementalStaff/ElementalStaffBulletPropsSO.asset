@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeyObject: ElementalStaffBullet
   ObjectPrefab: {fileID: 1537593200154216, guid: 7552ffd828908e243a3bf7ccf7e47412, type: 3}
+  <TimeRemainAfterHit>k__BackingField: 0.1

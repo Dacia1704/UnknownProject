@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeyObject: PrimordialBowBullet
   ObjectPrefab: {fileID: 7955905521837167628, guid: 293612bf505bf0e43b1616276319b29a, type: 3}
+  <TimeRemainAfterHit>k__BackingField: 10

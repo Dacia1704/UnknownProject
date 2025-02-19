@@ -20,6 +20,7 @@ MonoBehaviour:
     Health: 1000
     Resistance: 0
     Accuracy: 0
+    CanDealDebuffEffects: 01000000
     <DropRate>k__BackingField: 0
   <IdleAnimationName>k__BackingField: Idle
   <MoveAnimationName>k__BackingField: Move
@@ -29,7 +30,7 @@ MonoBehaviour:
   <DamableLayers>k__BackingField:
     serializedVersion: 2
     m_Bits: 1024
-  <BaseDistanceTrigger>k__BackingField: 2
+  <BaseDistanceTrigger>k__BackingField: 10
   <DetectModifierDistance>k__BackingField: 2
   <AttackDistance>k__BackingField: 1
   <AttackCooldown>k__BackingField: 1

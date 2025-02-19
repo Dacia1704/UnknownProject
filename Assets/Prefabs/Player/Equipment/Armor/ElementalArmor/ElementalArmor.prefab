@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4037530751657247997}
   - component: {fileID: -8726810130824564016}
   - component: {fileID: 3576141678232801248}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ElementalArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,14 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 7926c4c2174cdd64ea28d77b393c7aa8, type: 2}
-  <EquipmentStats>k__BackingField:
-    Speed: 0
-    Attack: 0
-    AttackSpeed: 0
-    Defend: 0
-    Health: 0
-    Resistance: 0
-    Accuracy: 0
+  attackTransform: {fileID: 0}
 --- !u!65 &3576141678232801248
 BoxCollider:
   m_ObjectHideFlags: 0

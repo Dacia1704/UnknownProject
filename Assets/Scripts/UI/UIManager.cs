@@ -37,10 +37,10 @@ public class UIManager : MonoBehaviour
                 bowButton.onClick.AddListener(() => OnBowButtonClicked?.Invoke());
                 equipmentButton.onClick.AddListener(() =>
                 {
-                        if (EquipmentMenuUI.gameObject.activeSelf) EquipmentMenuUI.Hide();
+                        if (EquipmentMenuUI.gameObject.activeSelf) EquipmentMenuUI.Disable();
                         else
                         {
-                                EquipmentMenuUI.Show();
+                                EquipmentMenuUI.Enable();
                                 EquipmentMenuUI.UpdateInventoryUI(EquipmentManager.instance.InventoryItems);
                         }
                 });

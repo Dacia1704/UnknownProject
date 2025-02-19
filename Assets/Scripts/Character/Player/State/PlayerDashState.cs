@@ -13,20 +13,21 @@ public class PlayerDashState: PlayerState
         base.Enter();
         _isDashing = true;
         _dashTime = 0;
-        _dashDirection = PlayerReusableData.MovementInput;
+        _dashDirection = playerStateMachine.Player.PlayerInputSystem.MovementInput;
         if(playerStateMachine.Player.PlayerInputSystem.BackwardInput) {
-            playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,1);
+            playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,1);
         } else {
-            playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,0);
+            playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,0);
         }
     }
 
     public override void Update()
     {
         base.Update();
-
+        
         if (!_isDashing)
         {
+            OnHit();
             OnIdle();
             OnMove();
         }
@@ -36,7 +37,7 @@ public class PlayerDashState: PlayerState
     {
         
         base.PhysicsUpdate();
-        Dash(PlayerReusableData.CurrentPlayerStats.Speed * playerStateMachine.Player.PlayerPropertiesSO.BaseStats.BaseDashModifier);
+        Dash(((float)playerStateMachine.Player.PlayerStats.Speed/10f) * playerStateMachine.Player.PlayerPropertiesSO.BaseStats.BaseDashModifier);
         _dashTime += Time.fixedDeltaTime;
         if (_dashTime > playerStateMachine.Player.PlayerPropertiesSO.BaseStats.BaseDashTime)
         {
@@ -67,7 +68,7 @@ public class PlayerDashState: PlayerState
 
     public override void Exit()
     {
-        playerStateMachine.Player.PlayerAnimationController.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,-1);
+        playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,-1);
         base.Exit();
     }
 }

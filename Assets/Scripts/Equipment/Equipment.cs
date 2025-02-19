@@ -13,10 +13,10 @@ using UnityEngine;
         get => EquipmentPropsSO; 
         set => EquipmentPropsSO = (EquipmentPropsSO)value;
     }
-     private void OnMouseDown()
-     {
-         EquipmentManager.instance.CollectEquipment(this.gameObject);
-     }
+     // private void OnMouseDown()
+     // {
+     //     EquipmentManager.instance.CollectEquipment(this.gameObject);
+     // }
 
      public void Attack(Vector3 direction)
      {

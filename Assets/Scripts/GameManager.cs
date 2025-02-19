@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public Player Player { get; private set; }
     public EnemyManager EnemyManager { get; private set; }
+    public FloatingTextUIObjectPooling FloatingTextUIObjectPooling { get; private set; }
 
     private void Awake()
     {
@@ -14,5 +15,6 @@ public class GameManager : MonoBehaviour
 
         Player = FindObjectOfType<Player>();
         EnemyManager = FindObjectOfType<EnemyManager>();
+        FloatingTextUIObjectPooling = FindObjectOfType<FloatingTextUIObjectPooling>();
     }
 }

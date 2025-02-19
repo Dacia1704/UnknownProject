@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -16,6 +17,7 @@ public class EnemyStats: Stats
                 this.Accuracy = stats.Accuracy;
                 this.AttackSpeed = stats.AttackSpeed;
                 this.Resistance = stats.Resistance;
+                CanDealDebuffEffects = new List<DebuffEffect>();
                 this.DropRate = stats.DropRate;
         }
 }

@@ -42,12 +42,12 @@ public class InventoryItemUI : DraggableItem,IPointerClickHandler
         PlayerEquipmentUI playerEquipmentUI = GetComponentInParent<PlayerEquipmentUI>();
         if (inventoryUI != null)
         {
-            inventoryUI.PreviewEquimentStatsUI.Show();
+            inventoryUI.PreviewEquimentStatsUI.Enable();
             inventoryUI.PreviewEquimentStatsUI.SetEquipmentData(EquipmentData);
         }
         else
         {
-            playerEquipmentUI.PreviewEquimentStatsUI.Show();
+            playerEquipmentUI.PreviewEquimentStatsUI.Enable();
             playerEquipmentUI.PreviewEquimentStatsUI.SetEquipmentData(EquipmentData);
         }
     }

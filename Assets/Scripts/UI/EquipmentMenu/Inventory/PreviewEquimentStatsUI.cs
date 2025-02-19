@@ -16,8 +16,8 @@ public class PreviewEquimentStatsUI : UIBase
 
     private void Start()
     {
-        CloseButton.onClick.AddListener(() => Hide());
-        Hide();
+        CloseButton.onClick.AddListener(() => Disable());
+        Disable();
     }
 
 
@@ -42,6 +42,7 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.AttackSpeed != 0) subText = subText +"AtkSpd: " + equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0) subText = subText +"Res: " + equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc: " + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
+            if(equipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None) subText = subText + "Effect: " + equipmentData.EquipmentStats.CanDealDebuffEffects[0].ToString() + "\n";
             subStats.text = subText;
         }
         else if (equipmentData.EquipmentPropsSO.EquimentType == EquimentType.Necklace)
@@ -55,6 +56,7 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.AttackSpeed != 0) subText = subText +"AtkSpd: " +  equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0) subText = subText +"Res: " +  equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc: " +  equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
+            if(equipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None) subText = subText + "Effect: " + equipmentData.EquipmentStats.CanDealDebuffEffects[0].ToString() + "\n";
             subStats.text = subText;
         }
         else if (equipmentData.EquipmentPropsSO.EquimentType == EquimentType.Weapon)
@@ -68,6 +70,7 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.AttackSpeed != 0) subText = subText + "AtkSpd: " + equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0) subText = subText + "Res: " + equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText + "Acc: " + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
+            if(equipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None) subText = subText + "Effect: " + equipmentData.EquipmentStats.CanDealDebuffEffects[0].ToString() + "\n";
             subStats.text = subText;
         }
         else if (equipmentData.EquipmentPropsSO.EquimentType == EquimentType.Boots)
@@ -76,11 +79,12 @@ public class PreviewEquimentStatsUI : UIBase
             
             string subText = "";
             if(equipmentData.EquipmentStats.Attack !=0 ) subText = subText + "Atk: " + equipmentData.EquipmentStats.Attack.ToString() + "\n";
-            if(equipmentData.EquipmentStats.Health != 0) subText = subText + equipmentData.EquipmentStats.Health.ToString() + "\n";
+            if(equipmentData.EquipmentStats.Health != 0) subText = subText + "Hp: " + equipmentData.EquipmentStats.Health.ToString() + "\n";
             if(equipmentData.EquipmentStats.Defend != 0) subText = subText + "Def: " + equipmentData.EquipmentStats.Defend.ToString() + "\n";
             if(equipmentData.EquipmentStats.AttackSpeed != 0) subText = subText +"AtkSpd: " + equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0) subText = subText + "Res: " + equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc: " + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
+            if(equipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None) subText = subText + "Effect: " + equipmentData.EquipmentStats.CanDealDebuffEffects[0].ToString() + "\n";
             subStats.text = subText;
         }
         else
@@ -100,6 +104,7 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.AttackSpeed != 0 && equipmentData.EquipmentStats.AttackSpeed<=1.01f) subText = subText +"AtkSpd: " + equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0 && equipmentData.EquipmentStats.Resistance <= 0.2f) subText = subText + "Res: " +equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Accuracy != 0 && equipmentData.EquipmentStats.Accuracy <= 0.2f) subText = subText +"Acc: " + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
+            if(equipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None) subText = subText + "Effect: " + equipmentData.EquipmentStats.CanDealDebuffEffects[0].ToString() + "\n";
             subStats.text = subText;
         }
 

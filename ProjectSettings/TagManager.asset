@@ -24,9 +24,9 @@ TagManager:
   - DamEnemy
   - NoTouch
   - Enemy
-  - 
-  - 
-  - 
+  - Player
+  - Equipment
+  - MapCollider
   - 
   - 
   - 

@@ -7,9 +7,17 @@
     public override void Enter()
     {
         base.Enter();
-        enemyStateMachine.Enemy.EnemyAnimationController.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.DieAnimationName);
-        
-        enemyStateMachine.Enemy.Damable.transform.gameObject.SetActive(false);
-        enemyStateMachine.Enemy.Attackable.transform.gameObject.SetActive(false);
+        enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.DieAnimationName);
+        enemyStateMachine.Enemy.DeathStart();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        if (enemyStateMachine.Enemy.EnemyAnimationManager.IsAnimationEnded(
+                enemyStateMachine.Enemy.EnemyPropertiesSO.DieAnimationName, 0))
+        {
+            enemyStateMachine.Enemy.DeathEnd();
+        }
     }
 }

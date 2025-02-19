@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3315687835612169830}
   - component: {fileID: -3138681552834439558}
   - component: {fileID: 2733818193380726289}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ElementalBow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

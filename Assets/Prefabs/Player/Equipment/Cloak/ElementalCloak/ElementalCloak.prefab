@@ -2253,7 +2253,7 @@ GameObject:
   - component: {fileID: 7015351486399878079}
   - component: {fileID: 1676908338577307953}
   - component: {fileID: 1746751298777035948}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ElementalCloak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2290,6 +2290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EquipmentPropsSO>k__BackingField: {fileID: 11400000, guid: 26357406464b5104bad7ce5631414d08, type: 2}
+  attackTransform: {fileID: 0}
 --- !u!65 &1746751298777035948
 BoxCollider:
   m_ObjectHideFlags: 0

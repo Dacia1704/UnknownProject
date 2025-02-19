@@ -32,19 +32,14 @@ public abstract class ObjectPooling: MonoBehaviour
             actionOnRelease: obj => obj.SetActive(false),
             actionOnDestroy: Destroy,
             collectionCheck: false,
-            defaultCapacity: 10,
-            maxSize: 20
+            defaultCapacity: 30,
+            maxSize: 50
         );
         return pools[keyObject].Get();
     }
 
     public void ReleaseObject(GameObject objectToRealse)
     {
-        // if (objectToRealse.GetComponent<IPoolingObject>() == null)
-        // {
-        //     Debug.Log("IpoolingObject is null");
-        // }
-        // Debug.Log(objectToRealse.name);
         string keyObjectToRealse = objectToRealse.GetComponent<IPoolingObject>().PoolingObjectPropsSO.KeyObject;
         string keyObject = objectPoolProps.PoolingObjectList.Find(obj => obj.KeyObject == keyObjectToRealse).KeyObject;
         objectToRealse.transform.SetParent(transform);
