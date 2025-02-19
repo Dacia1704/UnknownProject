@@ -42,7 +42,6 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.AttackSpeed != 0) subText = subText +"AtkSpd: " + equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0) subText = subText +"Res: " + equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc: " + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
-            if(equipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None) subText = subText + "Effect: " + equipmentData.EquipmentStats.CanDealDebuffEffects[0].ToString() + "\n";
             subStats.text = subText;
         }
         else if (equipmentData.EquipmentPropsSO.EquimentType == EquimentType.Necklace)
@@ -56,7 +55,6 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.AttackSpeed != 0) subText = subText +"AtkSpd: " +  equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0) subText = subText +"Res: " +  equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc: " +  equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
-            if(equipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None) subText = subText + "Effect: " + equipmentData.EquipmentStats.CanDealDebuffEffects[0].ToString() + "\n";
             subStats.text = subText;
         }
         else if (equipmentData.EquipmentPropsSO.EquimentType == EquimentType.Weapon)
@@ -70,7 +68,7 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.AttackSpeed != 0) subText = subText + "AtkSpd: " + equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0) subText = subText + "Res: " + equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText + "Acc: " + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
-            if(equipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None) subText = subText + "Effect: " + equipmentData.EquipmentStats.CanDealDebuffEffects[0].ToString() + "\n";
+            if(equipmentData.EquipmentStats.CanDealDebuffEffects.Count>0  && equipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None) subText = subText + "Effect: " + equipmentData.EquipmentStats.CanDealDebuffEffects[0].ToString() + "\n";
             subStats.text = subText;
         }
         else if (equipmentData.EquipmentPropsSO.EquimentType == EquimentType.Boots)
@@ -84,7 +82,6 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.AttackSpeed != 0) subText = subText +"AtkSpd: " + equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0) subText = subText + "Res: " + equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Accuracy != 0) subText = subText +"Acc: " + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
-            if(equipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None) subText = subText + "Effect: " + equipmentData.EquipmentStats.CanDealDebuffEffects[0].ToString() + "\n";
             subStats.text = subText;
         }
         else
@@ -104,7 +101,6 @@ public class PreviewEquimentStatsUI : UIBase
             if(equipmentData.EquipmentStats.AttackSpeed != 0 && equipmentData.EquipmentStats.AttackSpeed<=1.01f) subText = subText +"AtkSpd: " + equipmentData.EquipmentStats.AttackSpeed.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Resistance != 0 && equipmentData.EquipmentStats.Resistance <= 0.2f) subText = subText + "Res: " +equipmentData.EquipmentStats.Resistance.ToString("F2") + "\n";
             if(equipmentData.EquipmentStats.Accuracy != 0 && equipmentData.EquipmentStats.Accuracy <= 0.2f) subText = subText +"Acc: " + equipmentData.EquipmentStats.Accuracy.ToString("F2") + "\n";
-            if(equipmentData.EquipmentStats.CanDealDebuffEffects[0] != DebuffEffect.None) subText = subText + "Effect: " + equipmentData.EquipmentStats.CanDealDebuffEffects[0].ToString() + "\n";
             subStats.text = subText;
         }
 
