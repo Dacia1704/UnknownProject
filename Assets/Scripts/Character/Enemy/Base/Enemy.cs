@@ -30,7 +30,7 @@ public abstract class Enemy : Character,IPoolingObject {
         EnemyAnimationManager = GetComponentInChildren<EnemyAnimationManager>();
         BodyColliderManager = GetComponentInChildren<BodyColliderManager>();
         healthBarUI = GetComponentInChildren<HealthBarUI>();
-        Player = GameManager.instance.Player;
+        Player = GameManager.Instance.Player;
         YPosReset = transform.position.y;
     }
 
@@ -92,7 +92,7 @@ public abstract class Enemy : Character,IPoolingObject {
     {
         yield return new WaitForSeconds(5f);
         SetUpState();
-        GameManager.instance.EnemyManager.EnemyPooling.ReturnEnemyToPool(this.gameObject);
+        GameManager.Instance.EnemyManager.EnemyPooling.ReturnEnemyToPool(this.gameObject);
     }
 
     

@@ -10,7 +10,8 @@ public class EnemyHitState: EnemyState
     {
         base.Enter();
         enemyStateMachine.Enemy.Damable.GetDamage(ref enemyStateMachine.Enemy.EnemyStats.Health,enemyStateMachine.Enemy.Damable.AttackableStats.Attack);
-        GameManager.instance.FloatingTextUIObjectPooling.ShowFloatingHP(enemyStateMachine.Enemy.transform,"- " + enemyStateMachine.Enemy.Damable.AttackableStats.Attack.ToString()
+        PlayHitEffect();
+        GameManager.Instance.FloatingTextUIObjectPooling.ShowFloatingHP(enemyStateMachine.Enemy.transform,"- " + enemyStateMachine.Enemy.Damable.AttackableStats.Attack.ToString()
             ,enemyStateMachine.Enemy.transform.position,Color.red);
         
         enemyStateMachine.Enemy.InvokeOnDebuffEffect(enemyStateMachine.Enemy.Damable.RandomDebuffEffect());
@@ -39,6 +40,13 @@ public class EnemyHitState: EnemyState
             OnMove();
             OnIdle();
         }
+    }
+
+
+    private void PlayHitEffect()
+    {
+        CinemachineEffect.Instance.ShakeCamera(1.5f,0.1f);
+        GameManager.Instance.TriggerSlowMotion(0.2f,0.05f);
     }
 
 }

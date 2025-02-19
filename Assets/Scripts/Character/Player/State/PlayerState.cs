@@ -18,7 +18,7 @@ public abstract class PlayerState : IState
 	}
     public virtual void Enter()
     {
-		Debug.Log("State: " + GetType().Name);
+		// Debug.Log("State: " + GetType().Name);
 		nomalAttackCounter = Time.time;
 		hitCounter = playerPropertiesSO.BaseStats.HitCooldown;
 
@@ -150,7 +150,7 @@ public abstract class PlayerState : IState
 		float min = Mathf.Infinity;
 		Enemy nearest = null;
 
-		foreach (Enemy enemy in GameManager.instance.EnemyManager.EnemiesList)
+		foreach (Enemy enemy in GameManager.Instance.EnemyManager.EnemiesList)
 		{
 			float distance = Vector3.Distance(playerStateMachine.Player.transform.position, enemy.transform.position);
 			if (min > distance)
