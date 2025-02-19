@@ -25801,9 +25801,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 0}
-  <ToxicEffect>k__BackingField: {fileID: 725563663}
-  <BurnEffect>k__BackingField: {fileID: 1459828896}
-  <FrozenEffect>k__BackingField: {fileID: 1118011710}
+  <ToxicEffect>k__BackingField: {fileID: 0}
+  <BurnEffect>k__BackingField: {fileID: 0}
+  <FrozenEffect>k__BackingField: {fileID: 0}
   Damable: {fileID: 0}
   PlayerPropertiesSO: {fileID: 11400000, guid: 17ef01cbc3e4a1e4e831adbea151b78a, type: 2}
   playerAnimationManager: {fileID: 0}
