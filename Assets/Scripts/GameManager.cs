@@ -5,10 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    
+    public int CurrentScore { get; set; }
+    public int CurrentWave { get; set; }
 
-    public Player Player { get; private set; }
-    public EnemyManager EnemyManager { get; private set; }
-    public FloatingTextUIObjectPooling FloatingTextUIObjectPooling { get; private set; }
+    [field: SerializeField]public Player Player { get; private set; }
+    [field: SerializeField]public EnemyManager EnemyManager { get; private set; }
+    [field: SerializeField]public FloatingTextUIObjectPooling FloatingTextUIObjectPooling { get; private set; }
 
     private void Awake()
     {

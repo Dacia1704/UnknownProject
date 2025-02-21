@@ -29,7 +29,7 @@ public class PlayerWeaponManager: MonoBehaviour
 
     private void Start()
     {
-        equipmentPooling = EquipmentManager.instance.EquipmentPooling;
+        equipmentPooling = EquipmentManager.Instance.EquipmentPooling;
         weaponsList = new List<EquipmentPropsSO>();
         currentWeaponIndex = 0;
         EquipRightWeapon(fighterSO);

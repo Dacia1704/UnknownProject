@@ -10,12 +10,19 @@ public class EquipmentMenuUI : UIBase {
     public event Action<List<InventoryItemUI>> OnEquipmentChanged; 
     
     private InventoryUI inventoryUI;
-    public PlayerEquipmentUI playerEquipmentUI;
+    [HideInInspector] public PlayerEquipmentUI PlayerEquipmentUI;
     [HideInInspector] public PlayerStats baseStats;
     [HideInInspector] public PlayerStats PlayerStats;
          
 
     [SerializeField] private Button closeButton;
+
+    private void Awake()
+    {
+        inventoryUI = GetComponentInChildren<InventoryUI>();
+        PlayerEquipmentUI = GetComponentInChildren<PlayerEquipmentUI>();
+    }
+
     protected void Start()
     {
         
@@ -26,11 +33,10 @@ public class EquipmentMenuUI : UIBase {
         });
         Disable();
 
-        inventoryUI = GetComponentInChildren<InventoryUI>();
-        playerEquipmentUI = GetComponentInChildren<PlayerEquipmentUI>();
+        
 
         OnInventoryChanged += inventoryUI.UpdateInventory;
-        OnEquipmentChanged += playerEquipmentUI.SetPlayerStatsWithEquipment;
+        OnEquipmentChanged += PlayerEquipmentUI.SetPlayerStatsWithEquipment;
     }
     
     public void SetBasePlayerStats(PlayerStats playerStats)
@@ -41,7 +47,7 @@ public class EquipmentMenuUI : UIBase {
 
     public void UpdatePlayerStats()
     {
-        OnEquipmentChanged?.Invoke(playerEquipmentUI.ListEquippedItems);
+        OnEquipmentChanged?.Invoke(PlayerEquipmentUI.ListEquippedItems);
     }
 
     public void UpdateInventoryUI(List<EquipmentData> equipmentData)

@@ -16,7 +16,7 @@ using UnityEngine;
 
      public void Attack(Vector3 direction)
      {
-         GameObject bullet = EquipmentManager.instance.EquipmentPooling.GetBulletEquipment(EquipmentPropsSO.EquipmentSet,
+         GameObject bullet = EquipmentManager.Instance.EquipmentPooling.GetBulletEquipment(EquipmentPropsSO.EquipmentSet,
              EquipmentPropsSO.EquimentType, EquipmentPropsSO.WeaponType);
          
          //set up transform

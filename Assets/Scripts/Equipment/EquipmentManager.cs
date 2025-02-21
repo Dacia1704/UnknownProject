@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class EquipmentManager : MonoBehaviour
 {
-        public static EquipmentManager instance;
+        public static EquipmentManager Instance;
 
         [HideInInspector] public EquipmentPooling EquipmentPooling;
         [field:SerializeField ]public List<EquipmentData> InventoryItems { get; private set; }
@@ -20,7 +20,7 @@ public class EquipmentManager : MonoBehaviour
         
         private void Awake()
         {
-                instance = this;
+                Instance = this;
                 InventoryItems = new List<EquipmentData>();
         }
 

@@ -20,7 +20,7 @@ public class HitEffect: MonoBehaviour,IPoolingObject
         {
                 if (!particle.isPlaying)
                 {
-                        EquipmentManager.instance.EquipmentPooling.ReleaseHitEffectEquipment(this.gameObject);
+                        EquipmentManager.Instance.EquipmentPooling.ReleaseHitEffectEquipment(this.gameObject);
                 }
         }
 

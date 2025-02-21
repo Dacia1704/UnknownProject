@@ -4,6 +4,15 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FireScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/LeafScene.unity
+    guid: 57b1964d99e7c9d4baa1fbc1db735835
+  - enabled: 1
+    path: Assets/Scenes/WaterScene.unity
+    guid: 113cddc1082574f43bef1236afa97f17
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a734226655a693c4bb6eb5defe21c8f3, type: 3}

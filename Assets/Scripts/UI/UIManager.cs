@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
         [Header("EquipmentMenu")]
         [SerializeField] protected Button equipmentButton;
         [HideInInspector] public EquipmentMenuUI EquipmentMenuUI;
-        [HideInInspector] public PlayerHealthBarUI PlayerHealthBarUI;
+        public PlayerHealthBarUI PlayerHealthBarUI;
         public AudioSource UIAudioSource { get; private set; }
         
 
@@ -19,8 +19,8 @@ public class UIManager : MonoBehaviour
         {
                 Instance = this;
                 EquipmentMenuUI = GetComponentInChildren<EquipmentMenuUI>();
-                PlayerHealthBarUI = GetComponentInChildren<PlayerHealthBarUI>();
                 UIAudioSource = GetComponent<AudioSource>();
+                PlayerHealthBarUI = GetComponentInChildren<PlayerHealthBarUI>();
         }
 
         private void Start()
@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
                         else
                         {
                                 EquipmentMenuUI.Enable();
-                                EquipmentMenuUI.UpdateInventoryUI(EquipmentManager.instance.InventoryItems);
+                                EquipmentMenuUI.UpdateInventoryUI(EquipmentManager.Instance.InventoryItems);
                         }
                 });
         }

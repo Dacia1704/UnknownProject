@@ -22,11 +22,11 @@ public class PlayerEquipmentUI : MonoBehaviour
         PlayerStatsUI = GetComponentInChildren<PlayerStatsUI>();
         PreviewEquimentStatsUI = GetComponentInChildren<PreviewEquimentStatsUI>();
         equipmentMenuUI = GetComponentInParent<EquipmentMenuUI>();
+        ListEquippedItems = new List<InventoryItemUI>();
     }
 
     private void Start()
     {
-        ListEquippedItems = new List<InventoryItemUI>();
         UpdateListEquippedItems();
     }
 
@@ -37,7 +37,7 @@ public class PlayerEquipmentUI : MonoBehaviour
         {
             if (child?.GetComponentInChildren<InventoryItemUI>())
             {
-                ListEquippedItems.Add(child.GetComponentInChildren<InventoryItemUI>());            
+                ListEquippedItems.Add(child?.GetComponentInChildren<InventoryItemUI>());            
             }
         }
         UpdateCountEquipmentSet(ListEquippedItems);

@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour,IPoolingObject
                 yield return new WaitForSeconds(((BulletPropsSO)PoolingObjectPropsSO).TimeRemainAfterHit);
                 Attackable.IsAttackSuccess = false;
                 Attackable.IsMapCollider = false;
-                EquipmentManager.instance.EquipmentPooling.ReleaseBulletEquipment(this.gameObject);
+                EquipmentManager.Instance.EquipmentPooling.ReleaseBulletEquipment(this.gameObject);
         }
         
         

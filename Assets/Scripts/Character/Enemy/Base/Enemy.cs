@@ -66,7 +66,7 @@ public abstract class Enemy : Character,IPoolingObject {
         base.DeathStart();
         Damable.transform.gameObject.SetActive(false);
         Attackable.transform.gameObject.SetActive(false);
-        GameObject equipment = EquipmentManager.instance.RandomDrop();
+        GameObject equipment = EquipmentManager.Instance.RandomDrop();
         equipment.transform.position = transform.position;
     }
     public override void DeathEnd()
