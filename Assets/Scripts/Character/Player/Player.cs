@@ -12,6 +12,7 @@ public class Player : Character
     public PlayerPropertiesSO PlayerPropertiesSO;
     private PlayerStateMachine playerStateMachine;
     public PlayerInputManager PlayerInputManager = new();
+    [FormerlySerializedAs("PlayerAudioSourse")] [HideInInspector] public AudioSource PlayerAudioSource;
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [Header("Weapon")] 
     [HideInInspector] public PlayerWeaponManager playerWeaponManager;
@@ -31,6 +32,7 @@ public class Player : Character
         playerAnimationManager = GetComponentInChildren<PlayerAnimationManager>();
         playerWeaponManager = GetComponentInChildren<PlayerWeaponManager>();
         healthBarUI = UIManager.Instance.PlayerHealthBarUI;
+        PlayerAudioSource = GetComponent<AudioSource>();
     }
     protected void Start()
     {
