@@ -13,7 +13,7 @@ public abstract class DraggableItem : MonoBehaviour,IBeginDragHandler,IDragHandl
         IconImage = GetComponent<Image>();
         ParentPreDrag = transform.parent;
     }
-    public void OnBeginDrag(PointerEventData eventData)
+    public virtual void OnBeginDrag(PointerEventData eventData)
     {
         // Debug.Log("OnBeginDrag");
         ParentPreDrag = transform.parent;

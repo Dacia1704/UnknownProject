@@ -19,7 +19,11 @@ public class EquipmentMenuUI : UIBase {
     protected void Start()
     {
         
-        closeButton.onClick.AddListener(() => Disable());
+        closeButton.onClick.AddListener(() =>
+        {
+            AudioManager.Instance.PlayButtonAudio(UIManager.Instance.UIAudioSource);
+            Disable();
+        });
         Disable();
 
         inventoryUI = GetComponentInChildren<InventoryUI>();

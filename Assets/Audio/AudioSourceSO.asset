@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f087e7b925428cba6e5a0ac2bdc653, type: 3}
+  m_Name: AudioSourceSO
+  m_EditorClassIdentifier: 
+  <LavaBgmAudio>k__BackingField: {fileID: 0}
+  <ButtonClickAudio>k__BackingField: {fileID: 8300000, guid: d069dde3cc3e8924b9cac9699b3eead4, type: 3}
+  <BeginDragAudio>k__BackingField: {fileID: 8300000, guid: d069dde3cc3e8924b9cac9699b3eead4, type: 3}
+  <EndDragAudio>k__BackingField: {fileID: 8300000, guid: b12c1e501b51c1340b16ba9a959678c5, type: 3}
+  <PlayerAttack1Audio>k__BackingField: {fileID: 8300000, guid: 37f1bb4806a676249891c3249bf962a2, type: 3}
+  <PlayerAttack2Audio>k__BackingField: {fileID: 8300000, guid: b2bbe26d2b55a2941b1af113a4061cf8, type: 3}
+  <PlayerAttack3Audio>k__BackingField: {fileID: 8300000, guid: faf5f5e0d32ef1849aaa81643d13f552, type: 3}
+  <PlayerHit1Audio>k__BackingField: {fileID: 8300000, guid: 164c4cd428e81554a89f938451aae22f, type: 3}
+  <PlayerHit2Audio>k__BackingField: {fileID: 8300000, guid: 7ed99645cac6f06438be178db3df164c, type: 3}
+  <PlayerHit3Audio>k__BackingField: {fileID: 8300000, guid: 5d5f587ae155eb94f867257211a96f5e, type: 3}
+  <PlayerDeathAudio>k__BackingField: {fileID: 8300000, guid: a118b77559d9f764cbc3b30b4be64c29, type: 3}
+  <BulletHitAudio>k__BackingField: {fileID: 8300000, guid: 13182107f288fdc47a11f9216c8f062b, type: 3}
+  <MasterMixerGroup>k__BackingField: {fileID: 24300002, guid: 647d0ff856dc7d94c9e8ab1b646be180, type: 2}
+  <BgmMixerGroup>k__BackingField: {fileID: -5335926825251887723, guid: 647d0ff856dc7d94c9e8ab1b646be180, type: 2}
+  <SfxMixerGroup>k__BackingField: {fileID: -6734364073728443574, guid: 647d0ff856dc7d94c9e8ab1b646be180, type: 2}

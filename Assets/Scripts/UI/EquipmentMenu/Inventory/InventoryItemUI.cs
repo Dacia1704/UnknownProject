@@ -57,10 +57,17 @@ public class InventoryItemUI : DraggableItem,IPointerClickHandler
         UpdatePreviewEquipmentStats();
     }
 
+    public override void OnBeginDrag(PointerEventData eventData)
+    {
+        AudioManager.Instance.PlayBeginDragAudio(UIManager.Instance.UIAudioSource);
+        base.OnBeginDrag(eventData);
+    }
+
     public override void OnEndDrag(PointerEventData eventData)
     {
+        AudioManager.Instance.PlayEndDragAudio(UIManager.Instance.UIAudioSource);
         base.OnEndDrag(eventData);
-
+        
         if (transform?.GetComponentInParent<PlayerEquipmentSlotUI>())
         {
             GetComponentInParent<PlayerEquipmentSlotUI>().PlayerEquipmentUI.UpdateListEquippedItems();

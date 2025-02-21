@@ -25,6 +25,7 @@ public class InventorySlotUI : DropItem,IPoolingObject
 
     public override void OnDrop(PointerEventData eventData)
     {
+        
         GameObject droppedObject = eventData.pointerDrag;
         DraggableItem draggableItem = droppedObject.GetComponent<DraggableItem>();
         Transform parentToSwap = draggableItem.ParentPreDrag;

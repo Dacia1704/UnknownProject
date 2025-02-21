@@ -10,6 +10,7 @@ public class PlayerHitState: PlayerState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.Instance.PlayPlayerHitAudio(playerStateMachine.Player.PlayerAudioSource);
         playerStateMachine.Player.IsNomalAttacking = false;
         playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
         playerStateMachine.Player.Damable.GetDamage(ref playerStateMachine.Player.PlayerStats.Health,playerStateMachine.Player.Damable.AttackableStats.Attack);
