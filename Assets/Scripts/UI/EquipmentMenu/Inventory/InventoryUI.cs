@@ -19,8 +19,9 @@ public class InventoryUI: MonoBehaviour
 
         public void UpdateInventory(List<EquipmentData> dataList)
         {
-                foreach (Transform child in contentInventory)
+                for (int i = contentInventory.childCount - 1; i >= 0; i--)
                 {
+                        Transform child = contentInventory.GetChild(i);
                         InventorySlotUIObjectPooling.ReleaseObject(child.gameObject);
                 }
                 foreach (EquipmentData data in dataList)
@@ -30,9 +31,17 @@ public class InventoryUI: MonoBehaviour
                         slot.transform.SetAsLastSibling();
                         
                         InventoryItemUI inventoryItemUI = slot.GetComponentInChildren<InventoryItemUI>();
-                        inventoryItemUI.EquipmentData = data;
-
-
+                        inventoryItemUI.EquipmentData = new EquipmentData(data.EquipmentPropsSO,data.EquipmentStats);
                 }
+        }
+
+        public void UpdateInventoryItemsList()
+        {
+                List<EquipmentData> dataList = new List<EquipmentData>();
+                foreach (Transform child in contentInventory)
+                {
+                        dataList.Add(child.GetComponentInChildren<InventoryItemUI>().EquipmentData);
+                }
+                EquipmentManager.Instance.SetInventoryItemsList(dataList);
         }
 }

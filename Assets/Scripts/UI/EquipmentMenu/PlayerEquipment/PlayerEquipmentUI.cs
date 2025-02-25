@@ -22,11 +22,11 @@ public class PlayerEquipmentUI : MonoBehaviour
         PlayerStatsUI = GetComponentInChildren<PlayerStatsUI>();
         PreviewEquimentStatsUI = GetComponentInChildren<PreviewEquimentStatsUI>();
         equipmentMenuUI = GetComponentInParent<EquipmentMenuUI>();
+        ListEquippedItems = new List<InventoryItemUI>();
     }
 
     private void Start()
     {
-        ListEquippedItems = new List<InventoryItemUI>();
         UpdateListEquippedItems();
     }
 
@@ -37,11 +37,54 @@ public class PlayerEquipmentUI : MonoBehaviour
         {
             if (child?.GetComponentInChildren<InventoryItemUI>())
             {
-                ListEquippedItems.Add(child.GetComponentInChildren<InventoryItemUI>());            
+                ListEquippedItems.Add(child?.GetComponentInChildren<InventoryItemUI>());
             }
         }
         UpdateCountEquipmentSet(ListEquippedItems);
         equipmentMenuUI.UpdatePlayerStats();
+    }
+
+
+    public void UpdateListEquippedItemsFromListEquipped(List<EquipmentData> equipmentList)
+    {
+        ListEquippedItems.Clear();
+        foreach (Transform child in transform)
+        {
+            if (child?.GetComponentInChildren<InventoryItemUI>())
+            {
+                ListEquippedItems.Add(child?.GetComponentInChildren<InventoryItemUI>());            
+            }
+        }
+        
+        List<EquipmentData> tempEquipmentList = new List<EquipmentData>();
+        foreach (EquipmentData equipment in equipmentList)
+        {
+            if (equipment.EquipmentPropsSO != null)
+            {
+                tempEquipmentList.Add(equipment);
+            }
+        }
+        UIManager.Instance.EquipmentMenuUI.Enable();
+        for(int j = 0; j < tempEquipmentList.Count && j>=0; j++)
+        {
+            for(int i=0;i< ListEquippedItems.Count;i++)
+            {
+                if (ListEquippedItems[i].EquipmentData.EquipmentPropsSO == null)
+                {
+                    if (ListEquippedItems[i].transform.parent.GetComponent<PlayerEquipmentSlotUI>().EquimentType == tempEquipmentList[j].EquipmentPropsSO.EquimentType)
+                    {
+                        ListEquippedItems[i].EquipmentData = new EquipmentData(tempEquipmentList[j].EquipmentPropsSO,tempEquipmentList[j].EquipmentStats);
+                        tempEquipmentList.RemoveAt(j);
+                        ListEquippedItems[i].UpdateIconEquipment();
+                        j--;
+                        break;
+                    }
+                }
+            }
+        }
+        UpdateCountEquipmentSet(ListEquippedItems);
+        equipmentMenuUI.UpdatePlayerStats();
+        UIManager.Instance.EquipmentMenuUI.Disable();
     }
 
     public void SetPlayerStatsWithEquipment(List<InventoryItemUI> listEquippedItems)
@@ -50,7 +93,7 @@ public class PlayerEquipmentUI : MonoBehaviour
         
         foreach (InventoryItemUI item in listEquippedItems)
         {
-            if (item.EquipmentData != null)
+            if (item.EquipmentData.EquipmentPropsSO != null)
             {
                 playerStats.Speed += item.EquipmentData.EquipmentStats.Speed;
                 playerStats.Health += item.EquipmentData.EquipmentStats.Health;
@@ -85,6 +128,7 @@ public class PlayerEquipmentUI : MonoBehaviour
         int countElementalItems = 0;
         foreach (InventoryItemUI item in equipmentItems)
         {
+            if(item.EquipmentData.EquipmentPropsSO == null) continue;
             if (item.EquipmentData?.EquipmentPropsSO.EquipmentSet == EquipmentSet.Primordial)
             {
                 countPrimordialItems += 1;

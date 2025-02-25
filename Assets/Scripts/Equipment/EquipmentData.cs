@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-[SerializeField]
+[Serializable]
 public class EquipmentData
 {
     public EquipmentData(EquipmentPropsSO equipmentPropsSo, EquipmentStats equipmentStats)

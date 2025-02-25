@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class EquipmentManager : MonoBehaviour
 {
-        public static EquipmentManager instance;
+        public static EquipmentManager Instance;
 
         [HideInInspector] public EquipmentPooling EquipmentPooling;
         [field:SerializeField ]public List<EquipmentData> InventoryItems { get; private set; }
@@ -20,7 +20,7 @@ public class EquipmentManager : MonoBehaviour
         
         private void Awake()
         {
-                instance = this;
+                Instance = this;
                 InventoryItems = new List<EquipmentData>();
         }
 
@@ -40,15 +40,10 @@ public class EquipmentManager : MonoBehaviour
         {
                 EquipmentSet equipmentSet = GetRandomEquipmentProp();
                 EquimentType equimentType = GetRandomEquimentType();
-                // EquimentType equimentType = EquimentType.Weapon;
                 WeaponType weaponType = GetRandomWeaponType();
-                // WeaponType weaponType = WeaponType.Sword;
-
                 EquipmentStats equipmentStats = GetRandomEquipmentStats(equimentType);
-                // Debug.Log(equipmentSet.ToString() +" "+ equimentType.ToString() +" " +weaponType.ToString() +" " + equipmentStats.ToString());
                 GameObject equipment = EquipmentPooling.GetEquipment(equipmentSet,equimentType,weaponType);
                 equipment.GetComponent<Equipment>().EquipmentStats = equipmentStats;
-
                 return equipment;
         }
         public WeaponType GetRandomWeaponType()
@@ -359,14 +354,31 @@ public class EquipmentManager : MonoBehaviour
 
         public void CollectEquipment(GameObject equipmentOb)
         {
-                AddItem(equipmentOb.GetComponent<Equipment>());
+                AddEquipment(equipmentOb.GetComponent<Equipment>());
                 EquipmentPooling.ReleaseObject(equipmentOb);
         }
         
-        private void AddItem(Equipment item)
+        private void AddEquipment(Equipment item)
         {
                 InventoryItems.Add(new EquipmentData(item.EquipmentPropsSO,item.EquipmentStats));
         }
+
+        public void SetInventoryItemsList(List<EquipmentData> equipmentList)
+        {
+                // Debug.Log(equipmentList.Count);
+                InventoryItems = new List<EquipmentData>(equipmentList);
+        }
+
+        public void RemoveEquipmentData(EquipmentData equipmentData)
+        {
+                InventoryItems.Remove(equipmentData);
+        }
+
+        public void AddEquipmentData(EquipmentData equipmentData)
+        {
+                InventoryItems.Add(equipmentData);
+        }
+        
         
         #endregion
 }

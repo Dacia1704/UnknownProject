@@ -17,10 +17,11 @@ public class EnemyAttackState : EnemyState
     {
         base.Update();
 
-        if (enemyStateMachine.Enemy.Damable.AttackableStats.Attack == 0 && enemyStateMachine.Enemy.EnemyAnimationManager.IsAnimationEnded(enemyStateMachine.Enemy.EnemyPropertiesSO.AttackAnimationName,0))
+        if (enemyStateMachine.Enemy.EnemyAnimationManager.IsAnimationEnded(enemyStateMachine.Enemy.EnemyPropertiesSO.AttackAnimationName,0))
         {
             OnMove();
             OnIdle();
+            OnAttack();
         }
     }
 }

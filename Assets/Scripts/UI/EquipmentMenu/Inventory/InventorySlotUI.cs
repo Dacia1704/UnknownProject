@@ -30,21 +30,23 @@ public class InventorySlotUI : DropItem,IPoolingObject
         DraggableItem draggableItem = droppedObject.GetComponent<DraggableItem>();
         Transform parentToSwap = draggableItem.ParentPreDrag;
         this.InventoryItemUI.ChangeDropItem(parentToSwap);
-        if (parentToSwap?.GetComponent<PlayerEquipmentSlotUI>())
+        if(parentToSwap.TryGetComponent(out PlayerEquipmentSlotUI playerEquipmentSlotUI))
         {
             parentToSwap.GetComponent<PlayerEquipmentSlotUI>().InventoryItemUI = this.InventoryItemUI;
         }
         else
         {
             parentToSwap.GetComponent<InventorySlotUI>().InventoryItemUI = this.InventoryItemUI;
-            if (parentToSwap.GetComponent<InventorySlotUI>().InventoryItemUI.EquipmentData == null)
-            {
-                parentToSwap.GetComponentInParent<InventoryUI>().InventorySlotUIObjectPooling.ReleaseObject(parentToSwap.gameObject);
-            }
+            // if (parentToSwap.GetComponent<InventorySlotUI>().InventoryItemUI.EquipmentData.EquipmentPropsSO == null)
+            // {
+            //     parentToSwap.GetComponentInParent<InventoryUI>().InventorySlotUIObjectPooling.ReleaseObject(parentToSwap.gameObject);
+            // }
         }
         
         draggableItem.ParentAfterDrag = transform;
         InventoryItemUI = eventData.pointerDrag.GetComponent<InventoryItemUI>();
+        
+        UIManager.Instance.EquipmentMenuUI.InventoryUI.UpdateInventoryItemsList();
         
     }
 

@@ -2,9 +2,9 @@
 
 public class PlayerHealthBarUI: HealthBarUI
 {
-        protected override void OnEnable()
+        protected override void Start()
         {
                 character = GameManager.Instance.Player;
-                base.OnEnable();
+                base.Start();
         }
 }

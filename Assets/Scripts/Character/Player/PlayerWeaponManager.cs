@@ -29,7 +29,7 @@ public class PlayerWeaponManager: MonoBehaviour
 
     private void Start()
     {
-        equipmentPooling = EquipmentManager.instance.EquipmentPooling;
+        equipmentPooling = EquipmentManager.Instance.EquipmentPooling;
         weaponsList = new List<EquipmentPropsSO>();
         currentWeaponIndex = 0;
         EquipRightWeapon(fighterSO);
@@ -78,6 +78,7 @@ public class PlayerWeaponManager: MonoBehaviour
         weaponsList.Clear();
         foreach (InventoryItemUI item in listEquippedItems)
         {
+            if(item.EquipmentData.EquipmentPropsSO == null) continue;
             if (item.EquipmentData?.EquipmentPropsSO.EquimentType == EquimentType.Weapon)
             {
                 weaponsList.Add(item.EquipmentData.EquipmentPropsSO);

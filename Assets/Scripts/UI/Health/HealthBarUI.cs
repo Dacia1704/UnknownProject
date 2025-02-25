@@ -16,7 +16,7 @@ public abstract class HealthBarUI: UIBase
         protected bool getDam;
 
 
-        protected virtual void OnEnable()
+        protected virtual void Start()
         {
                 character.OnMaxHealthChanged += UpdateMaxHealth;
                 character.OnHealthDamaged += UpdateDamageHealth;

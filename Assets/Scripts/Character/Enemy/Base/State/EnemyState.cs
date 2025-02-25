@@ -31,7 +31,7 @@ public abstract class EnemyState : IState
     }
 
     protected virtual void OnIdle() {
-         if(!(enemyStateMachine.Enemy.Rigidbody.velocity.x < -0.1f || enemyStateMachine.Enemy.Rigidbody.velocity.x > 0.1f ||
+        if(!(enemyStateMachine.Enemy.Rigidbody.velocity.x < -0.1f || enemyStateMachine.Enemy.Rigidbody.velocity.x > 0.1f ||
         enemyStateMachine.Enemy.Rigidbody.velocity.z < -0.1f || enemyStateMachine.Enemy.Rigidbody.velocity.z > 0.1f)) {
             enemyStateMachine.ChangeState(enemyStateMachine.EnemyIdleState);
         }

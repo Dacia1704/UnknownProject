@@ -4,16 +4,16 @@ using UnityEngine;
 public class EnemyHealthBarUI: HealthBarUI
 {
         private CanvasGroup canvasGroup;
-        protected override void OnEnable()
+        protected override void Start()
         {
                 character = GetComponentInParent<Character>();
-                base.OnEnable();
-        }
-
-        private void Start()
-        {
+                base.Start();
                 canvasGroup = GetComponent<CanvasGroup>();
         }
+        //
+        // private void Start()
+        // {
+        // }
 
         protected override void FixedUpdate()
         {
