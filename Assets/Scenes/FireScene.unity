@@ -17818,7 +17818,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2763715446484304059}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 290.18573}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.40057638, y: 0.40057638, z: 0.40057638}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17826,7 +17826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12, y: -12.207777}
+  m_AnchoredPosition: {x: -17.000135, y: -13.000029}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &972640070423343918
@@ -22304,7 +22304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15, y: -21}
+  m_AnchoredPosition: {x: 32.00171, y: 30.000011}
   m_SizeDelta: {x: 338.76, y: 460}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &3949357330518481914
@@ -26067,7 +26067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 15, y: -18}
+  m_AnchoredPosition: {x: 62, y: 33}
   m_SizeDelta: {x: 338.76, y: 460}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6621986279265461339
@@ -26714,7 +26714,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5412652223783836232}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 290.18573}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.40057638, y: 0.40057638, z: 0.40057638}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26722,7 +26722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12, y: -12.207777}
+  m_AnchoredPosition: {x: -17, y: -13}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7076081655472145757
@@ -27782,6 +27782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db825900472399438c89a2c12bf53c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InventoryUI: {fileID: 0}
   PlayerEquipmentUI: {fileID: 0}
   baseStats:
     Speed: 0
