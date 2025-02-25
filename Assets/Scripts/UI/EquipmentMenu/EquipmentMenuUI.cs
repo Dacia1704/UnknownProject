@@ -9,7 +9,7 @@ public class EquipmentMenuUI : UIBase {
     
     public event Action<List<InventoryItemUI>> OnEquipmentChanged; 
     
-    private InventoryUI inventoryUI;
+    [HideInInspector] public InventoryUI InventoryUI;
     [HideInInspector] public PlayerEquipmentUI PlayerEquipmentUI;
     [HideInInspector] public PlayerStats baseStats;
     [HideInInspector] public PlayerStats PlayerStats;
@@ -19,7 +19,7 @@ public class EquipmentMenuUI : UIBase {
 
     private void Awake()
     {
-        inventoryUI = GetComponentInChildren<InventoryUI>();
+        InventoryUI = GetComponentInChildren<InventoryUI>();
         PlayerEquipmentUI = GetComponentInChildren<PlayerEquipmentUI>();
     }
 
@@ -35,7 +35,7 @@ public class EquipmentMenuUI : UIBase {
 
         
 
-        OnInventoryChanged += inventoryUI.UpdateInventory;
+        OnInventoryChanged += InventoryUI.UpdateInventory;
         OnEquipmentChanged += PlayerEquipmentUI.SetPlayerStatsWithEquipment;
     }
     

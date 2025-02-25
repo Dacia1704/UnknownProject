@@ -21,6 +21,7 @@ public class EnemyAttackState : EnemyState
         {
             OnMove();
             OnIdle();
+            OnAttack();
         }
     }
 }

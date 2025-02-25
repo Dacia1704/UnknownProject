@@ -10,17 +10,6 @@ public class GameData
     public int HighestWave;
 }
 
-[CreateAssetMenu(fileName = "GameDataSO", menuName = "GameDataSO")]
-public class GameDataSO : ScriptableObject
-{
-    public int CurrentScore;
-    public int CurrentWave;
-
-    [field: Header("Player")] 
-    public List<EquipmentData> InventoryList;
-    public List<EquipmentData> EquipmentList;
-}
-
 public class SaveLoadManager : MonoBehaviour
 {
     public static SaveLoadManager Instance;

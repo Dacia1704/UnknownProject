@@ -78,6 +78,7 @@ public class PlayerWeaponManager: MonoBehaviour
         weaponsList.Clear();
         foreach (InventoryItemUI item in listEquippedItems)
         {
+            if(item.EquipmentData.EquipmentPropsSO == null) continue;
             if (item.EquipmentData?.EquipmentPropsSO.EquimentType == EquimentType.Weapon)
             {
                 weaponsList.Add(item.EquipmentData.EquipmentPropsSO);

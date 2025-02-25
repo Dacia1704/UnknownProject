@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -31,15 +32,14 @@ public class PlayerEquipmentSlotUI:  DropItem
                 DraggableItem draggableItem = droppedObject.GetComponent<DraggableItem>();
                 Transform parentToSwap = draggableItem.ParentPreDrag;
                 this.InventoryItemUI.ChangeDropItem(parentToSwap);
-
-                if (parentToSwap?.GetComponent<PlayerEquipmentSlotUI>())
+                if(parentToSwap.TryGetComponent(out PlayerEquipmentSlotUI playerEquipmentSlotUI))
                 {
                         parentToSwap.GetComponent<PlayerEquipmentSlotUI>().InventoryItemUI = this.InventoryItemUI;
                 }
                 else
                 {
                         parentToSwap.GetComponent<InventorySlotUI>().InventoryItemUI = this.InventoryItemUI;
-                        if (parentToSwap.GetComponent<InventorySlotUI>().InventoryItemUI.EquipmentData == null)
+                        if (parentToSwap.GetComponent<InventorySlotUI>().InventoryItemUI.EquipmentData.EquipmentPropsSO == null)
                         {
                                 parentToSwap.GetComponentInParent<InventoryUI>().InventorySlotUIObjectPooling.ReleaseObject(parentToSwap.gameObject);
                         }
@@ -47,6 +47,8 @@ public class PlayerEquipmentSlotUI:  DropItem
                 draggableItem.ParentAfterDrag = transform;
 
                 InventoryItemUI = temp;
+                
+                UIManager.Instance.EquipmentMenuUI.InventoryUI.UpdateInventoryItemsList();
 
 
         }

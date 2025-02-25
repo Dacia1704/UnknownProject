@@ -20,21 +20,9 @@ public class InventoryItemUI : DraggableItem,IPointerClickHandler
     private IEnumerator UpdateImageIcon()
     {
         yield return new WaitUntil(() => EquipmentData != null);
-        
-        if (EquipmentData?.EquipmentPropsSO.SpriteItem)
-        {
-            image.sprite = EquipmentData.EquipmentPropsSO.SpriteItem;
-            Color newColor = image.color;
-            newColor.a = 1.0f;
-            image.color = newColor;
-        }
-        else
-        {
-            Color newColor = image.color;
-            newColor.a = 0f;
-            image.color = newColor;
-        }
+        UpdateIconEquipment();
     }
+    
     private void UpdatePreviewEquipmentStats()
     {
         
@@ -67,10 +55,31 @@ public class InventoryItemUI : DraggableItem,IPointerClickHandler
     {
         AudioManager.Instance.PlayEndDragAudio(UIManager.Instance.UIAudioSource);
         base.OnEndDrag(eventData);
-        
         if (transform?.GetComponentInParent<PlayerEquipmentSlotUI>())
         {
             GetComponentInParent<PlayerEquipmentSlotUI>().PlayerEquipmentUI.UpdateListEquippedItems();
+        }
+    }
+
+    public void UpdateIconEquipment()
+    {
+        if (EquipmentData.EquipmentPropsSO != null && EquipmentData.EquipmentPropsSO.SpriteItem != null)
+        {
+            if (EquipmentData?.EquipmentPropsSO.SpriteItem)
+            {
+                image = GetComponent<Image>();
+                image.sprite = EquipmentData.EquipmentPropsSO.SpriteItem;
+                Color newColor = image.color;
+                newColor.a = 1.0f;
+                image.color = newColor;
+            }
+            else
+            {
+                image = GetComponent<Image>();
+                Color newColor = image.color;
+                newColor.a = 0f;
+                image.color = newColor;
+            }
         }
     }
 }

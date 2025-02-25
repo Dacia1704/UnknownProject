@@ -32,7 +32,7 @@ MonoBehaviour:
     m_Bits: 1024
   <BaseDistanceTrigger>k__BackingField: 10
   <DetectModifierDistance>k__BackingField: 2
-  <AttackDistance>k__BackingField: 1
+  <AttackDistance>k__BackingField: 2.5
   <AttackCooldown>k__BackingField: 1
   <DefendAnimationName>k__BackingField: Defend
   <HitDefendAnimationName>k__BackingField: HitDefend
