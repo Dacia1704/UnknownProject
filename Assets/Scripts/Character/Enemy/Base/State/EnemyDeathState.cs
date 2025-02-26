@@ -9,6 +9,7 @@
         base.Enter();
         enemyStateMachine.Enemy.EnemyAnimationManager.PlayAnimation(enemyStateMachine.Enemy.EnemyPropertiesSO.DieAnimationName);
         enemyStateMachine.Enemy.DeathStart();
+        GameManager.Instance.IncreaseScore(enemyStateMachine.Enemy.EnemyPropertiesSO.EnemyPoint);
     }
 
     public override void Update()

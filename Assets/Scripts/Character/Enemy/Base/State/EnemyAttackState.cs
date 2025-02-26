@@ -16,7 +16,7 @@ public class EnemyAttackState : EnemyState
     public override void Update()
     {
         base.Update();
-
+        OnHit();
         if (enemyStateMachine.Enemy.EnemyAnimationManager.IsAnimationEnded(enemyStateMachine.Enemy.EnemyPropertiesSO.AttackAnimationName,0))
         {
             OnMove();
