@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
         [SerializeField] protected Button equipmentButton;
         [HideInInspector] public EquipmentMenuUI EquipmentMenuUI;
         public PlayerHealthBarUI PlayerHealthBarUI;
+        public UITimeStartCounter UITimeStartCounter { get; private set; }
         public AudioSource UIAudioSource { get; private set; }
         
 
@@ -21,6 +22,7 @@ public class UIManager : MonoBehaviour
                 EquipmentMenuUI = GetComponentInChildren<EquipmentMenuUI>();
                 UIAudioSource = GetComponent<AudioSource>();
                 PlayerHealthBarUI = GetComponentInChildren<PlayerHealthBarUI>();
+                UITimeStartCounter = GetComponentInChildren<UITimeStartCounter>();
         }
 
         private void Start()

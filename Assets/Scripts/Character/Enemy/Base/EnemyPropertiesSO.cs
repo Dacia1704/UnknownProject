@@ -15,4 +15,5 @@ public class EnemyPropertiesSO : ScriptableObject {
     [field: SerializeField] public float DetectModifierDistance { get; private set; }
     [field: SerializeField] public float AttackDistance { get; private set; }
     [field: SerializeField] public float AttackCooldown { get; private set; }
+    [field: SerializeField] public int EnemyPoint { get; private set; }
 }

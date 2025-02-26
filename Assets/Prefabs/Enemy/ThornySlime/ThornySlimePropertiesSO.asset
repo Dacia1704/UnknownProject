@@ -34,6 +34,7 @@ MonoBehaviour:
   <DetectModifierDistance>k__BackingField: 2
   <AttackDistance>k__BackingField: 2.5
   <AttackCooldown>k__BackingField: 1
+  <EnemyPoint>k__BackingField: 25
   <DefendAnimationName>k__BackingField: Defend
   <HitDefendAnimationName>k__BackingField: HitDefend
   <DefendDetectDistance>k__BackingField: 7
