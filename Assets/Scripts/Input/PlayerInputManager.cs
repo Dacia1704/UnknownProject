@@ -51,7 +51,7 @@ public class PlayerInputManager {
     }
     private void onPlayerInputNomalAttackStarted(InputAction.CallbackContext context)
     {
-	    if (context.control.name == "leftButton" && UIManager.Instance.IsPointerOverUIElement()) return;
+	    if (context.control.name == "leftButton" && GameSceneUIManager.Instance.IsPointerOverUIElement()) return;
 		NomalAttackInput = true;
     }
     private void onPlayerInputMovementCanceled(InputAction.CallbackContext context)
@@ -60,18 +60,18 @@ public class PlayerInputManager {
     }
 	private void onPlayerInputMovementPerformed(InputAction.CallbackContext context)
     {
-	    if (context.control.name == "leftButton" && UIManager.Instance.IsPointerOverUIElement()) return;
+	    if (context.control.name == "leftButton" && GameSceneUIManager.Instance.IsPointerOverUIElement()) return;
 		MovementInput = playerInputActions.Player.Movement.ReadValue<Vector2>();
     }
 
     private void onPlayerInputMovementStarted(InputAction.CallbackContext context)
 	{
-		if (context.control.name == "leftButton" && UIManager.Instance.IsPointerOverUIElement()) return;
+		if (context.control.name == "leftButton" && GameSceneUIManager.Instance.IsPointerOverUIElement()) return;
 		MovementInput = playerInputActions.Player.Movement.ReadValue<Vector2>();
 	}
 	private void onPlayerInputDashStarted(InputAction.CallbackContext context)
 	{
-		if (context.control.name == "leftButton" && UIManager.Instance.IsPointerOverUIElement()) return;
+		if (context.control.name == "leftButton" && GameSceneUIManager.Instance.IsPointerOverUIElement()) return;
 		DashInput = true;
 	}
 	private void onPlayerInputDashCanceled(InputAction.CallbackContext context)
