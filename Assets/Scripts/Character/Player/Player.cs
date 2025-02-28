@@ -36,7 +36,7 @@ public class Player : Character
     protected void Start()
     {
         PlayerInputManager.Start();
-        healthBarUI = UIManager.Instance.PlayerHealthBarUI;
+        healthBarUI = GameSceneUIManager.Instance.PlayerHealthBarUI;
         //set up stats
         BasePlayerStats = new PlayerStats(PlayerPropertiesSO.BaseStats);
         PlayerStats = new PlayerStats(PlayerPropertiesSO.BaseStats);
@@ -48,7 +48,7 @@ public class Player : Character
         OnHealthDamaged?.Invoke(PlayerPropertiesSO.BaseStats.Health);
         healthBarUI.SetUpEaseHealthSlider(PlayerStats.Health);
         healthBarUI.SetUpHealHealthSlider(PlayerStats.Health);
-        UIManager.Instance.EquipmentMenuUI.SetBasePlayerStats(PlayerPropertiesSO.BaseStats);
+        GameSceneUIManager.Instance.EquipmentMenuUI.SetBasePlayerStats(PlayerPropertiesSO.BaseStats);
 
         //setup state
         playerStateMachine.ChangeState(playerStateMachine.PlayerIdleState);

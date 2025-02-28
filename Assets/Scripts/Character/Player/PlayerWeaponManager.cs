@@ -34,7 +34,7 @@ public class PlayerWeaponManager: MonoBehaviour
         currentWeaponIndex = 0;
         EquipRightWeapon(fighterSO);
         EquipLeftWeapon(fighterSO);
-        UIManager.Instance.EquipmentMenuUI.OnEquipmentChanged += UpdateWeapon;
+        GameSceneUIManager.Instance.EquipmentMenuUI.OnEquipmentChanged += UpdateWeapon;
     }
 
     private void Update()

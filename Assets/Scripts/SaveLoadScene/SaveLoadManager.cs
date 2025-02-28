@@ -37,7 +37,7 @@ public class SaveLoadManager : MonoBehaviour
         GameDataSO.CurrentWave = GameManager.Instance.CurrentWave;
         GameDataSO.InventoryList = new List<EquipmentData>(EquipmentManager.Instance.InventoryItems);
         GameDataSO.EquipmentList = new List<EquipmentData>();
-        foreach (InventoryItemUI item in UIManager.Instance.EquipmentMenuUI.PlayerEquipmentUI.ListEquippedItems)
+        foreach (InventoryItemUI item in GameSceneUIManager.Instance.EquipmentMenuUI.PlayerEquipmentUI.ListEquippedItems)
         {
             GameDataSO.EquipmentList.Add(item.EquipmentData);
         }

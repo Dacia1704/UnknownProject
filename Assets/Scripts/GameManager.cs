@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            GameSceneManager.Instance.LoadScene(GameSceneManager.Instance.LeafSceneName);
+            SceneLoadManager.Instance.LoadSceneAsync(SceneLoadManager.Instance.LeafSceneName);
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
             CurrentScore = score;
             CurrentWave = wave;
             EquipmentManager.Instance.SetInventoryItemsList(inventoryItemList);
-            UIManager.Instance.EquipmentMenuUI.PlayerEquipmentUI.UpdateListEquippedItemsFromListEquipped(equipmentDataList);
+            GameSceneUIManager.Instance.EquipmentMenuUI.PlayerEquipmentUI.UpdateListEquippedItemsFromListEquipped(equipmentDataList);
         }
         
     }
