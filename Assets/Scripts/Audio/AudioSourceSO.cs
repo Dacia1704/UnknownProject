@@ -5,7 +5,9 @@ using UnityEngine.Audio;
 public class AudioSourceSO : ScriptableObject
 {
     [field: Header("Background")]
-    [field: SerializeField] public AudioClip LavaBgmAudio {get; private set;}
+    [field: SerializeField] public AudioClip FireBgmAudio {get; private set;}
+    [field: SerializeField] public AudioClip LeafBgmAudio {get; private set;}
+    [field: SerializeField] public AudioClip WaterBgmAudio {get; private set;}
     
     [field: Header("UI")]
     [field: SerializeField] public AudioClip ButtonClickAudio { get; private set; }
