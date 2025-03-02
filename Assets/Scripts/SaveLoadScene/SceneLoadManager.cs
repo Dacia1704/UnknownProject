@@ -17,6 +17,7 @@ public class SceneLoadManager : MonoBehaviour
         {
                 Instance = this;
                 ProgressValue = 0f;
+                DontDestroyOnLoad(this.gameObject);
         }
 
         public void LoadSceneImmediately(string sceneName)

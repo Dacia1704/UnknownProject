@@ -27,17 +27,21 @@ public class MainSceneUI : UIBase
                         MenuSceneUIManager.Instance.LoadingSceneUI.Enable();
                         MenuSceneUIManager.Instance.LoadingSceneUI.ShowLoadingScene();
                         SceneLoadManager.Instance.LoadSceneAsync(SceneLoadManager.Instance.FireSceneName);
+                        AudioManager.Instance.PlayButtonAudio(MenuSceneUIManager.Instance.AudioSource);
                 });
                 
                 settingButton.onClick.AddListener(() =>
                 {
                         this.Disappear();
                         MenuSceneUIManager.Instance.SettingSceneUI.Appear();
+                        AudioManager.Instance.PlayButtonAudio(MenuSceneUIManager.Instance.AudioSource);
                 });
                 
                 quitButton.onClick.AddListener(() =>
                 {
                         Debug.Log("Quit game");
+                        AudioManager.Instance.PlayButtonAudio(MenuSceneUIManager.Instance.AudioSource);
+                        Application.Quit();
                 });
         }
 

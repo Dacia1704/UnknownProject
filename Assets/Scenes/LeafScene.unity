@@ -17665,9 +17665,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e0a160c7024a02bba84fe215396709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Player>k__BackingField: {fileID: 0}
-  <EnemyManager>k__BackingField: {fileID: 0}
-  <FloatingTextUIObjectPooling>k__BackingField: {fileID: 0}
+  timeAWave: 0
+  timeStartGame: 0
 --- !u!4 &1314180253
 Transform:
   m_ObjectHideFlags: 0
@@ -29439,6 +29438,17 @@ MonoBehaviour:
   IconImage: {fileID: 0}
   ParentPreDrag: {fileID: 0}
   ParentAfterDrag: {fileID: 0}
+  EquipmentData:
+    <EquipmentPropsSO>k__BackingField: {fileID: 0}
+    <EquipmentStats>k__BackingField:
+      Speed: 0
+      Attack: 0
+      AttackSpeed: 0
+      Defend: 0
+      Health: 0
+      Resistance: 0
+      Accuracy: 0
+      CanDealDebuffEffects: 
 --- !u!1 &357430950831310767
 GameObject:
   m_ObjectHideFlags: 0
@@ -29874,6 +29884,17 @@ MonoBehaviour:
   IconImage: {fileID: 0}
   ParentPreDrag: {fileID: 0}
   ParentAfterDrag: {fileID: 0}
+  EquipmentData:
+    <EquipmentPropsSO>k__BackingField: {fileID: 0}
+    <EquipmentStats>k__BackingField:
+      Speed: 0
+      Attack: 0
+      AttackSpeed: 0
+      Defend: 0
+      Health: 0
+      Resistance: 0
+      Accuracy: 0
+      CanDealDebuffEffects: 
 --- !u!1 &714974430537698673
 GameObject:
   m_ObjectHideFlags: 0
@@ -30496,6 +30517,17 @@ MonoBehaviour:
   IconImage: {fileID: 0}
   ParentPreDrag: {fileID: 0}
   ParentAfterDrag: {fileID: 0}
+  EquipmentData:
+    <EquipmentPropsSO>k__BackingField: {fileID: 0}
+    <EquipmentStats>k__BackingField:
+      Speed: 0
+      Attack: 0
+      AttackSpeed: 0
+      Defend: 0
+      Health: 0
+      Resistance: 0
+      Accuracy: 0
+      CanDealDebuffEffects: 
 --- !u!1 &1134693102554085429
 GameObject:
   m_ObjectHideFlags: 0
@@ -30745,23 +30777,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &1350818053457324388
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8738959313556310431}
-  - component: {fileID: 5515606946209809069}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!222 &1361191599825427836
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32934,6 +32949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db825900472399438c89a2c12bf53c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InventoryUI: {fileID: 0}
   PlayerEquipmentUI: {fileID: 0}
   baseStats:
     Speed: 0
@@ -33938,6 +33954,17 @@ MonoBehaviour:
   IconImage: {fileID: 0}
   ParentPreDrag: {fileID: 0}
   ParentAfterDrag: {fileID: 0}
+  EquipmentData:
+    <EquipmentPropsSO>k__BackingField: {fileID: 0}
+    <EquipmentStats>k__BackingField:
+      Speed: 0
+      Attack: 0
+      AttackSpeed: 0
+      Defend: 0
+      Health: 0
+      Resistance: 0
+      Accuracy: 0
+      CanDealDebuffEffects: 
 --- !u!224 &3675299610273842828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34479,6 +34506,17 @@ MonoBehaviour:
   IconImage: {fileID: 0}
   ParentPreDrag: {fileID: 0}
   ParentAfterDrag: {fileID: 0}
+  EquipmentData:
+    <EquipmentPropsSO>k__BackingField: {fileID: 0}
+    <EquipmentStats>k__BackingField:
+      Speed: 0
+      Attack: 0
+      AttackSpeed: 0
+      Defend: 0
+      Health: 0
+      Resistance: 0
+      Accuracy: 0
+      CanDealDebuffEffects: 
 --- !u!1 &4079212264333786664
 GameObject:
   m_ObjectHideFlags: 0
@@ -36530,19 +36568,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5515606946209809069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350818053457324388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b86c74d92e24fff8969d4601335b453, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AudioSourceSO: {fileID: 11400000, guid: 533ec977ce91845439fa20345436b265, type: 2}
 --- !u!224 &5544092334297841744
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41190,21 +41215,6 @@ RectTransform:
   m_AnchoredPosition: {x: -49.999992, y: 0.000049591064}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0, y: 0.5}
---- !u!4 &8738959313556310431
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350818053457324388}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8739637372686129912
 Transform:
   m_ObjectHideFlags: 0
@@ -41308,6 +41318,17 @@ MonoBehaviour:
   IconImage: {fileID: 0}
   ParentPreDrag: {fileID: 0}
   ParentAfterDrag: {fileID: 0}
+  EquipmentData:
+    <EquipmentPropsSO>k__BackingField: {fileID: 0}
+    <EquipmentStats>k__BackingField:
+      Speed: 0
+      Attack: 0
+      AttackSpeed: 0
+      Defend: 0
+      Health: 0
+      Resistance: 0
+      Accuracy: 0
+      CanDealDebuffEffects: 
 --- !u!224 &8856973739947705458
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41917,7 +41938,6 @@ SceneRoots:
   - {fileID: 293072402555053834}
   - {fileID: 962392005}
   - {fileID: 1774133755}
-  - {fileID: 8738959313556310431}
   - {fileID: 4921734779777930220}
   - {fileID: 708986129}
   - {fileID: 864519497}

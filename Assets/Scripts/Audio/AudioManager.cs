@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
@@ -13,7 +15,25 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
         }
+        DontDestroyOnLoad(this.gameObject);
+        SaveLoadManager.Instance.OnGameDataLoaded += LoadVolumnData;
     }
+
+    private void LoadVolumnData(GameData gameData)
+    {
+        SetMasterVolumn(gameData.GlobalAudioVolume);
+        SetBGMVolumn(gameData.BMGAudioVolume);
+        SetSFXVolumn(gameData.SFXAudioVolume);
+    }
+
+    public void LoadVolumnData(float global, float bgm, float sfx) 
+    {
+        SetMasterVolumn(global);
+        SetBGMVolumn(bgm);
+        SetSFXVolumn(sfx);
+    }
+
+    #region PlayAudio
     public void PlayPlayerAttackAudio(AudioSource audioSource,bool isLoop = false)
     {
         if(audioSource.enabled == false) return;
@@ -50,7 +70,6 @@ public class AudioManager : MonoBehaviour
         }
         audioSource.Play();
     }
-
     public void PlayPlayerDeathAudio(AudioSource audioSource, bool isLoop = false)
     {
         if(audioSource.enabled == false) return;
@@ -58,7 +77,6 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = AudioSourceSO.PlayerDeathAudio;
         audioSource.Play();
     }
-    
     public void PlayBulletHitAudio(AudioSource audioSource, bool isLoop = false)
     {
         if(audioSource.enabled == false) return;
@@ -66,7 +84,6 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = AudioSourceSO.BulletHitAudio;
         audioSource.Play();
     }
-    
     public void PlayButtonAudio(AudioSource audioSource,bool isLoop = false)
     {
         if(audioSource.enabled == false) return;
@@ -88,45 +105,46 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = AudioSourceSO.EndDragAudio;
         audioSource.Play();
     }
-    
-
     public void StopAudio(AudioSource audioSource)
     {
         audioSource.Stop();
     }
-
+    #endregion
 
     #region Change Volumn
     public void SetMasterVolumn(float value)
     {
-        AudioSourceSO.MasterMixerGroup.audioMixer.SetFloat("Master",value);
+        value = value * 100 - 80;
+        AudioSourceSO.MasterMixerGroup.audioMixer.SetFloat("MasterVolumn",value);
     }
     public void SetBGMVolumn(float value)
     {
-        AudioSourceSO.BgmMixerGroup.audioMixer.SetFloat("BGM",value);
+        value = value * 100 - 80;
+        AudioSourceSO.BgmMixerGroup.audioMixer.SetFloat("BgmVolumn",value);
     }
     public void SetSFXVolumn(float value)
     {
-        AudioSourceSO.SfxMixerGroup.audioMixer.SetFloat("SFX",value);
+        value = value * 100 - 80;
+        AudioSourceSO.SfxMixerGroup.audioMixer.SetFloat("SfxVolumn",value);
     }
 
-    public float GetMasterVolum()
+    public float GetMasterVolumn()
     {
         float value;
-        AudioSourceSO.MasterMixerGroup.audioMixer.GetFloat("Master",out value);
-        return value;
+        AudioSourceSO.MasterMixerGroup.audioMixer.GetFloat("MasterVolumn",out value);
+        return (value + 80)/100;
     }    
     public float GetSFXVolum()
     {
         float value;
-        AudioSourceSO.SfxMixerGroup.audioMixer.GetFloat("SFX",out value);
-        return value;
+        AudioSourceSO.SfxMixerGroup.audioMixer.GetFloat("SfxVolumn",out value);
+        return (value + 80)/100;
     }   
     public float GetBGMVolum()
     {
         float value;
-        AudioSourceSO.BgmMixerGroup.audioMixer.GetFloat("BGM",out value);
-        return value;
+        AudioSourceSO.BgmMixerGroup.audioMixer.GetFloat("BgmVolumn",out value);
+        return (value + 80)/100;
     }       
     #endregion
 

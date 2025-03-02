@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     private int timeCounter;
     private int timeCounterStartGame;
     
-    public int CurrentScore { get; set; }
-    public int CurrentWave { get; set; }
+    // public int CurrentScore { get; set; }
+    // public int CurrentWave { get; set; }
 
     public Player Player { get; private set; }
     public EnemyManager EnemyManager { get; private set; }
@@ -51,40 +51,19 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            SceneLoadManager.Instance.LoadSceneAsync(SceneLoadManager.Instance.LeafSceneName);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SaveLoadManager.Instance.SaveToScriptableObject();
-            Debug.Log("Save");
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            int score;
-            int wave;
-            List<EquipmentData> equipmentDataList;
-            List<EquipmentData> inventoryItemList;
-            SaveLoadManager.Instance.LoadFromScriptableObject(out score,out wave,out equipmentDataList,out inventoryItemList);
-            CurrentScore = score;
-            CurrentWave = wave;
-            EquipmentManager.Instance.SetInventoryItemsList(inventoryItemList);
-            GameSceneUIManager.Instance.EquipmentMenuUI.PlayerEquipmentUI.UpdateListEquippedItemsFromListEquipped(equipmentDataList);
-        }
         
     }
 
-    public void IncreaseScore(int amount)
+    public void IncreaseCurrentScore(int amount)
     {
-        CurrentScore += amount;
-        OnPointChange?.Invoke(CurrentScore.ToString());
+        SaveLoadManager.Instance.CurrentScore += amount;
+        OnPointChange?.Invoke(SaveLoadManager.Instance.CurrentScore.ToString());
     }
 
-    public void ResetScore()
+    public void ResetCurrentScore()
     {
-        CurrentScore = 0;
-        OnPointChange?.Invoke(CurrentScore.ToString());
+        SaveLoadManager.Instance.CurrentScore = 0;
+        OnPointChange?.Invoke(SaveLoadManager.Instance.CurrentScore.ToString());
     }
 
     public void StartCountTime()

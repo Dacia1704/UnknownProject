@@ -3670,53 +3670,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1224204118}
   m_SourcePrefab: {fileID: 100100000, guid: f96442df40a0bf74bbd6431cf2ee05d9, type: 3}
---- !u!1 &627400291
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 627400293}
-  - component: {fileID: 627400292}
-  m_Layer: 0
-  m_Name: GameSceneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &627400292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627400291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2070fa2ad7054ee2b007f4b357ab9021, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <FireSceneName>k__BackingField: FireScene
-  <LeafSceneName>k__BackingField: LeafScene
-  <WaterSceneName>k__BackingField: WaterScene
---- !u!4 &627400293
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627400291}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &628186679
 GameObject:
   m_ObjectHideFlags: 0
@@ -18655,19 +18608,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188667413327436499}
   m_CullTransparentMesh: 1
---- !u!114 &1210021855680395634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5692148473223746235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b86c74d92e24fff8969d4601335b453, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AudioSourceSO: {fileID: 11400000, guid: 533ec977ce91845439fa20345436b265, type: 2}
 --- !u!1 &1259131079944115296
 GameObject:
   m_ObjectHideFlags: 0
@@ -20819,21 +20759,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2667967222958731840
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5692148473223746235}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2672506783820226444
 GameObject:
   m_ObjectHideFlags: 0
@@ -25463,23 +25388,6 @@ MonoBehaviour:
       Resistance: 0
       Accuracy: 0
       CanDealDebuffEffects: 
---- !u!1 &5692148473223746235
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2667967222958731840}
-  - component: {fileID: 1210021855680395634}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &5698139632576632945
 Transform:
   m_ObjectHideFlags: 0
@@ -30708,6 +30616,4 @@ SceneRoots:
   - {fileID: 1773267502}
   - {fileID: 1968783959}
   - {fileID: 1968291797}
-  - {fileID: 2667967222958731840}
   - {fileID: 1717918215}
-  - {fileID: 627400293}

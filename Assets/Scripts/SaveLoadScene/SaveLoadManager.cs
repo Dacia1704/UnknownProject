@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -7,17 +8,24 @@ using UnityEngine.Serialization;
 public class GameData
 {
     public int HighestScore;
-    public int HighestWave;
+    public int HighestWave; 
+    public float GlobalAudioVolume;
+    public float BMGAudioVolume;
+    public float SFXAudioVolume;
 }
 
 public class SaveLoadManager : MonoBehaviour
 {
     public static SaveLoadManager Instance;
-    public GameDataSO GameDataSO;
+    // public GameDataSO GameDataSO;
     private string savePath;
     
     public GameData GameData { get; private set; }
+    [HideInInspector] public int CurrentWave;
+    [HideInInspector] public int CurrentScore;
 
+    
+    public event Action<GameData> OnGameDataLoaded;
     private void Awake()
     {
         if (Instance == null)
@@ -28,36 +36,73 @@ public class SaveLoadManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        CurrentWave = 0;
+        CurrentScore = 0;
         savePath = Path.Combine(Application.persistentDataPath, "game_data.json");
+        
     }
 
-    public void SaveToScriptableObject()
+    private void Start()
     {
-        GameDataSO.CurrentScore = GameManager.Instance.CurrentScore;
-        GameDataSO.CurrentWave = GameManager.Instance.CurrentWave;
-        GameDataSO.InventoryList = new List<EquipmentData>(EquipmentManager.Instance.InventoryItems);
-        GameDataSO.EquipmentList = new List<EquipmentData>();
-        foreach (InventoryItemUI item in GameSceneUIManager.Instance.EquipmentMenuUI.PlayerEquipmentUI.ListEquippedItems)
+        if (CheckFileSave())
         {
-            GameDataSO.EquipmentList.Add(item.EquipmentData);
+            LoadFromJson();
+        }
+        else
+        {
+            GameData = new GameData
+            {
+                HighestScore = 0,
+                HighestWave = 0,
+                GlobalAudioVolume = 1,
+                BMGAudioVolume = 1,
+                SFXAudioVolume = 1
+            };
+            SaveToJson();
+        }
+        OnGameDataLoaded?.Invoke(GameData);
+    }
+
+    // public void SaveToScriptableObject()
+    // {
+    //     GameDataSO.CurrentScore = GameManager.Instance.CurrentScore;
+    //     GameDataSO.CurrentWave = GameManager.Instance.CurrentWave;
+    //     GameDataSO.InventoryList = new List<EquipmentData>(EquipmentManager.Instance.InventoryItems);
+    //     GameDataSO.EquipmentList = new List<EquipmentData>();
+    //     foreach (InventoryItemUI item in GameSceneUIManager.Instance.EquipmentMenuUI.PlayerEquipmentUI.ListEquippedItems)
+    //     {
+    //         GameDataSO.EquipmentList.Add(item.EquipmentData);
+    //     }
+    //
+    // }
+
+    // public void LoadFromScriptableObject(out int score,out int wave, out List<EquipmentData> equipmentList,out List<EquipmentData> inventoryList)
+    // {
+    //     score = GameDataSO.CurrentScore;
+    //     wave = GameDataSO.CurrentWave;
+    //     equipmentList = new List<EquipmentData>(GameDataSO.EquipmentList);
+    //     inventoryList = new List<EquipmentData>(GameDataSO.InventoryList);
+    // }
+
+    private bool CheckFileSave()
+    {
+        if (File.Exists(savePath))
+        {
+            return true;
         }
 
+        return false;
     }
-
-    public void LoadFromScriptableObject(out int score,out int wave, out List<EquipmentData> equipmentList,out List<EquipmentData> inventoryList)
-    {
-        score = GameDataSO.CurrentScore;
-        wave = GameDataSO.CurrentWave;
-        equipmentList = new List<EquipmentData>(GameDataSO.EquipmentList);
-        inventoryList = new List<EquipmentData>(GameDataSO.InventoryList);
-    }
-
     public void SaveToJson()
     {
         GameData data = new GameData()
         {
-            HighestWave = GameManager.Instance.CurrentWave,
-            HighestScore = GameManager.Instance.CurrentScore
+            HighestWave = CurrentWave,
+            HighestScore = CurrentScore,
+            GlobalAudioVolume = AudioManager.Instance.GetMasterVolumn(),
+            BMGAudioVolume = AudioManager.Instance.GetBGMVolum(),
+            SFXAudioVolume = AudioManager.Instance.GetSFXVolum(),
         };
         
         string json = JsonUtility.ToJson(data, true);
@@ -73,11 +118,22 @@ public class SaveLoadManager : MonoBehaviour
             
             GameData.HighestWave = data.HighestWave;
             GameData.HighestScore = data.HighestScore;
+            GameData.GlobalAudioVolume = data.GlobalAudioVolume;
+            GameData.BMGAudioVolume = data.BMGAudioVolume;
+            GameData.SFXAudioVolume = data.SFXAudioVolume;
         }
     }
 
     private void OnApplicationQuit()
     {
+        SaveToJson();
+    }
+
+    public void LoadDataVolumnToSave(float flobal, float bgm, float sfx)
+    {
+        GameData.GlobalAudioVolume = flobal;
+        GameData.BMGAudioVolume = bgm;
+        GameData.SFXAudioVolume = sfx;
         SaveToJson();
     }
 }
