@@ -9,9 +9,6 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] private int timeStartGame;
     private int timeCounter;
     private int timeCounterStartGame;
-    
-    // public int CurrentScore { get; set; }
-    // public int CurrentWave { get; set; }
 
     public Player Player { get; private set; }
     public EnemyManager EnemyManager { get; private set; }
@@ -32,8 +29,36 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        timeCounterStartGame = timeStartGame;
+        timeCounterStartGame = timeStartGame ;
         StartCoroutine(CountTimeStartGameCoroutine());
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SceneLoadManager.Instance.LoadSceneImmediately(SceneLoadManager.Instance.LeafSceneName);
+        }
+        
+        
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            SaveLoadManager.Instance.SaveToScriptableObject();
+            Debug.Log("Save");
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            int score;
+            int wave;
+            List<EquipmentData> equipmentDataList;
+            List<EquipmentData> inventoryItemList;
+            SaveLoadManager.Instance.LoadFromScriptableObject(out score,out wave,out equipmentDataList,out inventoryItemList);
+            SaveLoadManager.Instance.CurrentScore = score;
+            SaveLoadManager.Instance.CurrentWave = wave;
+            EquipmentManager.Instance.SetInventoryItemsList(inventoryItemList);
+            GameSceneUIManager.Instance.EquipmentMenuUI.PlayerEquipmentUI.UpdateListEquippedItemsFromListEquipped(equipmentDataList);
+        }
     }
 
 
@@ -47,11 +72,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = scale;
         yield return new WaitForSecondsRealtime(duration);
         Time.timeScale = 1f;
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void IncreaseCurrentScore(int amount)
@@ -74,6 +94,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CountTimeStartGameCoroutine()
     {
+        yield return new WaitForSeconds(0.5f);
         while (timeCounterStartGame >=0)
         {
             OnCounterTimeStartGame?.Invoke(timeCounterStartGame.ToString());

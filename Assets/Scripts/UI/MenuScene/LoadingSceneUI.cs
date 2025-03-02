@@ -43,10 +43,6 @@ public class LoadingSceneUI : UIBase
                 {
                         SceneLoadManager.Instance.LoadSceneImmediately(SceneLoadManager.Instance.FireSceneName); 
                 }
-                else
-                {
-                        Debug.Log(progress);
-                }
                 
                 
         }

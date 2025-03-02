@@ -7790,6 +7790,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1414893959}
+  - component: {fileID: 1414893960}
   m_Layer: 5
   m_Name: Point
   m_TagString: Untagged
@@ -7818,6 +7819,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1414893960
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414893958}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1415966665
 GameObject:
   m_ObjectHideFlags: 0
@@ -10150,51 +10163,6 @@ Transform:
   - {fileID: 628895847}
   - {fileID: 1805596994}
   m_Father: {fileID: 1773267502}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1717918213
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1717918215}
-  - component: {fileID: 1717918214}
-  m_Layer: 0
-  m_Name: SaveLoadManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1717918214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717918213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72ae4a8ce704e8f9ed669f8e5b0c203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameDataSO: {fileID: 11400000, guid: 0bf56752f67474a4e98c9a9164a76bfb, type: 2}
---- !u!4 &1717918215
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717918213}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1719068619
 GameObject:
@@ -16087,6 +16055,7 @@ GameObject:
   - component: {fileID: 1975245132}
   - component: {fileID: 1975245131}
   - component: {fileID: 1975245133}
+  - component: {fileID: 1975245134}
   m_Layer: 5
   m_Name: TimeCounterStartGame
   m_TagString: Untagged
@@ -16224,6 +16193,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMultiplier: 1.5
   fadeDuration: 0.3
+--- !u!225 &1975245134
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975245129}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2000905255
 GameObject:
   m_ObjectHideFlags: 0
@@ -21608,7 +21589,7 @@ CanvasGroup:
   m_GameObject: {fileID: 8976248433432064329}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &3230286021090527939
@@ -27789,6 +27770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8457304333675560550}
+  - component: {fileID: 8457304333675560551}
   m_Layer: 5
   m_Name: StatusBar
   m_TagString: Untagged
@@ -29154,6 +29136,18 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: 150}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &8457304333675560551
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7529647802978229078}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!222 &8472815801218015764
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30604,16 +30598,15 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1456130239659664418}
   - {fileID: 686413497}
+  - {fileID: 1773267502}
   - {fileID: 1534544065}
   - {fileID: 1711578874587065963}
   - {fileID: 745485890190239206}
   - {fileID: 8875431748028304923}
-  - {fileID: 1780535842}
   - {fileID: 7363063883853371355}
+  - {fileID: 1456130239659664418}
   - {fileID: 415056652861415570}
-  - {fileID: 1773267502}
+  - {fileID: 1780535842}
   - {fileID: 1968783959}
   - {fileID: 1968291797}
-  - {fileID: 1717918215}

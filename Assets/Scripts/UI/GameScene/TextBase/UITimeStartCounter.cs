@@ -18,9 +18,13 @@ public class UITimeStartCounter: UITextBase
         {
                 if (int.Parse(text) < 0)
                 {
-                        textMesh.text = "Game Start";
                         PlayScaleAndFadeEffect();
                         DisableAfterFade();
+                }
+
+                if (int.Parse(text) == 0)
+                {
+                        text = "Game Start";
                 }
                 base.UpdateUIText(text);
                 PlayScaleAndFadeEffect();
