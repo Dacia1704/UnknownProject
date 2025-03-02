@@ -16,15 +16,12 @@ public class SettingSceneUI : UIBase
 
         public event Action<float, float, float> OnVolumnChanged;
 
-        private void Awake()
+        private void Start()
         {
                 SaveLoadManager.Instance.OnGameDataLoaded += LoadAudioSlider;
                 OnVolumnChanged += SaveLoadManager.Instance.LoadDataVolumnToSave;
                 OnVolumnChanged += AudioManager.Instance.LoadVolumnData;
-        }
-
-        private void Start()
-        {
+                
                 originalPos = base.transform.position;
                 
                 

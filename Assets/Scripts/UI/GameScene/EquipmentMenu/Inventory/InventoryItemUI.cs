@@ -13,8 +13,14 @@ public class InventoryItemUI : DraggableItem,IPointerClickHandler
     private void Start()
     {
         image = GetComponent<Image>();
-        StartCoroutine(UpdateImageIcon());
+        // StartCoroutine(UpdateImageIcon());
         
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        StartCoroutine(UpdateImageIcon());
     }
 
     private IEnumerator UpdateImageIcon()

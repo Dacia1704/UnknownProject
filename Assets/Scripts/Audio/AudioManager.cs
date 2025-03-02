@@ -16,6 +16,9 @@ public class AudioManager : MonoBehaviour
             Instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
+    }
+    private void Start()
+    {
         SaveLoadManager.Instance.OnGameDataLoaded += LoadVolumnData;
     }
 
