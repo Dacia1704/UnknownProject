@@ -25,6 +25,7 @@ public class PlayerHitState: PlayerState
             playerStateMachine.Player.playerAnimationManager.SetBoolValueAnimation(playerPropertiesSO.HitTrigger,true);
         }
         playerStateMachine.Player.Damable.ResetAttackableStats();
+        ResetVelocity();
     }
 
     public override void Update()
@@ -41,7 +42,7 @@ public class PlayerHitState: PlayerState
     {
         base.Exit();
         playerStateMachine.Player.playerAnimationManager.SetBoolValueAnimation(playerPropertiesSO.HitTrigger,false);
-        hitCounter = playerPropertiesSO.BaseStats.HitCooldown;
+        // hitCounter = playerPropertiesSO.BaseStats.HitCooldown;
     }
 
     private void PLayHitEffect()
@@ -49,6 +50,5 @@ public class PlayerHitState: PlayerState
         CinemachineEffect.Instance.ShakeCamera(2f,0.1f);
         GameManager.Instance.TriggerSlowMotion(0.2f,0.1f);
         OverlayScreen.Instance.ShowLowHealthOverlayScreenByTime(0.1f);
-        
     }
 }

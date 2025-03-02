@@ -9,9 +9,7 @@ public abstract class PlayerState : IState
 	protected PlayerPropertiesSO playerPropertiesSO;
 	
 	protected float currentAttack = 0;
-	protected float nomalAttackCounter = 0;
-	protected float hitCounter = 0;
-	protected float dashCounter = 0;
+	
 	public  PlayerState (PlayerStateMachine playerStateMachine) {
 		this.playerStateMachine = playerStateMachine;
 		this.playerPropertiesSO = playerStateMachine.Player.PlayerPropertiesSO;
@@ -19,10 +17,6 @@ public abstract class PlayerState : IState
 	}
     public virtual void Enter()
     {
-		// Debug.Log("State: " + GetType().Name);
-		nomalAttackCounter = Time.time;
-		hitCounter = playerPropertiesSO.BaseStats.HitCooldown;
-		dashCounter = playerPropertiesSO.BaseStats.DashCooldown;
     }
 
     public virtual void Exit()
@@ -31,14 +25,15 @@ public abstract class PlayerState : IState
 
     public virtual void PhysicsUpdate()
     {
-	    if (hitCounter > 0)
+	    if (playerStateMachine.HitCounter > 0)
 	    {
-		    hitCounter -= Time.fixedDeltaTime;
+		    playerStateMachine.HitCounter -= Time.fixedDeltaTime;
+		    Debug.Log(playerStateMachine.HitCounter);
 	    }
 
-	    if (dashCounter > 0)
+	    if (playerStateMachine.DashCounter > 0)
 	    {
-		    dashCounter -= Time.fixedDeltaTime;
+		    playerStateMachine.DashCounter -= Time.fixedDeltaTime;
 	    }
     }
 
@@ -86,7 +81,7 @@ public abstract class PlayerState : IState
 			{
 				playerStateMachine.Player.IsNomalAttacking = false;
 				playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
-				nomalAttackCounter = Time.time;
+				playerStateMachine.NomalAttackCounter = Time.time;
 				if (currentAttack == 0)
 				{
 					currentAttack = 1;
@@ -110,7 +105,7 @@ public abstract class PlayerState : IState
 			{
 				playerStateMachine.Player.IsNomalAttacking = false;
 				playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
-				nomalAttackCounter = Time.time;
+				playerStateMachine.NomalAttackCounter = Time.time;
 				if (currentAttack == 0)
 				{
 					currentAttack = 1;
@@ -122,7 +117,7 @@ public abstract class PlayerState : IState
 			} 
 		} else if (playerStateMachine.Player.IsNomalAttacking == false)
 		{
-			if (Time.time - nomalAttackCounter >= playerPropertiesSO.BaseStats.NomalAttackCooldown)
+			if (Time.time - playerStateMachine.NomalAttackCounter >= playerPropertiesSO.BaseStats.NomalAttackCooldown)
 			{
 				currentAttack = 0;
 			}
@@ -187,7 +182,7 @@ public abstract class PlayerState : IState
 
 	protected virtual void OnDash()
 	{
-		if (playerStateMachine.Player.PlayerInputManager.DashInput && dashCounter <=0f)
+		if (playerStateMachine.Player.PlayerInputManager.DashInput && playerStateMachine.DashCounter <=0f)
 		{
 			playerStateMachine.ChangeState(playerStateMachine.PlayerDashState);
 		}
@@ -195,7 +190,7 @@ public abstract class PlayerState : IState
 
 	protected virtual void OnHit()
 	{
-		if (playerStateMachine.Player.Damable.AttackableStats.Attack > 0 && hitCounter <=0f)
+		if (playerStateMachine.Player.Damable.AttackableStats.Attack > 0 && playerStateMachine.HitCounter <=0f)
 		{
 			playerStateMachine.ChangeState(playerStateMachine.PlayerHitState);
 		}

@@ -6,6 +6,10 @@ public class PlayerStateMachine: StateMachine
     public PlayerDashState PlayerDashState{ get; private set; }
     public PlayerHitState PlayerHitState{ get; private set; }
     public PlayerDeathState PlayerDeathState{ get; private set; }
+    
+    public float NomalAttackCounter = 0;
+    public float HitCounter = 0;
+    public float DashCounter = 0;
 
     public PlayerStateMachine(Player player) {
 		this.Player = player;

@@ -70,6 +70,6 @@ public class PlayerDashState: PlayerState
     {
         playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,-1);
         base.Exit();
-        dashCounter = playerPropertiesSO.BaseStats.DashCooldown;
+        playerStateMachine.DashCounter = playerPropertiesSO.BaseStats.DashCooldown;
     }
 }
