@@ -11,6 +11,7 @@ public abstract class PlayerState : IState
 	protected float currentAttack = 0;
 	protected float nomalAttackCounter = 0;
 	protected float hitCounter = 0;
+	protected float dashCounter = 0;
 	public  PlayerState (PlayerStateMachine playerStateMachine) {
 		this.playerStateMachine = playerStateMachine;
 		this.playerPropertiesSO = playerStateMachine.Player.PlayerPropertiesSO;
@@ -21,7 +22,7 @@ public abstract class PlayerState : IState
 		// Debug.Log("State: " + GetType().Name);
 		nomalAttackCounter = Time.time;
 		hitCounter = playerPropertiesSO.BaseStats.HitCooldown;
-
+		dashCounter = playerPropertiesSO.BaseStats.DashCooldown;
     }
 
     public virtual void Exit()
@@ -33,6 +34,11 @@ public abstract class PlayerState : IState
 	    if (hitCounter > 0)
 	    {
 		    hitCounter -= Time.fixedDeltaTime;
+	    }
+
+	    if (dashCounter > 0)
+	    {
+		    dashCounter -= Time.fixedDeltaTime;
 	    }
     }
 
@@ -116,7 +122,7 @@ public abstract class PlayerState : IState
 			} 
 		} else if (playerStateMachine.Player.IsNomalAttacking == false)
 		{
-			if (Time.time - nomalAttackCounter >= playerPropertiesSO.BaseStats.ResetNomalAttackTime)
+			if (Time.time - nomalAttackCounter >= playerPropertiesSO.BaseStats.NomalAttackCooldown)
 			{
 				currentAttack = 0;
 			}
@@ -181,7 +187,7 @@ public abstract class PlayerState : IState
 
 	protected virtual void OnDash()
 	{
-		if (playerStateMachine.Player.PlayerInputManager.DashInput)
+		if (playerStateMachine.Player.PlayerInputManager.DashInput && dashCounter <=0f)
 		{
 			playerStateMachine.ChangeState(playerStateMachine.PlayerDashState);
 		}

@@ -20,10 +20,12 @@ MonoBehaviour:
     Health: 2000
     Resistance: 0
     Accuracy: 0
-    <BaseDashModifier>k__BackingField: 2.5
+    CanDealDebuffEffects: 
+    <BaseDashModifier>k__BackingField: 3.5
     <BaseDashTime>k__BackingField: 0.25
-    <ResetNomalAttackTime>k__BackingField: 0.2
+    <NomalAttackCooldown>k__BackingField: 0
     <HitCooldown>k__BackingField: 1
+    <DashCooldown>k__BackingField: 0.5
   <IdleBoolTrigger>k__BackingField: idle
   <MoveTrigger>k__BackingField: move
   <NomalAttackValueTrigger>k__BackingField: nomalAttack

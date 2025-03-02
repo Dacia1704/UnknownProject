@@ -25,9 +25,9 @@ public class PlayerDashState: PlayerState
     {
         base.Update();
         
+        OnHit();
         if (!_isDashing)
         {
-            OnHit();
             OnIdle();
             OnMove();
         }
@@ -70,5 +70,6 @@ public class PlayerDashState: PlayerState
     {
         playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.MoveTrigger,-1);
         base.Exit();
+        dashCounter = playerPropertiesSO.BaseStats.DashCooldown;
     }
 }
