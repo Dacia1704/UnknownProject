@@ -14,6 +14,7 @@ public class PlayerHitState: PlayerState
         playerStateMachine.Player.IsNomalAttacking = false;
         playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,-1);
         playerStateMachine.Player.Damable.GetDamage(ref playerStateMachine.Player.PlayerStats.Health,playerStateMachine.Player.Damable.AttackableStats.Attack);
+        playerStateMachine.Player.InvokeOnDebuffEffect(playerStateMachine.Player.Damable.RandomDebuffEffect());
         PLayHitEffect();
         playerStateMachine.Player.OnHealthDamaged?.Invoke(playerStateMachine.Player.PlayerStats.Health);
         if (playerStateMachine.Player.PlayerStats.Health <= 0)
@@ -42,7 +43,7 @@ public class PlayerHitState: PlayerState
     {
         base.Exit();
         playerStateMachine.Player.playerAnimationManager.SetBoolValueAnimation(playerPropertiesSO.HitTrigger,false);
-        // hitCounter = playerPropertiesSO.BaseStats.HitCooldown;
+        playerStateMachine.HitCounter = playerPropertiesSO.BaseStats.HitCooldown;
     }
 
     private void PLayHitEffect()

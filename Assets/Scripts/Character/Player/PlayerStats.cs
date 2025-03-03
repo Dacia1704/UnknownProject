@@ -7,7 +7,7 @@ public class PlayerStats: Stats
 {
     [field: SerializeField] public float BaseDashModifier { get; private set; }
     [field: SerializeField] public float BaseDashTime { get; private set; }
-    [field: SerializeField] public float NomalAttackCooldown { get; private set; }
+    [field: SerializeField] public float ResetNomalAttackComboCooldown { get; private set; }
     [field: SerializeField] public float HitCooldown { get; private set; }
     [field: SerializeField] public float DashCooldown { get; private set; }
 
@@ -24,7 +24,7 @@ public class PlayerStats: Stats
         CanDealDebuffEffects = new List<DebuffEffect>(stats.CanDealDebuffEffects);
         BaseDashModifier = stats.BaseDashModifier;
         BaseDashTime = stats.BaseDashTime;
-        NomalAttackCooldown = stats.NomalAttackCooldown;
+        ResetNomalAttackComboCooldown = stats.ResetNomalAttackComboCooldown;
     }
     public PlayerStats(PlayerStats stats,int currentHP)
     {
@@ -38,7 +38,7 @@ public class PlayerStats: Stats
         CanDealDebuffEffects = new List<DebuffEffect>(stats.CanDealDebuffEffects);
         BaseDashModifier = stats.BaseDashModifier;
         BaseDashTime = stats.BaseDashTime;
-        NomalAttackCooldown = stats.NomalAttackCooldown;
+        ResetNomalAttackComboCooldown = stats.ResetNomalAttackComboCooldown;
     }
     public PlayerStats()
     {
@@ -52,7 +52,7 @@ public class PlayerStats: Stats
         CanDealDebuffEffects = new List<DebuffEffect>();
         BaseDashModifier = 0;
         BaseDashTime = 0;
-        NomalAttackCooldown = 0;
+        ResetNomalAttackComboCooldown = 0;
     }
     
     public PlayerStats(PlayerStats baseStats, PlayerStats bonusStats)
@@ -67,6 +67,6 @@ public class PlayerStats: Stats
         CanDealDebuffEffects = baseStats.CanDealDebuffEffects;
         BaseDashModifier = baseStats.BaseDashModifier;
         BaseDashTime = baseStats.BaseDashTime;
-        NomalAttackCooldown = baseStats.NomalAttackCooldown;
+        ResetNomalAttackComboCooldown = baseStats.ResetNomalAttackComboCooldown;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,11 +14,13 @@ public abstract class Character: MonoBehaviour
     public Action<float> OnHealthHealed;
     public Action<float> OnMaxHealthChanged;
     
-    [field: SerializeField] protected Transform ToxicEffect { get; private set; }
-    [field: SerializeField] protected Transform BurnEffect { get; private set; }
-    [field: SerializeField] protected Transform FrozenEffect { get; private set; }
+    [field: SerializeField] protected Transform ToxicEffect { get; private set; } // get dam until die 1%hp per hit
+    [field: SerializeField] protected Transform BurnEffect { get; private set; } // get dam in 15s 4%hp per hit
+    [field: SerializeField] protected Transform FrozenEffect { get; private set; } // slow 70% in 3s
     [HideInInspector]public List<DebuffEffect> CurrentDebuffEffect { get; private set; }
     protected event Action<DebuffEffect> OnDebuffEffect;
+
+    public float SpeedModifierbyEffect { get; private set; }
     
     [HideInInspector]public Damable Damable;
 
@@ -27,6 +30,7 @@ public abstract class Character: MonoBehaviour
         CurrentDebuffEffect = new List<DebuffEffect>();
 
         OnDebuffEffect += UpdateDebuffEffect;
+        SpeedModifierbyEffect = 1f;
     }
 
     public virtual void DeathStart()
@@ -60,6 +64,43 @@ public abstract class Character: MonoBehaviour
         {
             FrozenEffect.gameObject.SetActive(true);
         }
+        UpdateDebuffDamage(debuffEffect);
+    }
+
+    public void UpdateDebuffDamage(DebuffEffect debuffEffect)
+    {
+        if (debuffEffect == DebuffEffect.Frozen)
+        {
+            StartCoroutine(FrozenEffectCoroutine());
+            return;
+        }
+        if (debuffEffect == DebuffEffect.Burn)
+        {
+            StartCoroutine(BurnEffectCoroutine());
+            return;
+        }
+        if (debuffEffect == DebuffEffect.Toxic)
+        {
+            StartCoroutine(ToxicEffectCoroutine());
+        }
+    }
+
+    protected IEnumerator FrozenEffectCoroutine()
+    {
+        SpeedModifierbyEffect = 0.3f;
+        yield return new WaitForSeconds(3);
+        SpeedModifierbyEffect = 1f;
+        FrozenEffect.gameObject.SetActive(false);
+    }
+
+    protected virtual IEnumerator BurnEffectCoroutine()
+    {
+        yield return null;
+    }
+
+    protected virtual IEnumerator ToxicEffectCoroutine()
+    {
+        yield return null;
     }
 
     public void InvokeOnDebuffEffect(DebuffEffect debuffEffect)

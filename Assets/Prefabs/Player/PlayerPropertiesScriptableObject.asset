@@ -23,8 +23,8 @@ MonoBehaviour:
     CanDealDebuffEffects: 
     <BaseDashModifier>k__BackingField: 3.5
     <BaseDashTime>k__BackingField: 0.25
-    <NomalAttackCooldown>k__BackingField: 0
-    <HitCooldown>k__BackingField: 1
+    <ResetNomalAttackComboCooldown>k__BackingField: 0
+    <HitCooldown>k__BackingField: 0.3
     <DashCooldown>k__BackingField: 0.5
   <IdleBoolTrigger>k__BackingField: idle
   <MoveTrigger>k__BackingField: move

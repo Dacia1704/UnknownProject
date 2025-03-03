@@ -28,7 +28,6 @@ public abstract class PlayerState : IState
 	    if (playerStateMachine.HitCounter > 0)
 	    {
 		    playerStateMachine.HitCounter -= Time.fixedDeltaTime;
-		    Debug.Log(playerStateMachine.HitCounter);
 	    }
 
 	    if (playerStateMachine.DashCounter > 0)
@@ -117,7 +116,7 @@ public abstract class PlayerState : IState
 			} 
 		} else if (playerStateMachine.Player.IsNomalAttacking == false)
 		{
-			if (Time.time - playerStateMachine.NomalAttackCounter >= playerPropertiesSO.BaseStats.NomalAttackCooldown)
+			if (Time.time - playerStateMachine.NomalAttackCounter >= playerPropertiesSO.BaseStats.ResetNomalAttackComboCooldown)
 			{
 				currentAttack = 0;
 			}

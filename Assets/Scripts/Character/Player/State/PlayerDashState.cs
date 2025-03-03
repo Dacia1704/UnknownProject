@@ -63,7 +63,7 @@ public class PlayerDashState: PlayerState
             dir = playerStateMachine.Player.transform.forward;
         }
         playerStateMachine.Player.transform.rotation = Quaternion.RotateTowards(playerStateMachine.Player.transform.rotation, Quaternion.LookRotation(dir), 1000 * Time.deltaTime);
-        playerStateMachine.Player.Rigidbody.velocity = new Vector3(dir.x *speed,0,dir.z * speed);
+        playerStateMachine.Player.Rigidbody.velocity = new Vector3(dir.x *speed * playerStateMachine.Player.SpeedModifierbyEffect,0,dir.z * speed * playerStateMachine.Player.SpeedModifierbyEffect);
     }
 
     public override void Exit()

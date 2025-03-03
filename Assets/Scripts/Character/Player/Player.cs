@@ -77,7 +77,33 @@ public class Player : Character
     {
         PlayerStats.Health  = Math.Clamp(PlayerStats.Health + healAmount, 0, BasePlayerStats.Health);
     }
-    
-    
-    
+
+    protected override IEnumerator BurnEffectCoroutine()
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < 15)
+        {
+            int damage = (int)(BasePlayerStats.Health * 0.03f);
+            Damable.GetDamage(ref PlayerStats.Health,damage);
+            OnHealthDamaged?.Invoke(PlayerStats.Health);
+            Debug.Log("get dam " + damage +" " + PlayerStats.Health);
+            elapsedTime += 1f;
+            if (elapsedTime >= 15)
+            {
+                BurnEffect.gameObject.SetActive(false);
+            }
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    protected override IEnumerator ToxicEffectCoroutine()
+    {
+        while (true)
+        {
+            int damage = (int)(BasePlayerStats.Health * 0.01f);
+            Damable.GetDamage(ref PlayerStats.Health,damage);
+            OnHealthDamaged?.Invoke(playerStateMachine.Player.PlayerStats.Health);
+            yield return new WaitForSeconds(1f);
+        }
+    }
 }

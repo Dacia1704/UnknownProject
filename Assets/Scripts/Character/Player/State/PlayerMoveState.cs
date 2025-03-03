@@ -21,12 +21,11 @@ public class PlayerMoveState : PlayerState
     {
         base.PhysicsUpdate();
         if (playerStateMachine.Player.PlayerInputManager.BackwardInput) {
-            Move(playerStateMachine.Player.PlayerInputManager.MovementInput,(float)playerStateMachine.Player.PlayerStats.Speed/10,true);
+            Move(playerStateMachine.Player.PlayerInputManager.MovementInput,(float)playerStateMachine.Player.PlayerStats.Speed/10 * playerStateMachine.Player.SpeedModifierbyEffect,true);
         }
         else {
-            Move(playerStateMachine.Player.PlayerInputManager.MovementInput,(float)playerStateMachine.Player.PlayerStats.Speed/10);
+            Move(playerStateMachine.Player.PlayerInputManager.MovementInput,(float)playerStateMachine.Player.PlayerStats.Speed/10 * playerStateMachine.Player.SpeedModifierbyEffect);
         }
-
     }
 
     public override void Exit()

@@ -94,6 +94,28 @@ public abstract class Enemy : Character,IPoolingObject {
         SetUpState();
         GameManager.Instance.EnemyManager.EnemyPooling.ReturnEnemyToPool(this.gameObject);
     }
+    
+    protected override IEnumerator BurnEffectCoroutine()
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < 15)
+        {
+            int damage = (int)(EnemyPropertiesSO.BaseStats.Health * 0.4f);
+            Damable.GetDamage(ref EnemyStats.Health,damage);
+            elapsedTime += 1f;
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    protected override IEnumerator ToxicEffectCoroutine()
+    {
+        while (true)
+        {
+            int damage = (int)(EnemyPropertiesSO.BaseStats.Health * 0.1f);
+            Damable.GetDamage(ref EnemyStats.Health,damage);
+            yield return new WaitForSeconds(1f);
+        }
+    }
 
     
 }
