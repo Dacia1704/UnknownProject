@@ -67,6 +67,7 @@ public abstract class PlayerState : IState
 		{
 			playerStateMachine.Player.IsNomalAttacking = true;
 			playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackValueTrigger,currentAttack);
+			playerStateMachine.Player.playerAnimationManager.SetFloatValueAnimation(playerPropertiesSO.NomalAttackSpeedValue,playerStateMachine.Player.PlayerStats.AttackSpeed );
 			AudioManager.Instance.PlayPlayerAttackAudio(playerStateMachine.Player.PlayerAudioSource);
 			if (playerStateMachine.Player.PlayerInputManager.MovementInput == new Vector2(0, 0))
 			{

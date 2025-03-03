@@ -11,6 +11,7 @@ public class PlayerPropertiesSO : ScriptableObject {
     [field: SerializeField] public string IdleBoolTrigger { get; private set; }
     [field: SerializeField] public string MoveTrigger { get; private set; }
     [field: SerializeField] public string NomalAttackValueTrigger { get; private set; }
+    [field: SerializeField] public string NomalAttackSpeedValue { get; private set; }
     [field: SerializeField] public string HitTrigger { get; private set; }
     [field: SerializeField] public string DeathTrigger { get; private set; }
     

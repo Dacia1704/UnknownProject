@@ -59,29 +59,16 @@ public abstract class EnemyAI: MonoBehaviour {
     }
 
     public bool DetectPlayer() {
-        distance = Vector3.Distance(enemy.Player.transform.position, this.transform.position);
-        if(distance <= distanceDetect) {
-            if (!isDetectedPlayer) {
-                isDetectedPlayer = true;
-                distanceDetect*= enemy.EnemyPropertiesSO.DetectModifierDistance;
-            }
-            timeMissDetect = Time.time;
-            return true;
-        }
-        return false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        if(!isDetectedPlayer)
-        {
-            Gizmos.color = new Color(0f, 1f, 0f, 0.5f);
-        } else if(ShouldChase) {
-            Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
-        } else if (ShouldAttack)
-        {
-            Gizmos.color = new Color(0f, 0f, 1f, 0.5f);
-        }
-        Gizmos.DrawWireSphere(transform.position, distanceDetect); 
+        // distance = Vector3.Distance(enemy.Player.transform.position, this.transform.position);
+        // if(distance <= distanceDetect) {
+        //     if (!isDetectedPlayer) {
+        //         isDetectedPlayer = true;
+        //         distanceDetect*= enemy.EnemyPropertiesSO.DetectModifierDistance;
+        //     }
+        //     timeMissDetect = Time.time;
+        //     return true;
+        // }
+        // return false;
+        return true;
     }
 }
