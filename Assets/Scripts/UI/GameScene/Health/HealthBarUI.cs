@@ -15,13 +15,18 @@ public abstract class HealthBarUI: UIBase
 
         protected bool getDam;
 
-
-        protected virtual void Start()
+        protected virtual void Awake()
         {
                 character.OnMaxHealthChanged += UpdateMaxHealth;
                 character.OnHealthDamaged += UpdateDamageHealth;
                 character.OnHealthHealed += UpdateHealHealth;
         }
+
+
+        // protected virtual void Start()
+        // {
+        //         
+        // }
         
         protected virtual void FixedUpdate()
         {
@@ -50,6 +55,7 @@ public abstract class HealthBarUI: UIBase
                 healthSlider.maxValue = max;
                 easeHealthSlider.maxValue = max;
                 healHealthSlider.maxValue = max;
+                Debug.Log($"Setup: {max}");
         }
         
         protected virtual void UpdateHealHealth(float value)

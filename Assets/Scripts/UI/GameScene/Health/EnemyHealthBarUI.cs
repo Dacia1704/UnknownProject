@@ -4,10 +4,10 @@ using UnityEngine;
 public class EnemyHealthBarUI: HealthBarUI
 {
         private CanvasGroup canvasGroup;
-        protected override void Start()
+        protected override void Awake()
         {
                 character = GetComponentInParent<Character>();
-                base.Start();
+                base.Awake();
                 canvasGroup = GetComponent<CanvasGroup>();
         }
         //
